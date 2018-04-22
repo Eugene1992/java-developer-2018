@@ -1,4 +1,4 @@
-package firstPackage;
+package first_pckg;
 
 public class Homework1 {
 
@@ -27,7 +27,7 @@ public class Homework1 {
 		l=-l;
 		i=(int) (i-l);
 		System.out.println("int = " + i + "\nlong = " + l);
-		
+
 	}
 
 }
