@@ -9,7 +9,8 @@
     <modules>
         <module>java-starter</module>
     <module>bohdan</module>
-  </modules>
+        <module>slavikbv</module>
+    </modules>
 
 
 </project>
