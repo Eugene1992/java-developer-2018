@@ -52,25 +52,25 @@ public class myHome1 {
 
         //9. Поменять значения двух целочисленных переменных используя третью
 
-        int x=10;
-        int y=2;
+        int x = 10;
+        int y = 2;
         int z;
 
-        z=x;
-        x=y;
-        y=z;
+        z = x;
+        x = y;
+        y = z;
 
         System.out.println(x);
         System.out.println(y);
 
         //10. Поменять значения двух переменных без использования третей
 
-        int q=10;
-        int w=20;
+        int q = 10;
+        int w = 20;
 
-        w=q+w;
-        q=w-q;
-        w=w-q;
+        w = q + w;
+        q = w - q;
+        w = w - q;
 
         System.out.println(q);
         System.out.println(w);
