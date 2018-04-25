@@ -11,6 +11,7 @@ public class conditionalsLessonTask2 {
 
         double c = 10;
 
+
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Enter first number");
