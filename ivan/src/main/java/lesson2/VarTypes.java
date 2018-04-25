@@ -14,7 +14,7 @@ package lesson2;
 */
 
 public class VarTypes {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         // Создать четыре целочисленные переменные типов byte, short, int, long.
 
         byte iByte = 125;
@@ -31,27 +31,27 @@ public class VarTypes {
         System.out.println("iShort = [" + iShort + "]");
 
         // Инициализировать переменную типа int результатом деления двух любых чисел
-        iInt = 100/5;
+        iInt = 100 / 5;
         System.out.println("iInt = [" + iInt + "]");
 
         // Инициализировать переменную типа long результатом умножения двух любых чисел
-        iLong = (long)1000000 * 1000000;
+        iLong = (long) 1000000 * 1000000;
         System.out.println("iLong = [" + iLong + "]");
 
         // Передать переменной типа byte результат суммы двух переменных типа byte
         byte iByte1 = 10;
         byte iByte2 = 20;
-        iByte = (byte)(iByte1 + iByte2);
+        iByte = (byte) (iByte1 + iByte2);
         System.out.println("iByte = [" + iByte + "]");
 
         // Передать переменной типа byte результат суммы двух переменных типа short, деленных на третью переменную типа byte
         byte iShort1 = 10;
         byte iShort2 = 20;
-        iByte = (byte)((iShort1 + iShort2)/iByte1);
+        iByte = (byte) ((iShort1 + iShort2) / iByte1);
         System.out.println("iByte = [" + iByte + "]");
 
         // Переменной типа int передать результат деления двух short, умноженных на результат деления двух byte
-        iInt = (int)((iShort2/iShort1)*(iByte2/iByte1));
+        iInt = (int) ((iShort2 / iShort1) * (iByte2 / iByte1));
         System.out.println("iInt = [" + iInt + "]");
 
         // Поменять значения двух целочисленных переменных используя третью
@@ -73,9 +73,9 @@ public class VarTypes {
 
         System.out.println("a = [" + a + "]; b = [" + b + "]");
 
-        a = a*b;
-        b = a/b;
-        a = a/b;
+        a = a * b;
+        b = a / b;
+        a = a / b;
 
         System.out.println("a = [" + a + "]; b = [" + b + "]");
 
