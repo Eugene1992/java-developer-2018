@@ -7,7 +7,7 @@ public class homeWork22{
 
         Scanner scan = new Scanner(System.in);
         int a  = scan.nextInt();
-        if (a%2==0) System.out.println(a+" - четное");
+        if (a%2==0) System.out.println(a + " - четное");
         else System.out.println(a+" - нечетное");
     }
 }
