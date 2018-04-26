@@ -18,6 +18,5 @@ public class Interval {
         else
             System.out.println("Твое число за полями[0 - 100]");
 
-
     }
 }
