@@ -25,10 +25,8 @@ public class LoopsTaska {
 				break;
 			} else if (a > num) {
 				System.out.println("Try to take less:");
-				//continue;
 			} else {
 				System.out.println("Try to take greater:");
-				//continue;
 			}
 		}
 	}
