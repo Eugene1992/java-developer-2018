@@ -6,7 +6,7 @@ public class ToBinaryTask {
 		int x = 20;
 		String s = "";
 		
-		while (x >= 1) {
+		while (x > 0) {
 			s = (x%2) + s;
 			x /= 2;
 		}
