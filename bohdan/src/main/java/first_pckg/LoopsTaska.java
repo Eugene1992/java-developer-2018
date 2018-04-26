@@ -16,7 +16,7 @@ public class LoopsTaska {
 		int a = -1;
 		Random rand = new Random();
 		int num = rand.nextInt(100) + 1;
-		System.out.println(num);
+		//System.out.println(num);
 		System.out.println("Try to guess my number from 1 to 100:");
 		while (true) {
 			a = scan.nextInt();
