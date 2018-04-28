@@ -10,8 +10,14 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>java-starter</module>
-        <module>slavikbv</module>
+        <module>bohdan</module>
         <module>ivan</module>
+        <module>kido</module>
+        <module>ruslan</module>
+        <module>slavikbv</module>
+        <module>svovk</module>
+        <module>vasya</module>
+        <module>vitaliy</module>
     </modules>
 
 
