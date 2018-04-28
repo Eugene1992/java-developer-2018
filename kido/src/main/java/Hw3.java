@@ -10,27 +10,23 @@ public class Hw3 {
         int a = scan.nextInt();
         int t1 = 0;
         int t2 = 0;
-        if (a>10){
-            t1 = a-10;
-        }
-else if (a<10){
-            t1=10-a;
+        if (a > 10) {
+            t1 = a - 10;
+        } else if (a < 10) {
+            t1 = 10 - a;
         }
         System.out.println("Введите второе значение");
         int b = scan.nextInt();
-        if (b>10){
-            t2 = b-10;
+        if (b > 10) {
+            t2 = b - 10;
+        } else if (b < 10) {
+            t2 = 10 - b;
         }
-        else if (b<10){
-            t2=10-b;
-        }
-        if (t1<t2){
+        if (t1 < t2) {
             System.out.println("Первое ближе");
-        }
-        else if (t1>t2){
+        } else if (t1 > t2) {
             System.out.println("Второе ближе");
-        }
-        else
+        } else
             System.out.println("Оба равны");
     }
 }
