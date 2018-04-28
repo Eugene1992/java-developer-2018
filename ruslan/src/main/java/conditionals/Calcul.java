@@ -2,7 +2,7 @@ package conditionals;
 
 import java.util.Scanner;
 
-public class calc {
+public class Calcul {
     public static void main(String[] args) {
         Scanner scan = new Scanner (System.in);
         System.out.println("Начало работы");

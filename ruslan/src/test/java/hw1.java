@@ -7,7 +7,7 @@ public class hw1 {
             System.out.println("A > 0");
         } else if (a < 0) {
             System.out.println("A < 0");
-        } else if (a == 0){
+        } else if (a == 0) {
             System.out.println("A == 0");
         }
         System.out.println("End");
@@ -18,7 +18,8 @@ public class hw1 {
         if (a < 0) {
             System.out.println("A < 0");
         }
-        if (a == 0){
+        if (a == 0) {
             System.out.println("A == 0");
+        }
     }
 }
