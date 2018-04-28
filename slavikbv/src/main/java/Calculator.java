@@ -20,9 +20,9 @@ public class Calculator {
         System.out.println("введите знак операции:");
         String s = scan.next();
 
-        switch (s){
+        switch (s) {
             case "+":
-                System.out.println(a+b);
+                System.out.println(a + b);
                 break;
             case "-":
                 System.out.println(a - b);
@@ -30,9 +30,11 @@ public class Calculator {
             case "*":
                 System.out.println(a * b);
                 break;
-            case "/":
-            {if (b == 0) System.out.println("Error");
-            else System.out.println(a / b); break;}
+            case "/": {
+                if (b == 0) System.out.println("Error");
+                else System.out.println(a / b);
+                break;
+            }
         }
 
     }

@@ -6,6 +6,7 @@
         <artifactId>java-developer-2018</artifactId>
         <groupId>com.cbs.edu</groupId>
         <version>1.0-SNAPSHOT</version>
+            <module>slavikbv</module>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
