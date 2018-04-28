@@ -3,20 +3,20 @@ package first_pckg;
 import java.util.*;
 
 public class LoopsTaska {
-	public static void main(String[] args) {
-		//sout 1+...+100:
+	static void printSumOneToHundred() {
 		int x = 0;
 		for (int i = 1; i <= 100; i++) {
 			x += i;
 		}
 		System.out.println(x);
+	}
 
-		//"Guess number" game:
+	static void guessNumberGame() {
 		Scanner scan = new Scanner(System.in);
 		int a = -1;
 		Random rand = new Random();
 		int num = rand.nextInt(100) + 1;
-		//System.out.println(num);
+		// System.out.println(num);
 		System.out.println("Try to guess my number from 1 to 100:");
 		while (true) {
 			a = scan.nextInt();
@@ -29,6 +29,14 @@ public class LoopsTaska {
 				System.out.println("Try to take greater:");
 			}
 		}
+	}
+
+	public static void main(String[] args) {
+		// sout 1+...+100:
+		printSumOneToHundred();
+
+		// "Guess number" game:
+		guessNumberGame();
 	}
 
 }
