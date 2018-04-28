@@ -1,6 +1,4 @@
-package conditionals;
-
-public class IfElseExample {
+public class hw1 {
     public static void main(String[] args) {
         int a = 0;
 
@@ -22,6 +20,5 @@ public class IfElseExample {
         }
         if (a == 0){
             System.out.println("A == 0");
-        }
     }
 }
