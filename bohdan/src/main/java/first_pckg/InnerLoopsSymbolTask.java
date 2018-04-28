@@ -13,7 +13,7 @@ public class InnerLoopsSymbolTask {
 		}
 		
 		for(int i = 0; i < 10; i++) {
-			for (int j = 0; j < i; j++) {
+			for (int j = 0; j < i+1; j++) {
 				System.out.print(s);
 			}
 			System.out.println();
