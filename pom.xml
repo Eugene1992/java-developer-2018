@@ -18,6 +18,7 @@
         <module>svovk</module>
         <module>vasya</module>
         <module>vitaliy</module>
+        <module>roman-horbunov</module>
     </modules>
 
     <build>
