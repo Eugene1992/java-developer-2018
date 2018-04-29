@@ -1,6 +1,5 @@
 package first_pckg;
 
-import java.awt.desktop.ScreenSleepEvent;
 
 public class HomeworkMethods {
 
