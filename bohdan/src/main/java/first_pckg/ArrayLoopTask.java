@@ -22,6 +22,15 @@ public class ArrayLoopTask {
         return max;
     }
 
+    static int[] getFilledArray(int amount, int min, int max) {
+        Random rand = new Random();
+        int[] arr = new int[amount];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = rand.nextInt(max - min) + min;
+        }
+        return arr;
+    }
+
     public static void main(String[] args) {
         Random rand = new Random();
         int[] arr = new int[5];
@@ -31,5 +40,6 @@ public class ArrayLoopTask {
         System.out.println(Arrays.toString(arr));
         System.out.println("Sum: " + getArraySum(arr));
         System.out.println("Max: " + getArrayMax(arr));
+        System.out.println("Method array:\n" + Arrays.toString(getFilledArray(5, -10, 20)));
     }
 }
