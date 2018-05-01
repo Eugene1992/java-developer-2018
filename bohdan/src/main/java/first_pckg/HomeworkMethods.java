@@ -3,7 +3,7 @@ package first_pckg;
 
 public class HomeworkMethods {
 
-	static void luckyTickets() {
+    static void luckyTickets() {
 		/*
 		 * 1. Счастливые билетики. Есть билеты с номерами от 000001 до 999999.
 		 * «Счастливым» считается билетик у которого сумма первых трёх цифр номера равна
@@ -12,7 +12,7 @@ public class HomeworkMethods {
 		 */
 		int count = 0;
 		int leftSide, rightSide, leftSum, rightSum;
-		for (int i = 1; i < 10000; i++) {
+        for (int i = 1; i < 1000000; i++) {
 			leftSum = 0;
 			rightSum = 0;
 			leftSide = i / 1000;
@@ -28,14 +28,14 @@ public class HomeworkMethods {
 
 			if (leftSum == rightSum) {
 				count++;
-				System.out.println("Lucky ticket #00" + i / 1000 + " " + (((i % 1000) < 10) ? ((i % 1000) * 100)
+                System.out.println("Lucky ticket #" + i / 1000 + " " + (((i % 1000) < 10) ? ((i % 1000) * 100)
 						: ((i % 1000) < 100) ? ((i % 1000) * 10) : (i % 1000)));
 			}
 		}
 		System.out.println("Amount: " + count);
 	}
 
-	static void symmetricalTime() {
+    static void symmetricalTime() {
 		/*
 		 * 2. Электронные часы показывают время в формате от 00:00 до 23:59. Подсчитать
 		 * сколько раз за сутки случается так, что слева от двоеточия показывается
@@ -68,11 +68,11 @@ public class HomeworkMethods {
 		System.out.println("Amount: " + count);
 	}
 
-	static void unluckyThirteen() {
+    static void unluckyThirteen() {
 		//3. Не счастливые номера. Есть 999999 номерных знаков, подсчитать количество знаков содержащих число 13 и вывести их все в консоль
-		int left = 0, right = 0;
+        int left, right;
 		int num, count = 0;
-		for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 1000000; i++) {
 			num = i;
 			while (num != 0) {
 				right = num % 10;
