@@ -12,7 +12,7 @@ public class HomeworkMethods {
 		 */
 		int count = 0;
 		int leftSide, rightSide, leftSum, rightSum;
-        for (int i = 1; i < 100000; i++) {
+        for (int i = 1; i < 1000000; i++) {
 			leftSum = 0;
 			rightSum = 0;
 			leftSide = i / 1000;
