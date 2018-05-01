@@ -1,3 +1,5 @@
+package HomeWork2;
+
 /*Задание 5
 Задано четыре переменных, найти и вывести на экран вторую по величине.*/
 public class homeWork25 {
@@ -6,18 +8,18 @@ public class homeWork25 {
         int b = 100;
         int c = 28;
         int d = 0;
-     int min=a;
-     int min2;
-     if (b<min) min = b;
-     if (c<min) min = c;
-     if (d<min) min = d;
+        int min = a;
+        int min2;
+        if (b < min) min = b;
+        if (c < min) min = c;
+        if (d < min) min = d;
 
-     if (min == a){
-         min2 = b;
-         if (c<min2) min2 = c;
-         if (d<min2) min2 = d;
-         System.out.println(min2 + " - второе по величине");
-     }
+        if (min == a) {
+            min2 = b;
+            if (c < min2) min2 = c;
+            if (d < min2) min2 = d;
+            System.out.println(min2 + " - второе по величине");
+        }
         if (min == b){
             min2 = a;
             if (c<min2) min2 = c;
