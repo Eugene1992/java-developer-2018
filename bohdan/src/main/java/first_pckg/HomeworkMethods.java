@@ -70,7 +70,7 @@ public class HomeworkMethods {
 
 	static void unluckyThirteen() {
 		//3. Не счастливые номера. Есть 999999 номерных знаков, подсчитать количество знаков содержащих число 13 и вывести их все в консоль
-		int left = 0, right = 0;
+        int left, right;
 		int num, count = 0;
         for (int i = 0; i < 1000000; i++) {
 			num = i;
