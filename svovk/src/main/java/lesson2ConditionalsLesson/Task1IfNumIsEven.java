@@ -1,8 +1,8 @@
-package conditionalsLesson;
+package lesson2ConditionalsLesson;
 
 import java.util.Scanner;
 
-public class ConditionalsTask1 {
+public class Task1IfNumIsEven {
 
 //    Задание 2
 //    Создать программу, проверяющую и сообщающую на экран, является ли введенное с
@@ -16,9 +16,9 @@ public class ConditionalsTask1 {
 
         int a = scan.nextInt();
 
-        if(a % 2 == 0){
+        if (a % 2 == 0) {
             System.out.println("Yes");
-        }else {
+        } else {
             System.out.println("No");
         }
 

@@ -1,6 +1,6 @@
-package lesson2;
+package lesson1Intnumbers;
 
-public class HomeWork1 {
+public class HomeWork1Alltasks {
     public static void main(String[] args) {
         //1. Создать четыре целочисленные переменные типов byte, short, int, long.
 
@@ -55,6 +55,16 @@ public class HomeWork1 {
         System.out.println(h);
 
         //10. Поменять значения двух переменных без использования третей
+
+        int num1 = 2;
+        int num2 = 4;
+
+        num1 = num2;
+        num2 = num1 + num1;
+        num2 = num1 / num2;
+
+        System.out.println(num1);
+        System.out.println(num2);
     }
 
 }
