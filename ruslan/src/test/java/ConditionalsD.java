@@ -22,21 +22,21 @@ public class ConditionalsD {
 //         if (com1 > com4 || com1 < com2 || com1 < com3) {
 //            System.out.println(com1);
 //        }
-        if ((com1 > com2 && com1 < com3 && com1 < com4) &&
-                (com1 > com4 && com1 < com2 && com1 < com3) &&
-                (com1 > com3 && com1 < com2 && com1 < com4)) {
+        if ((com1 > com2 ^ com1 < com3 ^ com1 < com4) &&
+                (com1 > com4 ^ com1 < com2 ^ com1 < com3) &&
+                (com1 > com3 ^ com1 < com2 ^ com1 < com4)) {
             System.out.println(com1);
             System.out.println("Второе по величине число");
         }
-        if ((com2 > com1 && com2 < com3 && com2 < com4) &&
-                (com2 > com3 && com2 < com1 && com2 < com4) &&
-                (com2 > com4 && com2 < com1 && com2 < com3)) {
+        if ((com2 > com1 ^ com2 < com3 ^ com2 < com4) &&
+                (com2 > com3 ^ com2 < com1 ^ com2 < com4) &&
+                (com2 > com4 ^ com2 < com1 ^ com2 < com3)) {
             System.out.println(com2);
             System.out.println("Второе по величине число");
         }
         if((com3 > com1 && com3 < com2 && com3 < com4) &&
-                (com3 > com2 && com3 < com1 && com3 < com4) &&
-                (com3 > com4 && com3 < com1 && com3 < com2)) {
+                (com3 > com2 ^ com3 < com1 ^ com3 < com4) &&
+                (com3 > com4 ^ com3 < com1 ^ com3 < com2)) {
             System.out.println(com3);
             System.out.println("Второе по величине число");
         }
