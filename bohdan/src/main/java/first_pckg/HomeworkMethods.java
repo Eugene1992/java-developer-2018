@@ -3,7 +3,7 @@ package first_pckg;
 
 public class HomeworkMethods {
 
-	static void luckyTickets() {
+    static void luckyTickets() {
 		/*
 		 * 1. Счастливые билетики. Есть билеты с номерами от 000001 до 999999.
 		 * «Счастливым» считается билетик у которого сумма первых трёх цифр номера равна
@@ -35,7 +35,7 @@ public class HomeworkMethods {
 		System.out.println("Amount: " + count);
 	}
 
-	static void symmetricalTime() {
+    static void symmetricalTime() {
 		/*
 		 * 2. Электронные часы показывают время в формате от 00:00 до 23:59. Подсчитать
 		 * сколько раз за сутки случается так, что слева от двоеточия показывается
@@ -68,7 +68,7 @@ public class HomeworkMethods {
 		System.out.println("Amount: " + count);
 	}
 
-	static void unluckyThirteen() {
+    static void unluckyThirteen() {
 		//3. Не счастливые номера. Есть 999999 номерных знаков, подсчитать количество знаков содержащих число 13 и вывести их все в консоль
         int left, right;
 		int num, count = 0;
