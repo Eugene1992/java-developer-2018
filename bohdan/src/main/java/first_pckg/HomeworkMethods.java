@@ -12,7 +12,7 @@ public class HomeworkMethods {
 		 */
 		int count = 0;
 		int leftSide, rightSide, leftSum, rightSum;
-		for (int i = 1; i < 10000; i++) {
+        for (int i = 1; i < 1000000; i++) {
 			leftSum = 0;
 			rightSum = 0;
 			leftSide = i / 1000;
@@ -28,7 +28,7 @@ public class HomeworkMethods {
 
 			if (leftSum == rightSum) {
 				count++;
-				System.out.println("Lucky ticket #00" + i / 1000 + " " + (((i % 1000) < 10) ? ((i % 1000) * 100)
+                System.out.println("Lucky ticket #" + i / 1000 + " " + (((i % 1000) < 10) ? ((i % 1000) * 100)
 						: ((i % 1000) < 100) ? ((i % 1000) * 10) : (i % 1000)));
 			}
 		}
@@ -72,7 +72,7 @@ public class HomeworkMethods {
 		//3. Не счастливые номера. Есть 999999 номерных знаков, подсчитать количество знаков содержащих число 13 и вывести их все в консоль
 		int left = 0, right = 0;
 		int num, count = 0;
-		for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 1000000; i++) {
 			num = i;
 			while (num != 0) {
 				right = num % 10;
