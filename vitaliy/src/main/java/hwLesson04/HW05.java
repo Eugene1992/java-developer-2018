@@ -1,9 +1,15 @@
 package hwLesson04;
-
+import static javax.swing.JOptionPane.*;
 import java.util.Scanner;
 
 public class HW05 {
     public static void main(String[] args) {
+        /*
+        В три переменные a, b и c записаны три вещественных числа. Создать программу, которая
+        будет находить и выводить на экран вещественные корни квадратного уравнения ax²+bx+c=0,
+        либо сообщать, что корней нет.
+         */
+
         Scanner scanner = new Scanner(System.in);
 
         double a = scanner.nextDouble();
