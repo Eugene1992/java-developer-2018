@@ -2,7 +2,7 @@ package loops;
 
 public class LoopsA {
     public static void main(String[] args) {
-        for (int con = 1000; con < 10000; con++){
+        for (int con = 1000; con < 10000; con+=3){
             System.out.println(con);
         }
     }
