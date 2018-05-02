@@ -53,6 +53,30 @@ public class ArrayLoopTask {
         }
     }
 
+    static void getDublicateAmount(int[] arr) {
+        int count = 0;
+        int n = 0;
+        int buf = arr[0];
+        int bufArray[] = new int[arr.length * 2];
+        for (int i = 1; i < arr.length; i++) {
+            inner:
+            for (int j = i; j < arr.length; j++) {
+                if (buf == arr[j]) {
+                    for (int k = 0; k < bufArray.length; k++) {
+                        if (buf == bufArray[k]) {
+                            continue inner;
+                        }
+                    }
+                    count++;
+                }
+            }
+            bufArray[n] = buf;
+            n++;
+            buf = arr[i];
+        }
+        System.out.println("Dublicate amount: " + count);
+    }
+
     public static void main(String[] args) {
         Random rand = new Random();
         int[] arr = new int[6];
@@ -65,5 +89,9 @@ public class ArrayLoopTask {
         System.out.println("Method array:\n" + Arrays.toString(getFilledArray(6, -10, 20)));
         System.out.println("\n" + Arrays.toString(arr));
         getHalfWithMin(arr);
+        System.out.println("\n");
+        int[] array = {1, 1, 3, 4, 3, 3, 4, 1, 4, 5};
+        System.out.println(Arrays.toString(array));
+        getDublicateAmount(array);
     }
 }
