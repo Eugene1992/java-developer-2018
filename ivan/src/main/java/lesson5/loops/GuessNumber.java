@@ -6,18 +6,22 @@ import java.util.Scanner;
 public class GuessNumber {
     public static void main(String[] args) {
 
+        int lowBoundary, highBoundary;
         int randNum, inNum;
-        int lowBoundary = 2;
-        int highBoundary = 4;
         boolean matchFlag = false;
 
         Random rand = new Random();
         Scanner s = new Scanner(System.in);
 
+        System.out.println("Let's play the Guess Number Game");
+        System.out.print("Please, insert your smallest digit:\t");
+        lowBoundary = s.nextInt();
+        System.out.print("Please, insert your biggest digit:\t");
+        highBoundary = s.nextInt();
+
         while (!matchFlag) {
             System.out.println("Please, enter your number [" + lowBoundary + ".." + highBoundary + "]:");
             inNum = s.nextInt();
-            // randNum = rand.nextInt(10) + 1;
             randNum = rand.nextInt(highBoundary - lowBoundary + 1) + lowBoundary;
 
             if (inNum == randNum) {
