@@ -12,7 +12,7 @@ public class ClassWork01 {
 
     public static void calculateDistance(Car[] cars, int hours){
         for (int i = 0; i < cars.length; i++) {
-            System.out.println("Car " + cars[i].mark + "will pass " + cars[i].speed * hours);
+            System.out.println("Car " + cars[i].mark + " will pass " + cars[i].speed * hours);
         }
     }
 }
