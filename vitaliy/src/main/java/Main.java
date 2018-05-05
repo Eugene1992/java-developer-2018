@@ -9,6 +9,7 @@ public class Main {
             System.out.println(nameFirst + "in" + ageFirst + "has max salary");
             return salaryFirst;
         } else if (salarySecond > salaryFirst & salarySecond > salatyThird) {
+            System.out.println(nameSecond + "in" + ageSecond + "has max salary");
             return salarySecond;
         } else if (salatyThird > salarySecond & salatyThird > salaryFirst) {
             System.out.println(nameThird + "in" + ageThoird + "has max salary");
