@@ -11,6 +11,9 @@ public class Order {
     Product[] products;
     Date date;
 
+    Order() {
+    }
+
     Order(String name, int number, Product[] products, Date date) {
         this.name = name;
         this.number = number;
