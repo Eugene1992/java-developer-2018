@@ -8,19 +8,19 @@ package homeWork01;
 	- date
  */
 
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Order {
     String name;
     int number;
     Product[] products;
-    Date date;
+    GregorianCalendar date;
 
     Order() {
 
     }
 
-    Order(String name, int number, Product[] products, Date date) {
+    Order(String name, int number, Product[] products, GregorianCalendar date) {
         this.name = name;
         this.number = number;
         this.products = products;
