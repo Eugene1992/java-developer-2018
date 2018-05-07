@@ -62,6 +62,20 @@ public class UserRunner {
                 + checkUser.lastname + " spent ["
                 + getUserTotalOrdersAmtByDate(checkUser, fromDate, toDate)
                 + "$] from [" + fromDate.toString() + "] till [" + toDate + "]");
+
+        // - для нахождения купленных товаров пользователя по заданной категории
+        System.out.println("------------------------------");
+        checkUser = user2;
+        Category checkCat = catAlcohol;
+        getBoughtProductsByCategory(checkUser, checkCat);
+
+        // - для нахождения заданного количества самых дорогих заказов пользователя
+        checkUser = user3;
+        Product expProduct = getExpensiveProduct(checkUser);
+        System.out.println("------------------------------");
+        System.out.println("The most expensive product for user ["
+                + checkUser.firstname + " " + checkUser.lastname + "]: ["
+                + expProduct.name + "]; Price: [" + expProduct.price + "]");
     }
 
     private static Date string2Date(String inStr, String inDateFormat) {
@@ -115,4 +129,27 @@ public class UserRunner {
         return totalAmt;
     }
 
+    private static void getBoughtProductsByCategory(User inUser, Category inCat) {
+        for (Order ordr : inUser.orders) {
+            for (Product pr : ordr.products) {
+                if (pr.category == inCat) {
+                    System.out.println("User [" + inUser.firstname + " " + inUser.lastname + "] bought [" + pr.name + "]");
+                }
+            }
+        }
+    }
+
+    private static Product getExpensiveProduct(User inUser) {
+        Product outProduct = null;
+        double maxPrice = 0;
+        for (Order ordr : inUser.orders) {
+            for (Product pr : ordr.products) {
+                if (maxPrice < pr.price) {
+                    maxPrice = pr.price;
+                    outProduct = pr;
+                }
+            }
+        }
+        return outProduct;
+    }
 }
