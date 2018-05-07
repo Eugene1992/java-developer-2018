@@ -1,4 +1,4 @@
-package lesson5.loops;
+package java_starter.lesson5.loops;
 
 public class Sum100 {
     public static void main(String[] args) {
