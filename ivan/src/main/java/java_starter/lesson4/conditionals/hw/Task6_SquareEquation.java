@@ -1,4 +1,4 @@
-package lesson4.conditionals.hw;
+package java_starter.lesson4.conditionals.hw;
 
 /*
     Задание 6

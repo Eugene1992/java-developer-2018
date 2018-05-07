@@ -1,4 +1,4 @@
-package lesson5;
+package java_starter.lesson6.inner_loops;
 
 public class Square {
     public static void main(String[] args) {

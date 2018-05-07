@@ -1,4 +1,4 @@
-package lesson4.conditionals.hw;
+package java_starter.lesson4.conditionals.hw;
 /*
     Задание 3
     Создать программу, выводящую на экран ближайшее к 10 из двух чисел, введенных с консоли.

@@ -1,4 +1,4 @@
-package lesson5.loops;
+package java_starter.lesson5.loops;
 
 import java.util.Random;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package lesson2;
+package java_starter.lesson2;
 
 /*
     1. Создать четыре целочисленные переменные типов byte, short, int, long.
