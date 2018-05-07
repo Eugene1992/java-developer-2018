@@ -51,6 +51,7 @@ public class Task06 {
                     } else if (c == 15) {
                         temp16 = "F" + temp16;
                     }
+
                     number = number / 16;
                 }
                 System.out.println(temp16);
