@@ -26,19 +26,6 @@ public class MainCategory {
 
     }
 
-//    static Product SumOfOrders(Product[] products) {
-//        int sum = 0;
-//        for (int i = 0; i < products.length; i++) {
-//            sum = sum + products[i].price;
-//            System.out.println(sum);
-//
-//        } return ;
-
-
-//    }
-
-    //TO DO
-
 
     static User BiggestSalaryUser(User[] users) {
         User maxSalary = users[0];
