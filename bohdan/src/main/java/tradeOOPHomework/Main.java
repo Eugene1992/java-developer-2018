@@ -65,7 +65,6 @@ public class Main {
 
         System.out.println(fourthUser.getUserOrderByCategory(food));
 
-        // TODO: 5/6/2018
-        System.out.println(fourthUser.getAmountOfExpensiveOrders(2));
+        System.out.println(fourthUser.getAmountOfExpensiveOrders(1));
     }
 }

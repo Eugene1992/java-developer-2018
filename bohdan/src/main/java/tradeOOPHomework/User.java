@@ -109,26 +109,9 @@ public class User {
     String getAmountOfExpensiveOrders(int amount) {
 //        - для нахождения заданного количества самых дорогих заказов пользователя
         Order[] expensiveOrders = new Order[amount];
-        for (Order expensiveOrder : expensiveOrders) {
-            expensiveOrder = new Order();
+        for (int i = 0; i < amount; i++) {
+            expensiveOrders[i] = this.orders[0];
         }
-        /*Order mostExpensiveOrder = expensiveOrders[0];
-        int i = 0;
-        while (expensiveOrders[amount - 1] == null) {
-            outer:
-            for (Order order : this.orders) {
-                if (order.getSummaryPrice() > mostExpensiveOrder.getSummaryPrice()) {
-                    for (Order expensiveOrder : expensiveOrders) {
-                        if (order.equals(expensiveOrder)) {
-                            continue outer;
-                        }
-                        expensiveOrders[i] = order;
-                        i++;
-                    }
-                }
-            }
-        }*/
-        // TODO: 5/6/2018
         for (int i = 0; i < amount; i++) {
             inner:
             for (int j = 0; j < this.orders.length; j++) {
