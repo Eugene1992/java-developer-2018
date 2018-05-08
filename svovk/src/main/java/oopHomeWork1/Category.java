@@ -6,6 +6,5 @@ public class Category {
     Category(String name) {
         this.name = name;
 
-
     }
 }
