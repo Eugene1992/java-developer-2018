@@ -1,44 +1,13 @@
-package homeWork01;
+package homeWork02;
 
 /*
-    1. Создать классы с полями:
-
-	Category
-	- name
-
-	Product
-	- name
-	- price
-	- category
-
-	Order
-	- name
-	- number
-	- products
-	- date
-
-	User
-	- firstname
-	- lastname
-	- age
-	- salary
-	- orders
-	- friends
-
-    2. Написать методы:
-
-    - для нахождения пользователя с самой большой зарплатой
-    - для нахождения пользователей в заданном интервале лет(от и до)
-    - для нахождения суммарной цены по всем заказам пользователя
-    - для нахождения суммарной цены по заказам пользователя в заданном интервале времени(от и до по date)
-    - для нахождения купленных товаров пользователя по заданной категории
-    - для нахождения заданного количества самых дорогих заказов пользователя
+   1. Переделать 1ое домащнее задание, закрыв поля классов и переписать доступ к ним через Setters и Getters
  */
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
-public class HomeWork01 {
+public class HomeWork02 {
     public static void main(String[] args) {
         Category computerCategory = new Category("computer");
         Category foodCategory = new Category("food");
@@ -84,77 +53,86 @@ public class HomeWork01 {
     }
 
     //    - для нахождения пользователя с самой большой зарплатой
-    public static void userWithBiggerSalary(User[] users) {
+    private static User userWithBiggerSalary(User[] users) {
         User maxSalaryUser = users[0];
         for (int i = 0; i < users.length; i++) {
-            if (maxSalaryUser.salary < users[i].salary) {
+            if (maxSalaryUser.getSalary() < users[i].getSalary()) {
                 maxSalaryUser = users[i];
             }
         }
         System.out.println("# User with bigger salary is:");
-        System.out.println(maxSalaryUser.firstname + " " + maxSalaryUser.lastname + " age: " + maxSalaryUser.age);
+        System.out.println(maxSalaryUser.getFirstname() + " " + maxSalaryUser.getLastname() + " age: " + maxSalaryUser.getAge());
+        return maxSalaryUser;
     }
 
     //    - для нахождения пользователей в заданном интервале лет(от и до)
-    public static void userFromManageAgeInterval(User[] users, int beginInterval, int endInterval) {
+    private static ArrayList<User> userFromManageAgeInterval(User[] users, int beginInterval, int endInterval) {
         System.out.println("# User in age interval from " + beginInterval + " to " + endInterval);
+        ArrayList<User> usersFromInterval = new ArrayList<User>();
         for (int i = 0; i < users.length; i++) {
-            if ((users[i].age > beginInterval) && (users[i].age < endInterval)) {
-                System.out.println(users[i].firstname + " " + users[i].lastname + " age " + users[i].age);
+            if ((users[i].getAge() > beginInterval) && (users[i].getAge() < endInterval)) {
+                System.out.println(users[i].getFirstname() + " " + users[i].getLastname() + " age " + users[i].getAge());
+                usersFromInterval.add(users[i]);
             }
         }
+        return usersFromInterval;
     }
 
     //     - для нахождения суммарной цены по всем заказам пользователя
-    public static void sumOfAllUserOrders(User user) {
+    private static int sumOfAllUserOrders(User user) {
         System.out.println("# Sum for all users orders:");
         int sum = 0;
-        for (int i = 0; i < user.orders.length; i++) {
-            System.out.println((i + 1) + ") " + user.orders[i].name);
-            for (int j = 0; j < user.orders[i].products.length; j++) {
-                System.out.println(user.orders[i].products[j].name + " - " + user.orders[i].products[j].price);
-                sum += user.orders[i].products[j].price;
+        for (int i = 0; i < user.getOrders().length; i++) {
+            System.out.println((i + 1) + ") " + user.getOrders()[i].getName());
+            for (int j = 0; j < user.getOrders()[i].getProducts().length; j++) {
+                System.out.println(user.getOrders()[i].getProducts()[j].getName() + " - " + user.getOrders()[i].getProducts()[j].getPrice());
+                sum += user.getOrders()[i].getProducts()[j].getPrice();
             }
         }
-        System.out.println(user.firstname + " " + user.lastname + " sum for all orders: " + sum);
+        System.out.println(user.getFirstname() + " " + user.getLastname() + " sum for all orders: " + sum);
+        return sum;
     }
 
     //    - для нахождения суммарной цены по заказам пользователя в заданном интервале времени(от и до по date)
-    public static void sumOfAllUserOrdersInTimeInterval(User user, GregorianCalendar beginOfInterval, GregorianCalendar endOfInterval) {
+    private static int sumOfAllUserOrdersInTimeInterval(User user, GregorianCalendar beginOfInterval, GregorianCalendar endOfInterval) {
         System.out.println("# Sum for all users orders in Time Interval from: " + beginOfInterval.getTime().toString() + " to: " + endOfInterval.getTime().toString());
         int sum = 0;
-        for (int i = 0; i < user.orders.length; i++) {
-            System.out.println((i + 1) + ") " + user.orders[i].name);
-            for (int j = 0; j < user.orders[i].products.length; j++) {
-                if ((user.orders[i].date.before(endOfInterval)) && (user.orders[i].date.after(beginOfInterval))) {
-                    System.out.println(user.orders[i].products[j].name + " - " + user.orders[i].products[j].price);
-                    sum += user.orders[i].products[j].price;
+        for (int i = 0; i < user.getOrders().length; i++) {
+            System.out.println((i + 1) + ") " + user.getOrders()[i].getName());
+            for (int j = 0; j < user.getOrders()[i].getProducts().length; j++) {
+                if ((user.getOrders()[i].getDate().before(endOfInterval)) && (user.getOrders()[i].getDate().after(beginOfInterval))) {
+                    System.out.println(user.getOrders()[i].getProducts()[j].getName() + " - " + user.getOrders()[i].getProducts()[j].getPrice());
+                    sum += user.getOrders()[i].getProducts()[j].getPrice();
                 }
             }
         }
-        System.out.println(user.firstname + " " + user.lastname + " sum for all orders: " + sum);
+        System.out.println(user.getFirstname() + " " + user.getLastname() + " sum for all orders: " + sum);
+        return sum;
     }
 
     //    - для нахождения купленных товаров пользователя по заданной категории
-    public static void allUsersProductsFromPredeterminedCategory(User user, Category category) {
-        System.out.println("# All users products from predetermined category: " + category.name);
-        for (int i = 0; i < user.orders.length; i++) {
-            System.out.println((i + 1) + ") " + user.orders[i].name);
-            for (int j = 0; j < user.orders[i].products.length; j++) {
-                if (user.orders[i].products[j].category == category) {
-                    System.out.println("Product: " + user.orders[i].products[j].name + " Category: " + user.orders[i].products[j].category.name);
+    private static ArrayList<Product> allUsersProductsFromPredeterminedCategory(User user, Category category) {
+        System.out.println("# All users products from predetermined category: " + category.getName());
+        ArrayList<Product> productsFromPredeterminedCategory = new ArrayList<Product>();
+        for (int i = 0; i < user.getOrders().length; i++) {
+            System.out.println((i + 1) + ") " + user.getOrders()[i].getName());
+            for (int j = 0; j < user.getOrders()[i].getProducts().length; j++) {
+                if (user.getOrders()[i].getProducts()[j].getCategory() == category) {
+                    productsFromPredeterminedCategory.add(user.getOrders()[i].getProducts()[j]);
+                    System.out.println("Product: " + user.getOrders()[i].getProducts()[j].getName() + " Category: " + user.getOrders()[i].getProducts()[j].getCategory().getName());
                 }
             }
         }
+        return productsFromPredeterminedCategory;
     }
 
     //    - для нахождения заданного количества самых дорогих заказов пользователя
-    public static void mostExpensiveUsersProducts(User user, int count) {
+    private static ArrayList<Product> mostExpensiveUsersProducts(User user, int count) {
         System.out.println("# Most expensive users products, count: " + count);
         ArrayList<Product> mostExpensiveProducts = new ArrayList<Product>();
-        for (int i = 0; i < user.orders.length; i++) {
-            for (int j = 0; j < user.orders[i].products.length; j++) {
-                mostExpensiveProducts.add(user.orders[i].products[j]);
+        for (int i = 0; i < user.getOrders().length; i++) {
+            for (int j = 0; j < user.getOrders()[i].getProducts().length; j++) {
+                mostExpensiveProducts.add(user.getOrders()[i].getProducts()[j]);
             }
         }
         Product changeProduct;
@@ -163,7 +141,7 @@ public class HomeWork01 {
             Product maxProduct = mostExpensiveProducts.get(i);
             k = i;
             for (int j = i + 1; j < mostExpensiveProducts.size(); j++) {
-                if (mostExpensiveProducts.get(j).price > maxProduct.price) {
+                if (mostExpensiveProducts.get(j).getPrice() > maxProduct.getPrice()) {
                     maxProduct = mostExpensiveProducts.get(j);
                     k = j;
                 }
@@ -175,7 +153,8 @@ public class HomeWork01 {
             }
         }
         for (int i = 0; i < count; i++) {
-            System.out.println(mostExpensiveProducts.get(i).name + " " + mostExpensiveProducts.get(i).price);
+            System.out.println(mostExpensiveProducts.get(i).getName() + " " + mostExpensiveProducts.get(i).getPrice());
         }
+        return mostExpensiveProducts;
     }
 }
