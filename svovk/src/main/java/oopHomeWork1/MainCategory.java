@@ -1,5 +1,6 @@
-package oopHomeWork1;
 
+
+package oopHomeWork1;
 
 public class MainCategory {
     public static void main(String[] args) {
