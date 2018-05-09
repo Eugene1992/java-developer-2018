@@ -1,14 +1,37 @@
 package OOPHomeWork1;
 
 public class Product {
-    String name;
-    int price;
+    private String name;
+    private int price;
     Category category;
+
+
+    Product() {
+
+    }
+
+    ;
 
     Product(String name, int price, Category category) {
         this.name = name;
         this.price = price;
         this.category = category;
 
+    }
+
+    public String getProductName() {
+        return name;
+    }
+
+    public void setProductName(String name) {
+        this.name = name;
+    }
+
+    public int getProductPrice() {
+        return price;
+    }
+
+    public void setProductPrice(int price) {
+        this.price = price;
     }
 }
