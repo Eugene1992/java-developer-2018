@@ -3,7 +3,7 @@ package OOPHomeWork1;
 public class Product {
     private String name;
     private int price;
-    Category category;
+    private Category category;
 
 
     Product() {
@@ -33,5 +33,13 @@ public class Product {
 
     public void setProductPrice(int price) {
         this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

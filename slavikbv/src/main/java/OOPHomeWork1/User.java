@@ -7,8 +7,8 @@ public class User {
     private String lastname;
     private int age;
     private int salary;
-    Order[] orders;
-    User[] friends;
+    private Order[] orders;
+    private User[] friends;
 
     User() {
     }
@@ -39,8 +39,8 @@ public class User {
         int sum = 0;
         for (int i = 0; i < user.orders.length; i++) {
             if (user.orders[i].getOrderDate().after(dateFrom) && user.orders[i].getOrderDate().before(dateTo)) {
-                for (int j = 0; j < user.orders[i].products.length; j++) {
-                    sum = sum + user.orders[i].products[i].getProductPrice();
+                for (int j = 0; j < user.orders[i].getProducts().length; j++) {
+                    sum = sum + user.orders[i].getProducts()[i].getProductPrice();
                 }
             }
         }
@@ -51,8 +51,8 @@ public class User {
         /*- для нахождения купленных товаров пользователя по заданной категории*/
         int numGoods = 0;
         for (int i = 0; i < user.orders.length; i++) {
-            for (int j = 0; j < user.orders[i].products.length; j++) {
-                if (user.orders[i].products[j].category == category) {
+            for (int j = 0; j < user.orders[i].getProducts().length; j++) {
+                if (user.orders[i].getProducts()[j].getCategory() == category) {
                     numGoods++;
                 }
             }
@@ -71,6 +71,28 @@ public class User {
         return userMaxSallary;
     }
 
+    int userOrderSumPrice() {
+        /* для нахождения суммарной цены по всем заказам пользователя*/
+        int sum = 0;
+        for (int i = 0; i < this.orders.length; i++) {
+            for (int j = 0; j < this.orders[i].getProducts().length; j++) {
+                sum = sum + this.orders[i].getProducts()[j].getProductPrice();
+            }
+        }
+        return sum;
+    }
+
+    int userOrderSumPrice(Date fromDate, Date toDate) {
+        /*- для нахождения суммарной цены по заказам пользователя в заданном интервале времени(от и до по date)*/
+        int sum = 0;
+        for (int i = 0; i < this.orders.length; i++) {
+            for (int j = 0; j < this.orders[i].getProducts().length; j++) {
+                if (this.orders[i].getOrderDate().after(fromDate) && this.orders[i].getOrderDate().before(toDate))
+                    sum = sum + this.orders[i].getProducts()[j].getProductPrice();
+            }
+        }
+        return sum;
+    }
     public String getFirstname() {
         return firstname;
     }
@@ -103,26 +125,21 @@ public class User {
         this.salary = salary;
     }
 
-    int userOrderSumPrice() {
-        /* для нахождения суммарной цены по всем заказам пользователя*/
-        int sum = 0;
-        for (int i = 0; i < this.orders.length; i++) {
-            for (int j = 0; j < this.orders[i].products.length; j++) {
-                sum = sum + this.orders[i].products[j].getProductPrice();
-            }
-        }
-        return sum;
+    public Order[] getOrders() {
+        return orders;
     }
 
-    int userOrderSumPrice(Date fromDate, Date toDate) {
-        /*- для нахождения суммарной цены по заказам пользователя в заданном интервале времени(от и до по date)*/
-        int sum = 0;
-        for (int i = 0; i < this.orders.length; i++) {
-            for (int j = 0; j < this.orders[i].products.length; j++) {
-                if (this.orders[i].getOrderDate().after(fromDate) && this.orders[i].getOrderDate().before(toDate))
-                    sum = sum + this.orders[i].products[j].getProductPrice();
-            }
-        }
-        return sum;
+    public void setOrders(Order[] orders) {
+        this.orders = orders;
     }
+
+    public User[] getFriends() {
+        return friends;
+    }
+
+    public void setFriends(User[] friends) {
+        this.friends = friends;
+    }
+
+
 }

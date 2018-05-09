@@ -1,7 +1,7 @@
 package OOPHomeWork1;
 
 public class Category {
-    String name;
+    private String name;
 
     Category() {
 
@@ -11,12 +11,12 @@ public class Category {
     Category(String name) {
         this.name = name;
     }
-/*
+
  public String getCategory() {
         return name;
     }
 
     public void setCategory(String name) {
         this.name = name;
-    }*/
+    }
 }

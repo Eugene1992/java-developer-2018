@@ -5,7 +5,7 @@ import java.util.Date;
 public class Order {
     private String name;
     private int number;
-    Product[] products;
+    private Product[] products;
     private Date date;
 
     Order() {
@@ -44,5 +44,13 @@ public class Order {
 
     public void setOrderDate(Date date) {
         this.date = date;
+    }
+
+    public Product[] getProducts() {
+        return products;
+    }
+
+    public void setProducts(Product[] products) {
+        this.products = products;
     }
 }
