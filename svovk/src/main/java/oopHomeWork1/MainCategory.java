@@ -23,16 +23,17 @@ public class MainCategory {
 
         System.out.println("User with biggest salary is  " + BiggestSalaryUser(users));
         System.out.println("His age is between " + Agebeetween(users));
+        System.out.println("SUM " + totalSumOfOrders(order));
 
 
     }
 
 
-    static User BiggestSalaryUser(User[] users) {
-        User maxSalary = users[0];
-        for (int i = 0; i < users.length; i++) {
-            if (maxSalary.salary < users[i].salary) {
-                maxSalary = users[i];
+    static User BiggestSalaryUser(User[] salary) {
+        User maxSalary = salary[0];
+        for (int i = 0; i < salary.length; i++) {
+            if (maxSalary.salary < salary[i].salary) {
+                maxSalary = salary[i];
             }
         }
         return maxSalary;
@@ -56,5 +57,13 @@ public class MainCategory {
         return ageIs;
     }
 
-}    //TO DO
+    static Orders totalSumOfOrders(Orders[] order) {
+        Orders total = order[0];
+        for (int i = 0; i < order.length; i++) {
+            total = order[i];
+        }
+        return total;
+    }
+
+}
 
