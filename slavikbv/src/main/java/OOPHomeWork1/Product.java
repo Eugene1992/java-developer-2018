@@ -1,29 +1,37 @@
-package tradeOOPHomework;
+package OOPHomeWork1;
 
 public class Product {
-    String name;
-    int price;
-    Category category;
+    private String name;
+    private int price;
+    private Category category;
+
+
+    Product() {
+
+    }
+
+    ;
 
     Product(String name, int price, Category category) {
         this.name = name;
         this.price = price;
         this.category = category;
+
     }
 
-    public String getName() {
+    public String getProductName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setProductName(String name) {
         this.name = name;
     }
 
-    public int getPrice() {
+    public int getProductPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setProductPrice(int price) {
         this.price = price;
     }
 
@@ -34,9 +42,4 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
-
-    public String toString() {
-        return this.name;
-    }
-
 }

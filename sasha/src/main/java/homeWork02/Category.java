@@ -1,7 +1,16 @@
-package tradeOOPHomework;
+package homeWork02;
+
+/*
+    Category
+	- name
+ */
 
 public class Category {
-    String name;
+    private String name;
+
+    Category() {
+
+    }
 
     Category(String name) {
         this.name = name;
@@ -14,9 +23,4 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String toString() {
-        return this.name;
-    }
-
 }

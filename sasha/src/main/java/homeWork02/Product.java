@@ -1,9 +1,20 @@
-package tradeOOPHomework;
+package homeWork02;
+
+/*
+    Product
+	- name
+	- price
+	- category
+ */
 
 public class Product {
-    String name;
-    int price;
-    Category category;
+    private String name;
+    private int price;
+    private Category category;
+
+    Product() {
+
+    }
 
     Product(String name, int price, Category category) {
         this.name = name;
@@ -34,9 +45,4 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
-
-    public String toString() {
-        return this.name;
-    }
-
 }
