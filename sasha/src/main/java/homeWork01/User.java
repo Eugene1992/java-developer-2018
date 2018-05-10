@@ -23,7 +23,7 @@ public class User {
     }
 
     User(String firstname, String lastname, int age, int salary, Order[] orders/*,User[] friends*/) {
-        this.firstname =firstname;
+        this.firstname = firstname;
         this.lastname = lastname;
         this.age = age;
         this.salary = salary;

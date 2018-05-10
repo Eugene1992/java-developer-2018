@@ -2,6 +2,8 @@ package tradeOOPHomework;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
 
 import static tradeOOPHomework.User.getMaxSalaryUser;
 import static tradeOOPHomework.User.getUsersAgeIntervalIn;
@@ -55,17 +57,24 @@ public class Main {
 
         User[] allUsers = new User[]{firstUser, secondUser, thirdUser, fourthUser};
 
-        System.out.println(getMaxSalaryUser(allUsers));
 
-        System.out.println(getUsersAgeIntervalIn(allUsers, 20, 25));
+        System.out.println(getMaxSalaryUser(allUsers) + "has the biggest salary.");
 
-        System.out.println(fourthUser.getUserOrdersSummary());
-        System.out.println(fourthUser.getUserOrdersSummary(dateFormat.parse("01.05.2018"),
-                dateFormat.parse("05.05.2018")));
+        int from = 20, to = 25;
+        System.out.println(Arrays.toString(getUsersAgeIntervalIn(allUsers, from, to))
+                + "are in age interval [" + from + ", " + to + "].");
 
-        System.out.println(fourthUser.getUserOrderByCategory(food));
+        System.out.println(fourthUser + " has " + fourthUser.getUserOrdersSummary() + " summary orders price.");
+        Date fromDate = dateFormat.parse("01.05.2018");
+        Date toDate = dateFormat.parse("05.05.2018");
+        System.out.println(fourthUser.getUserOrdersSummary(fromDate, toDate)
+                + " summary orders price between " + from + " and " + to + ".");
 
-        // TODO: 5/6/2018
-        System.out.println(fourthUser.getAmountOfExpensiveOrders(2));
+
+        System.out.println(fourthUser + " ordered " + food + ": " + Arrays.toString(fourthUser.getUserOrderByCategory(food)));
+
+        System.out.println(fourthUser + "'s most expensive orders:\n" + Arrays.toString(fourthUser.getAmountOfExpensiveOrders(2)));
+
+
     }
 }

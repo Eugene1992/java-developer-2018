@@ -36,42 +36,103 @@ public class User {
         this.friends = friends;
     }
 
-    static String getMaxSalaryUser(User[] users) {
+    static User getMaxSalaryUser(User[] users) {
 //        - для нахождения пользователя с самой большой зарплатой
         User maxSalaryUser = users[0];
         for (User user : users) {
             if (user.salary > maxSalaryUser.salary)
                 maxSalaryUser = user;
         }
-        return maxSalaryUser + " has the biggest salary.";
+        return maxSalaryUser;
     }
 
-    static String getUsersAgeIntervalIn(User[] users, int from, int to) {
+    static User[] getUsersAgeIntervalIn(User[] users, int from, int to) {
 //        - для нахождения пользователей в заданном интервале лет(от и до)
-        //User[] usersAgeInterval = new User[users.length];
-        String usersAgeInterval = "- in age interval [" + from + ", " + to + "].";
-        //int i = 0;
+        User[] usersAgeInterval = new User[users.length];
+        int i = 0;
         for (User user : users) {
             if (user.age >= from && user.age <= to) {
-                //usersAgeInterval[i] = user;
-                //i++;
-                usersAgeInterval = user + " " + usersAgeInterval;
+                usersAgeInterval[i] = user;
+                i++;
             }
         }
-        //return Arrays.toString(usersAgeInterval) + " - in age interval [" + from + ", " + to + "].";
         return usersAgeInterval;
     }
 
-    String getUserOrdersSummary() {
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public Order[] getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Order[] orders) {
+        this.orders = orders;
+    }
+
+    public String getOrderList() {
+        return Arrays.toString(this.orders);
+    }
+
+    public int getAmountOfOrderedProducts() {
+        int length = 0;
+        for (Order order : this.orders) {
+            length += order.products.length;
+        }
+        return length;
+    }
+
+    public User[] getFriends() {
+        return friends;
+    }
+
+    public void setFriends(User[] friends) {
+        this.friends = friends;
+    }
+
+    public String getFriendList() {
+        return Arrays.toString(this.friends);
+    }
+
+    int getUserOrdersSummary() {
 //        - для нахождения суммарной цены по всем заказам пользователя
         int sum = 0;
         for (Order order : this.orders) {
             sum += order.getSummaryPrice();
         }
-        return this + " has " + sum + " summary orders price.";
+        return sum;
     }
 
-    String getUserOrdersSummary(Date from, Date to) {
+    int getUserOrdersSummary(Date from, Date to) {
 //       - для нахождения суммарной цены по заказам пользователя в заданном интервале времени(от и до по date)
         int sum = 0;
         for (Order order : this.orders) {
@@ -79,56 +140,30 @@ public class User {
                 sum += order.getSummaryPrice();
             }
         }
-        return this + " has " + sum + " summary orders price between " + from + " and " + to + ".";
+        return sum;
     }
 
-    String getUserOrderByCategory(Category category) {
+    Product[] getUserOrderByCategory(Category category) {
 //        - для нахождения купленных товаров пользователя по заданной категории
-        /*int length = 0;
-        for (Order order : this.orders) {
-            length += order.products.length;
-        }
+        Product productsByCategory[] = new Product[this.getAmountOfOrderedProducts()];
         int i = 0;
-
-        Product productsByCategory[] = new Product[length];
-        */
-        String productsByCategory = this + " ordered " + category + ": ";
         for (Order order : this.orders) {
             for (Product product : order.products) {
                 if (product.category.equals(category)) {
-                    //productsByCategory[i] = product;
-                    //i++;
-                    productsByCategory += product + " ";
+                    productsByCategory[i] = product;
+                    i++;
                 }
             }
         }
-        //return this + " ordered " + category + ": " + Arrays.toString(productsByCategory);
         return productsByCategory;
     }
 
-    String getAmountOfExpensiveOrders(int amount) {
+    Order[] getAmountOfExpensiveOrders(int amount) {
 //        - для нахождения заданного количества самых дорогих заказов пользователя
         Order[] expensiveOrders = new Order[amount];
-        for (Order expensiveOrder : expensiveOrders) {
-            expensiveOrder = new Order();
+        for (int i = 0; i < amount; i++) {
+            expensiveOrders[i] = this.orders[0];
         }
-        /*Order mostExpensiveOrder = expensiveOrders[0];
-        int i = 0;
-        while (expensiveOrders[amount - 1] == null) {
-            outer:
-            for (Order order : this.orders) {
-                if (order.getSummaryPrice() > mostExpensiveOrder.getSummaryPrice()) {
-                    for (Order expensiveOrder : expensiveOrders) {
-                        if (order.equals(expensiveOrder)) {
-                            continue outer;
-                        }
-                        expensiveOrders[i] = order;
-                        i++;
-                    }
-                }
-            }
-        }*/
-        // TODO: 5/6/2018
         for (int i = 0; i < amount; i++) {
             inner:
             for (int j = 0; j < this.orders.length; j++) {
@@ -142,7 +177,7 @@ public class User {
                 }
             }
         }
-        return "The most expensive orders:\n" + Arrays.toString(expensiveOrders);
+        return expensiveOrders;
     }
 
     public String toString() {

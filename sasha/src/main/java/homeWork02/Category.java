@@ -1,4 +1,9 @@
-package OOPHomeWork1;
+package homeWork02;
+
+/*
+    Category
+	- name
+ */
 
 public class Category {
     private String name;
@@ -7,16 +12,15 @@ public class Category {
 
     }
 
-    ;
     Category(String name) {
         this.name = name;
     }
 
- public String getCategory() {
+    public String getName() {
         return name;
     }
 
-    public void setCategory(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 }
