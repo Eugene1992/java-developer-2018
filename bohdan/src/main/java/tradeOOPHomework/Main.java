@@ -74,5 +74,7 @@ public class Main {
         System.out.println(fourthUser + " ordered " + food + ": " + Arrays.toString(fourthUser.getUserOrderByCategory(food)));
 
         System.out.println(fourthUser + "'s most expensive orders:\n" + Arrays.toString(fourthUser.getAmountOfExpensiveOrders(2)));
+
+
     }
 }
