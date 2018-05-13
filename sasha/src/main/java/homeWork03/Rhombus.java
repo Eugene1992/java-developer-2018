@@ -12,6 +12,6 @@ public class Rhombus extends Shape {
     @Override
     protected int squareShape() {
         System.out.println("Rhombus Square: ");
-        return (int) (Math.pow(this.rhombusSide,2) * Math.sin(Math.toRadians(rhombusAngle)));
+        return (int) (Math.pow(this.rhombusSide, 2) * Math.sin(Math.toRadians(rhombusAngle)));
     }
 }

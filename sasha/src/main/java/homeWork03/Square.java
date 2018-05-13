@@ -10,6 +10,6 @@ public class Square extends Shape {
     @Override
     protected int squareShape() {
         System.out.println("Square Square: ");
-        return (int) Math.pow(this.squareSide,2);
+        return (int) Math.pow(this.squareSide, 2);
     }
 }

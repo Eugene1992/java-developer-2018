@@ -1,6 +1,6 @@
 package homeWork03;
 
-public class Trapeze extends Shape{
+public class Trapeze extends Shape {
     protected int firstTrapezeSide;
     protected int secondTrapezeSide;
     protected int heightOfTrapeze;
