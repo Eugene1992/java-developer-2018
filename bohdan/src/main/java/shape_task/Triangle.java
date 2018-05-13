@@ -1,4 +1,4 @@
-package shapeTask;
+package shape_task;
 
 public class Triangle extends Shape {
     final String NAME = "Triangle";
@@ -26,7 +26,7 @@ public class Triangle extends Shape {
     }
 
     public double getArea() {
-        this.area = (1 / 2) * this.getSide() * this.getHeight();
+        this.area = 0.5 * this.getSide() * this.getHeight();
         return this.area;
     }
 

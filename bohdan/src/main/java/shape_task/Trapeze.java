@@ -1,4 +1,4 @@
-package shapeTask;
+package shape_task;
 
 public class Trapeze extends Quadrangle {
     final String NAME = "Trapeze";

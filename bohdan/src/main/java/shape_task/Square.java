@@ -1,4 +1,4 @@
-package shapeTask;
+package shape_task;
 
 public class Square extends Quadrangle {
     final String NAME = "Square";

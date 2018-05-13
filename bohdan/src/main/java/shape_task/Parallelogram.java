@@ -1,4 +1,4 @@
-package shapeTask;
+package shape_task;
 
 public class Parallelogram extends Quadrangle {
     final String NAME = "Parellelogram";
