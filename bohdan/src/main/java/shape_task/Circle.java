@@ -1,4 +1,4 @@
-package shapeTask;
+package shape_task;
 
 public class Circle extends Shape {
     final String NAME = "Circle";

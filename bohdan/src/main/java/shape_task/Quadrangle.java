@@ -1,4 +1,4 @@
-package shapeTask;
+package shape_task;
 
 public class Quadrangle extends Shape {
     protected double sideA, sideB, height;

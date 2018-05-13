@@ -1,4 +1,4 @@
-package shapeTask;
+package shape_task;
 
 public class Rhombus extends Parallelogram {
     final String NAME = "Rhombus";
