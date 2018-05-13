@@ -61,7 +61,7 @@ public class UserRunner {
         System.out.println(checkUser.firstname + " "
                 + checkUser.lastname + " spent ["
                 + getUserTotalOrdersAmtByDate(checkUser, fromDate, toDate)
-                + "$] from [" + fromDate.toString() + "] till [" + toDate + "]");
+                + "$] from [" + fromDate + "] till [" + toDate + "]");
 
         // - для нахождения купленных товаров пользователя по заданной категории
         System.out.println("------------------------------");
