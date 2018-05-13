@@ -1,6 +1,6 @@
 package homeWork03;
 
-public class Rectangle extends Shape{
+public class Rectangle extends Shape {
     protected int firstRectangleSide;
     protected int secondRectangleSide;
 

@@ -10,6 +10,6 @@ public class Circle extends Shape {
     @Override
     protected int squareShape() {
         System.out.println("Circle Square: ");
-        return (int) (Math.pow(this.radius,2) * Math.PI);
+        return (int) (Math.pow(this.radius, 2) * Math.PI);
     }
 }
