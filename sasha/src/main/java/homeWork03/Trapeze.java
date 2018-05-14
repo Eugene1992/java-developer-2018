@@ -1,19 +1,20 @@
 package homeWork03;
 
 public class Trapeze extends Shape {
-    protected int firstParametr;
-    protected int secondParametr;
-    protected int height;
+    protected int firstTrapezeSide;
+    protected int secondTrapezeSide;
+    protected int heightOfTrapeze;
 
-    public Trapeze(int firstParametr, int secondParametr, int height) {
-        this.firstParametr = firstParametr;
-        this.secondParametr = secondParametr;
-        this.height = height;
+    public Trapeze(int firstTrapezeSide, int secondTrapezeSide, int heightOfTrapeze) {
+        this.firstTrapezeSide = firstTrapezeSide;
+        this.secondTrapezeSide = secondTrapezeSide;
+        this.heightOfTrapeze = heightOfTrapeze;
+
     }
 
     @Override
-    protected int shapeSquare() {
+    protected int squareShape() {
         System.out.println("Trapeze Square: ");
-        return (int) (this.firstParametr * this.secondParametr * this.height / 2);
+        return (this.firstTrapezeSide + this.secondTrapezeSide) * this.heightOfTrapeze / 2;
     }
 }

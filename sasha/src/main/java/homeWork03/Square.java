@@ -1,15 +1,15 @@
 package homeWork03;
 
 public class Square extends Shape {
-    protected int firstParametr;
+    protected int squareSide;
 
-    public Square(int firstParametr) {
-        this.firstParametr = firstParametr;
+    public Square(int squareSide) {
+        this.squareSide = squareSide;
     }
 
     @Override
-    protected int shapeSquare() {
+    protected int squareShape() {
         System.out.println("Square Square: ");
-        return (int) Math.pow(this.firstParametr, 2);
+        return (int) Math.pow(this.squareSide, 2);
     }
 }

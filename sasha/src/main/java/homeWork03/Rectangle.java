@@ -1,18 +1,17 @@
 package homeWork03;
 
 public class Rectangle extends Shape {
-    protected int firstParametr;
-    protected int secondParametr;
+    protected int firstRectangleSide;
+    protected int secondRectangleSide;
 
-    public Rectangle(int firstParametr, int secondParametr) {
-        this.firstParametr = firstParametr;
-        this.secondParametr = secondParametr;
+    public Rectangle(int firstRectangleSide, int secondRectangleSide) {
+        this.firstRectangleSide = firstRectangleSide;
+        this.secondRectangleSide = secondRectangleSide;
     }
 
     @Override
-    protected int shapeSquare() {
+    protected int squareShape() {
         System.out.println("Rectangle Square: ");
-        return this.firstParametr * this.secondParametr;
+        return this.firstRectangleSide * this.secondRectangleSide;
     }
-
 }

@@ -2,29 +2,22 @@ package homeWork03;
 
 public class HomeWork03 {
     public static void main(String[] args) {
-        //Class Shape
         Shape shape = new Shape();
-        System.out.println(shape.shapeSquare());
-
-        Shape rectangle = new Rectangle(10, 20);
-        System.out.println(rectangle.shapeSquare());
-
-        Shape square = new Square(10);
-        System.out.println(square.shapeSquare());
-
         Shape circle = new Circle(10);
-        System.out.println(circle.shapeSquare());
+        Shape parallelogram = new Parallelogram(5, 7, 60);
+        Shape rectangle = new Rectangle(4, 5);
+        Shape rhombus = new Rhombus(8, 60);
+        Shape square = new Square(7);
+        Shape trapeze = new Trapeze(5, 4, 5);
+        Shape triangle = new Triangle(8, 10, 60);
 
-        Shape rhombus = new Rhombus(10, 45);
-        System.out.println(rhombus.shapeSquare());
-
-        Shape parallelogram = new Parallelogram(10, 20, 45);
-        System.out.println(parallelogram.shapeSquare());
-
-        Shape trapeze = new Trapeze(10, 20, 5);
-        System.out.println(trapeze.shapeSquare());
-
-        Shape triangle = new Triangle(10, 10, 60);
-        System.out.println(triangle.shapeSquare());
+        System.out.println(shape.squareShape());
+        System.out.println(circle.squareShape());
+        System.out.println(parallelogram.squareShape());
+        System.out.println(rectangle.squareShape());
+        System.out.println(rhombus.squareShape());
+        System.out.println(square.squareShape());
+        System.out.println(trapeze.squareShape());
+        System.out.println(triangle.squareShape());
     }
 }

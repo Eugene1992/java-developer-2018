@@ -1,15 +1,15 @@
 package homeWork03;
 
 public class Circle extends Shape {
-    protected int firstParametr;
+    protected int radius;
 
-    public Circle(int firstParametr) {
-        this.firstParametr = firstParametr;
+    public Circle(int radius) {
+        this.radius = radius;
     }
 
     @Override
-    protected int shapeSquare() {
+    protected int squareShape() {
         System.out.println("Circle Square: ");
-        return (int) (Math.pow(this.firstParametr, 2) * Math.PI);
+        return (int) (Math.pow(this.radius, 2) * Math.PI);
     }
 }

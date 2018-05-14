@@ -1,0 +1,20 @@
+Hero
+- health
+- attack
+- armor
+- attack(Hero hero)
+
+Elf
+- criticalChance
+
+Dwarf
+- blockChance
+
+Human
+- healthChance
+
+Player
+- heroes
+
+Arena
+- players

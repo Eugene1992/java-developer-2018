@@ -1,19 +1,19 @@
 package homeWork03;
 
 public class Parallelogram extends Shape {
-    protected int firstParametr;
-    protected int secondParametr;
-    protected int angle;
+    protected int parallelogramFirstSide;
+    protected int parallelogramSecondSide;
+    protected int angleBetweenParallelogramSides;
 
-    public Parallelogram(int firstParametr, int secondParametr, int angle) {
-        this.firstParametr = firstParametr;
-        this.secondParametr = secondParametr;
-        this.angle = angle;
+    public Parallelogram(int parallelogramFirstSide, int parallelogramSecondSide, int angleBetweenParallelogramSides) {
+        this.parallelogramFirstSide = parallelogramFirstSide;
+        this.parallelogramSecondSide = parallelogramSecondSide;
+        this.angleBetweenParallelogramSides = angleBetweenParallelogramSides;
     }
 
     @Override
-    protected int shapeSquare() {
+    protected int squareShape() {
         System.out.println("Parallelogram Square: ");
-        return (int) (this.firstParametr * this.secondParametr * Math.sin(Math.toRadians(this.angle)));
+        return (int) (this.parallelogramFirstSide * this.parallelogramSecondSide * Math.sin(Math.toRadians(angleBetweenParallelogramSides)));
     }
 }
