@@ -45,4 +45,8 @@ public abstract class Race {
         this.armor = armor;
     }
 
+    @Override
+    public String toString() {
+        return "Race";
+    }
 }

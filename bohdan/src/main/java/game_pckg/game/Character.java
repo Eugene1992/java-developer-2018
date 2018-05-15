@@ -40,11 +40,11 @@ public class Character {
     }
 
     int getAttack() {
-        return rand.nextInt(this.race.getMaxDamage() - this.race.getMinDamage()) + this.race.getMinDamage();
+        return (rand.nextInt(this.race.getMaxDamage() - this.race.getMinDamage()) + this.race.getMinDamage());
     }
 
     boolean checkAbility() {
-        if (rand.nextInt(100) + 1 <= 10) {
+        if (rand.nextInt(100) + 1 <= 20) {
             return true;
         } else {
             return false;
