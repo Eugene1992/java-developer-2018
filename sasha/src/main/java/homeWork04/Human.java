@@ -1,7 +1,5 @@
 package homeWork04;
 
-import java.util.Random;
-
 public class Human extends Hero {
 
     public Human() {
@@ -27,7 +25,7 @@ public class Human extends Hero {
 
     @Override
     protected int healMove() {
-        Random rand = new Random();
+//        Random rand = new Random();
         if (healing()) {
             return 20;
         } else {
