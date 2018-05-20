@@ -39,16 +39,36 @@ public class Character {
         return heroClass;
     }
 
+    double getHealth() {
+        return this.getRace().getHealth();
+    }
+
+    void setHealth(double health) {
+        this.getRace().setHealth(health);
+    }
+
     int getAttack() {
         return (rand.nextInt(this.race.getMaxDamage() - this.race.getMinDamage()) + this.race.getMinDamage());
     }
 
-    boolean checkAbility() {
-        if (rand.nextInt(100) + 1 <= 20) {
-            return true;
-        } else {
-            return false;
-        }
+    int getArmor() {
+        return this.getRace().getArmor();
+    }
+
+    void setArmor(int armor) {
+        this.getRace().setArmor(armor);
+    }
+
+    boolean tryAbility() {
+        return this.getHeroClass().checkAbility();
+    }
+
+    double useOffensiveAbility(double health, int armor, int attack) {
+        return this.getHeroClass().useOffensiveAbility(health, armor, attack);
+    }
+
+    String useDefensiveAbility() {
+        return this.getHeroClass().useDefensiveAbility();
     }
 
     @Override

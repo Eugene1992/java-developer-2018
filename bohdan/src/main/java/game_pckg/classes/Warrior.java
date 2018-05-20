@@ -1,7 +1,7 @@
 package game_pckg.classes;
 
 public interface Warrior {
-    static String block() {
-        return " blocked ";
-    }
+    double crash(double health, int armor, int attack);
+
+    String block();
 }

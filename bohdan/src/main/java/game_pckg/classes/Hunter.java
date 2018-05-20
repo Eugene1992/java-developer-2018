@@ -1,7 +1,7 @@
 package game_pckg.classes;
 
 public interface Hunter {
-    static String criticalHeat() {
-        return " hit the critical ";
-    }
+    double criticalHeat(double health, int armor, int attack);
+
+    String dodge();
 }

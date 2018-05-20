@@ -1,0 +1,39 @@
+//    public static double turn(Character offender, Character defender) {
+//        int attack = offender.getAttack();
+//        if (offender.getHeroClass() instanceof WarriorHero || offender.getHeroClass() instanceof MageHero) {
+//            if (defender.getHeroClass() instanceof WarriorHero || offender.getHeroClass() instanceof MageHero) {
+//                if (defender.checkAbility()) {
+//                    System.out.println(offender + " hitted, but " + defender + defender.getHeroClass().useClassAbility());
+//                } else {
+//                    System.out.println(offender + " hitted " + attack);
+//                    defender.getRace().setHealth(defender.getRace().getHealth() - (attack - defender.getRace().getArmor()));
+//                }
+//            } else {
+//                System.out.println(offender + " hitted " + attack);
+//                defender.getRace().setHealth(defender.getRace().getHealth() - (attack - defender.getRace().getArmor()));
+//            }
+//        } else {
+//            if (defender.getHeroClass() instanceof WarriorHero || offender.getHeroClass() instanceof MageHero) {
+//                if (defender.checkAbility()) {
+//                    System.out.println(offender + " hitted, but " + defender + defender.getHeroClass().useClassAbility());
+//                } else {
+//                    if (offender.checkAbility()) {
+//                        System.out.println(offender + " hitted critical " + (attack * 2));
+//                        defender.getRace().setHealth(defender.getRace().getHealth() - (attack * 2 - defender.getRace().getArmor()));
+//                    } else {
+//                        System.out.println(offender + " hitted " + attack);
+//                        defender.getRace().setHealth((defender.getRace().getHealth() - (attack - defender.getRace().getArmor())));
+//                    }
+//                }
+//            } else {
+//                if (offender.checkAbility()) {
+//                    System.out.println(offender + " hitted critical " + (attack * 2));
+//                    defender.getRace().setHealth(defender.getRace().getHealth() - (attack * 2 - defender.getRace().getArmor()));
+//                } else {
+//                    System.out.println(offender + " hitted " + attack);
+//                    defender.getRace().setHealth(defender.getRace().getHealth() - (attack - defender.getRace().getArmor()));
+//                }
+//            }
+//        }
+//        return defender.getRace().getHealth();
+//    }

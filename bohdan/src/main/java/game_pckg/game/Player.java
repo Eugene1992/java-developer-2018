@@ -17,6 +17,10 @@ public class Player {
         this.username = username;
     }
 
+    public void setCharacter(Character character) {
+        this.character = character;
+    }
+
     public Character getCharacter() {
         return character;
     }
