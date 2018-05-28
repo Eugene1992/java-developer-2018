@@ -95,8 +95,25 @@ public class MyArrayList {
             throw new ArrayIndexOutOfBoundsException("Illegal index: " + index);
         }
 
+        if (index == 0) {
+            this.list[0] = null;
+            System.arraycopy(list, 1, list, 0, list.length - 1);
+        } else if (index == size) {
+            list[size] = null;
+        } else {
+            System.arraycopy(list, index + 1, list, index, list.length - (index + 1));
+        }
+
         --size;
 
+    }
+
+    void printList() {
+        System.out.print("[ ");
+        for (int i = 0; i < size; i++) {
+            System.out.print(list[i] + ", ");
+        }
+        System.out.print(" ]");
     }
 
 }
