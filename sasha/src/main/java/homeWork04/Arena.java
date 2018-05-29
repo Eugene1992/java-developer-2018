@@ -14,10 +14,6 @@ public class Arena {
         makeTeam(player1);
         makeTeam(player2);
 
-//        for (int i = 0; i < player1.getHeroes().size(); i++) {
-//            System.out.println(player1.getHeroes().get(i).getName());
-//        }
-
         playersHeroesFight(player1, player2);
     }
 
