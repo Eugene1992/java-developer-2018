@@ -11,7 +11,7 @@ public class Human extends Hero {
     }
 
     protected boolean healing() {
-        if (Math.random() <= 0.2) {
+        if (Math.random() <= 0.5) {
             return true;
         } else {
             return false;
