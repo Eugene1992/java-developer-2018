@@ -68,44 +68,6 @@ public class Arena {
         return player;
     }
 
-    public static int playerAttackMove(Player player) {
-        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-        int sum = 0;
-        int attack;
-        for (int i = 0; i < player.getHeroes().size(); i++) {
-            attack = player.getHeroes().get(i).attackMove();
-            System.out.println(player.getHeroes().get(i).getName());
-            System.out.println("Make Damage: " + attack);
-            sum = sum + attack;
-        }
-        return sum;
-    }
-
-    public static int playerBlockMove(Player player) {
-        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-        int sum = 0;
-        int block;
-        for (int i = 0; i < player.getHeroes().size(); i++) {
-            block = player.getHeroes().get(i).blockMove();
-            System.out.println(player.getHeroes().get(i).getName());
-            System.out.println("Block damage: " + block);
-            sum = sum + block;
-        }
-        return sum;
-    }
-
-    public static int playerHealMove(Player player) {
-        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-        int sum = 0;
-        int heal;
-        for (int i = 0; i < player.getHeroes().size(); i++) {
-            heal = player.getHeroes().get(i).healMove();
-            System.out.println(player.getHeroes().get(i).getName());
-            System.out.println("Heal damage: " + heal);
-            sum = sum + heal;
-        }
-        return sum;
-    }
 
     public static void playersHeroesFight(Player player1, Player player2) {
         int k = 1;
@@ -121,9 +83,9 @@ public class Arena {
                 }
 
                 System.out.println(player1.getName() + " Move =======================");
-                attack = playerAttackMove(player1);
-                block = playerBlockMove(player2);
-                heal = playerHealMove(player2);
+                attack = player1.playerAttackMove();
+                block = player2.playerBlockMove();
+                heal = player2.playerHealMove();
 
                 if ((block + heal) >= attack) {
                     System.out.println(player2.getName() + " Totaly blocked and healed enemies damage!!!!!!!!!!!!!!!!!!");
@@ -152,9 +114,9 @@ public class Arena {
                 }
 
                 System.out.println(player2.getName() + " Move =======================");
-                attack = playerAttackMove(player2);
-                block = playerBlockMove(player1);
-                heal = playerHealMove(player1);
+                attack = player2.playerAttackMove();
+                block = player1.playerBlockMove();
+                heal = player1.playerHealMove();
 
                 if ((block + heal) >= attack) {
                     System.out.println(player1.getName() + " Totaly blocked and healed enemies damage!!!!!!!!!!!!!!!!!!");
