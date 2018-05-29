@@ -1,15 +1,28 @@
 package game_pckg.game;
 
 import game_pckg.heroes.HunterHero;
+import game_pckg.heroes.MageHero;
 import game_pckg.heroes.WarriorHero;
 import game_pckg.races.Dwarf;
 import game_pckg.races.Elf;
+import game_pckg.races.Human;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Arena {
     static Player user = new Player("Br1k", new Character("Biba",
             new Elf(80.0, 15, 20, 2), new HunterHero()));
-    static Player enemy = new Player("Bot", new Character("Boba",
+    static Player enemy1 = new Player("Bot1", new Character("Boba1",
             new Dwarf(100.0, 10, 15, 3), new WarriorHero()));
+    static Player enemy2 = new Player("Bot2", new Character("Boba2",
+            new Human(90.0, 12, 17, 2), new MageHero()));
+    static Player enemy3 = new Player("Bot3", new Character("Boba3",
+            new Elf(80.0, 15, 20, 2), new HunterHero()));
+
+    static ArrayList<Player> enemies = new ArrayList<>();
+
+
 
     static void fight(Character player, Character enemy) throws InterruptedException {
         boolean victoryFlag = false;
@@ -83,7 +96,16 @@ public class Arena {
         return false;
     }
 
+    static Player getEnemy() {
+        Random rand = new Random();
+        return enemies.get(rand.nextInt(enemies.size()));
+    }
+
     public static void main(String[] args) throws InterruptedException {
-        fight(user.getCharacter(), enemy.getCharacter());
+        enemies.add(enemy1);
+        enemies.add(enemy2);
+        enemies.add(enemy3);
+
+        fight(user.getCharacter(), getEnemy().getCharacter());
     }
 }

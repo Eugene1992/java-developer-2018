@@ -63,7 +63,7 @@ public class MyArrayList {
             if (size == (list.length - 1)) {
                 list = Arrays.copyOf(list, (list.length - 1) * (3 / 2) + 1);
             }
-            System.arraycopy(list, index, list, index + 1, list.length - 1);
+            System.arraycopy(list, index, list, index + 1, list.length - (index + 1));
             list[index] = element;
             ++size;
         }
