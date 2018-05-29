@@ -1,14 +1,12 @@
 package game_pckg.heroes;
 
-import game_pckg.classes.Hunter;
-import game_pckg.classes.Mage;
-import game_pckg.classes.Warrior;
+import game_pckg.classes.Classable;
 
-public abstract class Hero implements Warrior, Hunter, Mage {
+public abstract class Hero implements Classable {
 
-    public Hero() {
-
+    @Override
+    public String toString() {
+        return "Hero";
     }
 
-    abstract public String useClassAbility();
 }

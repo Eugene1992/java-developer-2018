@@ -13,7 +13,7 @@ public class Elf extends Hero {
     }
 
     protected boolean criticalAttack() {
-        if (Math.random() <= 0.2) {
+        if (Math.random() <= 0.5) {
             return true;
         } else {
             return false;
@@ -28,14 +28,6 @@ public class Elf extends Hero {
         } else {
             return rand.nextInt((this.maxAttack - this.minAttack) + 1) + this.minAttack;
         }
-//        if (hero.getArmor() <= 0) {
-//            hero.setHealth(hero.getHealth() - attack);
-//        } else if (hero.getArmor() < attack) {
-//            hero.setHealth(hero.getHealth() - (attack - hero.getArmor()));
-//            hero.setArmor(0);
-//        } else if (hero.getArmor() >= attack) {
-//            hero.setArmor(hero.getArmor() - attack);
-//        }
     }
 
     @Override

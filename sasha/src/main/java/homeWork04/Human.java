@@ -1,7 +1,5 @@
 package homeWork04;
 
-import java.util.Random;
-
 public class Human extends Hero {
 
     public Human() {
@@ -13,7 +11,7 @@ public class Human extends Hero {
     }
 
     protected boolean healing() {
-        if (Math.random() <= 0.2) {
+        if (Math.random() <= 0.5) {
             return true;
         } else {
             return false;
@@ -27,7 +25,7 @@ public class Human extends Hero {
 
     @Override
     protected int healMove() {
-        Random rand = new Random();
+//        Random rand = new Random();
         if (healing()) {
             return 20;
         } else {

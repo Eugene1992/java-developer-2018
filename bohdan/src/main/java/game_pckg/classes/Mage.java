@@ -1,7 +1,7 @@
 package game_pckg.classes;
 
 public interface Mage {
-    static String heal() {
-        return " heal ";
-    }
+    double penetrate(double health, int armor, int attack);
+
+    String heal();
 }
