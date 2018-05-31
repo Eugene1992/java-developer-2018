@@ -1,4 +1,4 @@
-package ArrayLinked;
+package ArrayList_VS_LinkedList;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

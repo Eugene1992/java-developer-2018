@@ -18,14 +18,9 @@ public class Human extends Hero {
         }
     }
 
-    @Override
-    protected int blockMove() {
-        return 0;
-    }
 
     @Override
-    protected int healMove() {
-//        Random rand = new Random();
+    public int healMove() {
         if (healing()) {
             return 20;
         } else {

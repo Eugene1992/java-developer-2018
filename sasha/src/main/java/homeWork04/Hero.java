@@ -2,7 +2,7 @@ package homeWork04;
 
 import java.util.Random;
 
-public abstract class Hero {
+public abstract class Hero implements HeroMoveable {
     protected String name;
     protected int health;
     protected int armor;
@@ -61,12 +61,17 @@ public abstract class Hero {
         this.maxAttack = maxAttack;
     }
 
-    protected int attackMove() {
+    public int attackMove() {
         Random rand = new Random();
         return rand.nextInt((this.maxAttack - this.minAttack) + 1) + this.minAttack;
     }
 
-    protected abstract int blockMove();
+    public int blockMove() {
+        return 0;
+    }
 
-    protected abstract int healMove();
+    public int healMove() {
+        return 0;
+    }
+
 }
