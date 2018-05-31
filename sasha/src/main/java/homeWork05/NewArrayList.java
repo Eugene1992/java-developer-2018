@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 public class NewArrayList {
 
-    private Object[] newList;
     private static final int DEFAULT_CAPACITY = 10;
+    private Object[] newList;
     private int size;
     private int capacity;
 
@@ -108,14 +108,14 @@ public class NewArrayList {
     public int indexOf(Object object) {
         int k = 0;
         int position = 0;
-        while (k < size) {
-            if (object.equals(newList[k])) {
-                position = k;
-                k = size;
-            }
-            k++;
-        }
         if (contains(object)) {
+            while (k < size) {
+                if (object.equals(newList[k])) {
+                    position = k;
+                    k = size;
+                }
+                k++;
+            }
             return position;
         } else {
             return -1;
@@ -141,5 +141,20 @@ public class NewArrayList {
             return sublist;
         }
         return sublist;
+    }
+
+    public int lastIndexOf(Object object, int fromPosition) {
+        int k = fromPosition;
+        int position = -1;
+
+        while (k > 0) {
+            if (object.equals(newList[k])) {
+                position = k;
+                k = 0;
+            }
+            k--;
+        }
+        return position;
+
     }
 }

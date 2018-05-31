@@ -32,12 +32,14 @@ public class TestNewList {
         System.out.println(list1.isEmpty());
         System.out.println(list2.isEmpty());
 
-        NewArrayList list3 = list1.subList(1,5);
-        System.out.println("list size=== " + list3.size());
-        for (int i = 0; i < list3.size(); i++) {
-            System.out.print(list3.get(i) + ", ");
-        }
-        System.out.println();
+//        NewArrayList list3 = list1.subList(1,5);
+//        System.out.println("list size=== " + list3.size());
+//        for (int i = 0; i < list3.size(); i++) {
+//            System.out.print(list3.get(i) + ", ");
+//        }
+//        System.out.println();
 
+
+        System.out.println(list1.lastIndexOf("5", 10));
     }
 }
