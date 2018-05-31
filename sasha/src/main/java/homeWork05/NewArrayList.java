@@ -2,7 +2,7 @@ package homeWork05;
 
 import java.util.Arrays;
 
-public class NewArrayList {
+public class NewArrayList implements NewList{
 
     private static final int DEFAULT_CAPACITY = 10;
     private Object[] newList;
@@ -36,12 +36,14 @@ public class NewArrayList {
         }
     }
 
+    @Override
     public void add(Object object) {
         increaseCapacity(size + 1);
         newList[size] = object;
         size++;
     }
 
+    @Override
     public void add(Object object, int position) {
         increaseCapacity(size + 1);
         if (position == 0) {
@@ -57,10 +59,12 @@ public class NewArrayList {
         }
     }
 
+    @Override
     public int size() {
         return size;
     }
 
+    @Override
     public Object get(int position) {
         if (position >= size) {
             System.out.println("Elements with this index not exist");
@@ -70,6 +74,7 @@ public class NewArrayList {
         }
     }
 
+    @Override
     public void set(Object object, int position) {
         if (position >= size || position < 0) {
             System.out.println("Index to set element is out of array");
@@ -78,6 +83,7 @@ public class NewArrayList {
         }
     }
 
+    @Override
     public void remove(int position) {
         if (position == 0) {
             System.arraycopy(newList, 1, newList, 0, size);
@@ -90,6 +96,7 @@ public class NewArrayList {
         }
     }
 
+    @Override
     public boolean contains(Object object) {
         int k = 0;
         boolean f = false;
@@ -105,6 +112,7 @@ public class NewArrayList {
         return f;
     }
 
+    @Override
     public int indexOf(Object object) {
         int k = 0;
         int position = 0;
@@ -122,11 +130,13 @@ public class NewArrayList {
         }
     }
 
+    @Override
     public boolean isEmpty() {
         if (size == 0) return true;
         else return false;
     }
 
+    @Override
     public NewArrayList subList(int from, int to) {
         NewArrayList sublist = new NewArrayList();
 
@@ -137,12 +147,14 @@ public class NewArrayList {
         } else if (from == to) {
             System.out.println("You entered equal from and to positions");
         } else {
-            System.arraycopy(newList, from, sublist, 0, to - from);
-            return sublist;
+            for (int i = from; i < to; i++) {
+                sublist.add(this.newList[i]);
+            }
         }
         return sublist;
     }
 
+    @Override
     public int lastIndexOf(Object object, int fromPosition) {
         int k = fromPosition;
         int position = -1;
@@ -155,6 +167,5 @@ public class NewArrayList {
             k--;
         }
         return position;
-
     }
 }
