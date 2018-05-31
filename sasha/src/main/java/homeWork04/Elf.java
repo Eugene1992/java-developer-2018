@@ -13,7 +13,7 @@ public class Elf extends Hero {
     }
 
     protected boolean criticalAttack() {
-        if (Math.random() <= 0.2) {
+        if (Math.random() <= 0.5) {
             return true;
         } else {
             return false;
@@ -21,7 +21,7 @@ public class Elf extends Hero {
     }
 
     @Override
-    protected int attackMove() {
+    public int attackMove() {
         Random rand = new Random();
         if (criticalAttack()) {
             return (rand.nextInt((this.maxAttack - this.minAttack) + 1) + this.minAttack) * 2;
@@ -30,13 +30,4 @@ public class Elf extends Hero {
         }
     }
 
-    @Override
-    protected int blockMove() {
-        return 0;
-    }
-
-    @Override
-    protected int healMove() {
-        return 0;
-    }
 }

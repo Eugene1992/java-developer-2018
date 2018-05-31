@@ -14,9 +14,7 @@ public class Arena {
         makeTeam(player1);
         makeTeam(player2);
 
-        for (int i = 0; i < player1.getHeroes().size(); i++) {
-            System.out.println(player1.getHeroes().get(i).getName());
-        }
+        playersHeroesFight(player1, player2);
     }
 
     public static Player makeTeam(Player player) {
@@ -70,44 +68,6 @@ public class Arena {
         return player;
     }
 
-    public static int playerAttackMove(Player player) {
-        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-        int sum = 0;
-        int attack;
-        for (int i = 0; i < player.getHeroes().size(); i++) {
-            attack = player.getHeroes().get(i).attackMove();
-            System.out.println(player.getHeroes().get(i).getName() + " from team " + player.getName());
-            System.out.println("Make Damage: " + attack);
-            sum = sum + attack;
-        }
-        return sum;
-    }
-
-    public static int playerBlockMove(Player player) {
-        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-        int sum = 0;
-        int block;
-        for (int i = 0; i < player.getHeroes().size(); i++) {
-            block = player.getHeroes().get(i).blockMove();
-            System.out.println(player.getHeroes().get(i).getName() + " from team " + player.getName());
-            System.out.println("Block damage: " + block);
-            sum = sum + block;
-        }
-        return sum;
-    }
-
-    public static int playerHealMove(Player player) {
-        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-        int sum = 0;
-        int heal;
-        for (int i = 0; i < player.getHeroes().size(); i++) {
-            heal = player.getHeroes().get(i).healMove();
-            System.out.println(player.getHeroes().get(i).getName() + " from team " + player.getName());
-            System.out.println("Heal damage: " + heal);
-            sum = sum + heal;
-        }
-        return sum;
-    }
 
     public static void playersHeroesFight(Player player1, Player player2) {
         int k = 1;
@@ -115,11 +75,17 @@ public class Arena {
         int block;
         int heal;
         while ((player1.getHeroes().size() > 0) && (player2.getHeroes().size() > 0)) {
-            if (k == 1) {
-                System.out.println(player1.getName() + " Move");
-                attack = playerAttackMove(player1);
-                block = playerBlockMove(player2);
-                heal = playerHealMove(player2);
+            if (k == 1 && player1.getHeroes().size() > 0) {
+                System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+                for (int i = 0; i < player2.getHeroes().size(); i++) {
+                    System.out.println(player2.getHeroes().get(i).getName() + " have health " + player2.getHeroes().get(i).getHealth());
+                    System.out.println(player2.getHeroes().get(i).getName() + " have armor " + player2.getHeroes().get(i).getArmor());
+                }
+
+                System.out.println(player1.getName() + " Move =======================");
+                attack = player1.playerAttackMove();
+                block = player2.playerBlockMove();
+                heal = player2.playerHealMove();
 
                 if ((block + heal) >= attack) {
                     System.out.println(player2.getName() + " Totaly blocked and healed enemies damage!!!!!!!!!!!!!!!!!!");
@@ -130,7 +96,7 @@ public class Arena {
                     } else if (player2.getHeroes().get(0).getArmor() < (attack - block - heal) && player2.getHeroes().get(0).getArmor() > 0) {
                         player2.getHeroes().get(0).setHealth(player2.getHeroes().get(0).getHealth() - attack + block + heal + player2.getHeroes().get(0).getArmor());
                         player2.getHeroes().get(0).setArmor(0);
-                    } else (player2.getHeroes().get(0).getArmor() >= (attack - block - heal)) {
+                    } else if (player2.getHeroes().get(0).getArmor() >= (attack - block - heal)) {
                         player2.getHeroes().get(0).setArmor(player2.getHeroes().get(0).getArmor() - attack + block + heal);
                     }
                     if (player2.getHeroes().get(0).getHealth() <= 0) {
@@ -140,32 +106,44 @@ public class Arena {
                 }
             }
 
-            if (k == 2) {
-                System.out.println(player1.getName() + " Move");
-                attack = playerAttackMove(player2);
-                block = playerBlockMove(player1);
-                heal = playerHealMove(player1);
+            if (k == 2 && player2.getHeroes().size() > 0) {
+                System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+                for (int i = 0; i < player1.getHeroes().size(); i++) {
+                    System.out.println(player1.getHeroes().get(i).getName() + " have health " + player1.getHeroes().get(i).getHealth());
+                    System.out.println(player1.getHeroes().get(i).getName() + " have armor " + player1.getHeroes().get(i).getArmor());
+                }
+
+                System.out.println(player2.getName() + " Move =======================");
+                attack = player2.playerAttackMove();
+                block = player1.playerBlockMove();
+                heal = player1.playerHealMove();
 
                 if ((block + heal) >= attack) {
-                    System.out.println(player2.getName() + " Totaly blocked and healed enemies damage!!!!!!!!!!!!!!!!!!");
-                    k = 2;
+                    System.out.println(player1.getName() + " Totaly blocked and healed enemies damage!!!!!!!!!!!!!!!!!!");
+                    k = 1;
                 } else {
-                    if (player2.getHeroes().get(0).getArmor() <= 0) {
-                        player2.getHeroes().get(0).setHealth(player2.getHeroes().get(0).getHealth() - attack + block + heal);
-                    } else if (player2.getHeroes().get(0).getArmor() < (attack - block - heal) && player2.getHeroes().get(0).getArmor() > 0) {
-                        player2.getHeroes().get(0).setHealth(player2.getHeroes().get(0).getHealth() - attack + block + heal + player2.getHeroes().get(0).getArmor());
-                        player2.getHeroes().get(0).setArmor(0);
-                    } else (player2.getHeroes().get(0).getArmor() >= (attack - block - heal)) {
-                        player2.getHeroes().get(0).setArmor(player2.getHeroes().get(0).getArmor() - attack + block + heal);
+                    if (player1.getHeroes().get(0).getArmor() <= 0) {
+                        player1.getHeroes().get(0).setHealth(player1.getHeroes().get(0).getHealth() - attack + block + heal);
+                    } else if (player1.getHeroes().get(0).getArmor() < (attack - block - heal) && player1.getHeroes().get(0).getArmor() > 0) {
+                        player1.getHeroes().get(0).setHealth(player1.getHeroes().get(0).getHealth() - attack + block + heal + player2.getHeroes().get(0).getArmor());
+                        player1.getHeroes().get(0).setArmor(0);
+                    } else if (player1.getHeroes().get(0).getArmor() >= (attack - block - heal)) {
+                        player2.getHeroes().get(0).setArmor(player1.getHeroes().get(0).getArmor() - attack + block + heal);
                     }
-                    if (player2.getHeroes().get(0).getHealth() <= 0) {
-                        player2.getHeroes().remove(0);
+                    if (player1.getHeroes().get(0).getHealth() <= 0) {
+                        player1.getHeroes().remove(0);
                     }
-                    k = 2;
+                    k = 1;
                 }
             }
 
+        }
 
+        if (player1.getHeroes().isEmpty()) {
+            System.out.println(player2.getName() + " team won the battle");
+        }
+        if (player2.getHeroes().isEmpty()) {
+            System.out.println(player1.getName() + " team won the battle");
         }
     }
 

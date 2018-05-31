@@ -11,21 +11,16 @@ public class Human extends Hero {
     }
 
     protected boolean healing() {
-        if (Math.random() <= 0.2) {
+        if (Math.random() <= 0.5) {
             return true;
         } else {
             return false;
         }
     }
 
-    @Override
-    protected int blockMove() {
-        return 0;
-    }
 
     @Override
-    protected int healMove() {
-//        Random rand = new Random();
+    public int healMove() {
         if (healing()) {
             return 20;
         } else {

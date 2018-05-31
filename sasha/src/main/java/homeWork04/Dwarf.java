@@ -13,7 +13,7 @@ public class Dwarf extends Hero {
     }
 
     protected boolean blockAttack() {
-        if (Math.random() <= 0.2) {
+        if (Math.random() <= 0.5) {
             return true;
         } else {
             return false;
@@ -21,7 +21,7 @@ public class Dwarf extends Hero {
     }
 
     @Override
-    protected int blockMove() {
+    public int blockMove() {
         Random rand = new Random();
         if (blockAttack()) {
             return rand.nextInt((this.maxAttack - this.minAttack) + 1) + this.minAttack;
@@ -30,8 +30,4 @@ public class Dwarf extends Hero {
         }
     }
 
-    @Override
-    protected int healMove() {
-        return 0;
-    }
 }
