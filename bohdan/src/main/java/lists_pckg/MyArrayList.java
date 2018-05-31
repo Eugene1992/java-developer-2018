@@ -96,8 +96,8 @@ public class MyArrayList {
         }
 
         if (index == 0) {
-            this.list[0] = null;
             System.arraycopy(list, 1, list, 0, list.length - 1);
+            this.list[size] = null;
         } else if (index == size) {
             list[size] = null;
         } else {
@@ -107,6 +107,66 @@ public class MyArrayList {
         --size;
 
     }
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        boolean flag = true;
+        for (int i = 0; i < list.length - 1; i++) {
+            if (list[i] != null) {
+                flag = false;
+            }
+        }
+        return flag;
+    }
+//    public boolean isEmpty() {
+//        return size == 0;
+//    }
+
+    public int indexOf(Object o) {
+        if (o == null) {
+            throw new IllegalArgumentException("You object is null");
+        } else {
+            for (int i = 0; i < size; i++)
+                if (o.equals(list[i]))
+                    return i;
+        }
+        return -1;
+    }
+
+    public boolean contains(Object o) {
+        return indexOf(o) >= 0;
+    }
+
+    public int lastIndexOf(Object o) {
+        if (o == null) {
+            throw new IllegalArgumentException("You object is null");
+        } else {
+            for (int i = size; i >= 0; i--)
+                if (o.equals(list[i]))
+                    return i;
+        }
+        return -1;
+    }
+
+    public Object[] subList(int from, int to) {
+        if (from < 0 || from > size + 1) {
+            throw new ArrayIndexOutOfBoundsException("Illegal index: " + from);
+        }
+        if (to < 0 || to > size + 1) {
+            throw new ArrayIndexOutOfBoundsException("Illegal index: " + to);
+        }
+        if (from > to) {
+            throw new ArrayIndexOutOfBoundsException("Illegal indexes ");
+        }
+        int range = to - from;
+        Object[] sublist = new Object[range];
+        System.arraycopy(list, from, sublist, 0, range);
+        return sublist;
+    }
+
 
     void printList() {
         System.out.print("[ ");
