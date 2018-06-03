@@ -2,15 +2,14 @@ package lists_pckg;
 
 import java.util.Arrays;
 
-public class MyArrayList {
+public class MyArrayList extends MyAbstractList {
 
     private static final int DEFAULT_CAPACITY = 10;
     Object[] list;
-    private int size;
     private String listClass;
 
     public MyArrayList() {
-        this.list = new Object[10];
+        this.list = new Object[DEFAULT_CAPACITY];
     }
 
     public MyArrayList(int initialCapacity) {
@@ -22,46 +21,62 @@ public class MyArrayList {
         }
     }
 
-//    public MyArrayList(Object[] objects){}
+    public MyArrayList(Object[] objects) {
+        for (int i = 0; i <= objects.length; i++) {
+            list[i] = objects[i];
+        }
+        size = objects.length - 1;
+    }
 
-    public void add(Object element) {
+    public Object[] extendCapacity() {
+        return Arrays.copyOf(list, (list.length - 1) * (3 / 2) + 1);
+    }
+
+    public void classValidation(Object element) {
         if (this.list[0] != null) {
             if (this.listClass != element.getClass().toString()) {
                 throw new IllegalArgumentException("Illegal element type: " + element.getClass() + ", needed " + listClass);
             }
         }
+    }
+
+    public void indexValidation(int index) {
+        if (index < 0 || index > size + 1) {
+            throw new ArrayIndexOutOfBoundsException("Illegal index: " + index);
+        }
+    }
+
+    public void add(Object element) {
+        classValidation(element);
 
         if (size == (list.length - 1)) {
-            list = Arrays.copyOf(list, (list.length - 1) * (3 / 2) + 1);
+            list = extendCapacity();
         }
         list[++size] = element;
     }
 
     public void add(int index, Object element) {
-        if (this.list[0] != null) {
-            if (this.listClass != element.getClass().toString()) {
-                throw new IllegalArgumentException("Illegal element type: " + element.getClass() + ", needed " + listClass);
-            }
-        }
+        classValidation(element);
+
         if (index < 0 || index > size + 1) {
             throw new ArrayIndexOutOfBoundsException("Illegal index: " + index);
         }
 
         if (index == size) {
             if (size == (list.length - 1)) {
-                list = Arrays.copyOf(list, (list.length - 1) * (3 / 2) + 1);
+                list = extendCapacity();
             }
             list[++size] = element;
         } else if (index == 0) {
             if (size == (list.length - 1)) {
-                list = Arrays.copyOf(list, (list.length - 1) * (3 / 2) + 1);
+                list = extendCapacity();
             }
             System.arraycopy(list, 0, list, 1, list.length - 1);
             list[0] = element;
             ++size;
         } else {
             if (size == (list.length - 1)) {
-                list = Arrays.copyOf(list, (list.length - 1) * (3 / 2) + 1);
+                list = extendCapacity();
             }
             System.arraycopy(list, index, list, index + 1, list.length - (index + 1));
             list[index] = element;
@@ -70,30 +85,20 @@ public class MyArrayList {
     }
 
     public void set(int index, Object element) {
-        if (this.list[0] != null) {
-            if (this.listClass != element.getClass().toString()) {
-                throw new IllegalArgumentException("Illegal element type: " + element.getClass() + ", needed " + listClass);
-            }
-        }
-        if (index < 0 || index > size + 1) {
-            throw new ArrayIndexOutOfBoundsException("Illegal index: " + index);
-        }
+        classValidation(element);
+        indexValidation(index);
 
         list[index] = element;
     }
 
     public Object get(int index) {
-        if (index < 0 || index > size + 1) {
-            throw new ArrayIndexOutOfBoundsException("Illegal index: " + index);
-        }
+        indexValidation(index);
 
         return list[index];
     }
 
     public void remove(int index) {
-        if (index < 0 || index > size + 1) {
-            throw new ArrayIndexOutOfBoundsException("Illegal index: " + index);
-        }
+        indexValidation(index);
 
         if (index == 0) {
             System.arraycopy(list, 1, list, 0, list.length - 1);
@@ -151,24 +156,23 @@ public class MyArrayList {
         return -1;
     }
 
-    public Object[] subList(int from, int to) {
-        if (from < 0 || from > size + 1) {
-            throw new ArrayIndexOutOfBoundsException("Illegal index: " + from);
-        }
-        if (to < 0 || to > size + 1) {
-            throw new ArrayIndexOutOfBoundsException("Illegal index: " + to);
-        }
+
+    public MyList subList(int from, int to) {
+        indexValidation(from);
+        indexValidation(to);
         if (from > to) {
             throw new ArrayIndexOutOfBoundsException("Illegal indexes ");
         }
         int range = to - from;
-        Object[] sublist = new Object[range];
-        System.arraycopy(list, from, sublist, 0, range);
-        return sublist;
+        Object[] subArray = new Object[range];
+        System.arraycopy(list, from, subArray, 0, range);
+
+        MyArrayList subList = new MyArrayList(subArray);
+        return subList;
     }
 
 
-    void printList() {
+    public void printList() {
         System.out.print("[ ");
         for (int i = 0; i < size; i++) {
             System.out.print(list[i] + ", ");
