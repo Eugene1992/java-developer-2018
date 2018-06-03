@@ -22,7 +22,8 @@ public class MyArrayList extends MyAbstractList {
     }
 
     public MyArrayList(Object[] objects) {
-        for (int i = 0; i <= objects.length; i++) {
+        list = new Object[objects.length];
+        for (int i = 0; i < objects.length; i++) {
             list[i] = objects[i];
         }
         size = objects.length - 1;
