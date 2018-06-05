@@ -1,24 +1,26 @@
 package classWork02;
 
-public class MyStack<E> {
+public class MyStack<T> {
 
-    private Object[] elements;
+    private T[] elements;
     private int size;
 
     MyStack() {
-        this.elements = new Object[10];
+        this.elements = (T[]) new Object[10];
         this.size = 0;
     }
 
-    public void pop() {
-        this.elements[this.size] = null;
-        this.size--;
+    public T pop() {
+        T cur = elements[size - 1];
+        elements[size - 1] = null;
+        size--;
         if (size < 0) throw new ArrayIndexOutOfBoundsException();
+        return cur;
     }
 
-    public void push(Object object) {
-        this.elements[this.size] = object;
-        this.size++;
+    public void push(T object) {
+        elements[size] = object;
+        size++;
         if (size > 10) throw new ArrayIndexOutOfBoundsException();
     }
 
