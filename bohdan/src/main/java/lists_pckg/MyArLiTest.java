@@ -1,7 +1,5 @@
 package lists_pckg;
 
-import java.util.Arrays;
-
 public class MyArLiTest {
     public static void main(String[] args) {
         MyArrayList arrayList = new MyArrayList();
@@ -23,6 +21,7 @@ public class MyArLiTest {
         arrayList.printList();
         System.out.println();
 
-        System.out.println(Arrays.toString(arrayList.subList(1, 4)));
+        MyList subList = arrayList.subList(1, 4);
+        subList.printList();
     }
 }
