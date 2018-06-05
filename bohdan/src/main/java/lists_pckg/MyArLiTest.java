@@ -4,7 +4,7 @@ public class MyArLiTest {
     public static void main(String[] args) {
         MyArrayList arrayList = new MyArrayList();
         for (int i = 0; i < 5; i++) {
-            arrayList.add(0);
+            arrayList.add("0");
         }
         arrayList.printList();
         System.out.println();
