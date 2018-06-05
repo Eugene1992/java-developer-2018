@@ -48,16 +48,17 @@ public class MyArrayList extends MyAbstractList {
     }
 
     public void add(Object element) {
-        classValidation(element);
+//        classValidation(element);
 
         if (size == (list.length - 1)) {
             list = extendCapacity();
         }
-        list[++size] = element;
+        list[size] = element;
+        size++;
     }
 
     public void add(int index, Object element) {
-        classValidation(element);
+//        classValidation(element);
 
         if (index < 0 || index > size + 1) {
             throw new ArrayIndexOutOfBoundsException("Illegal index: " + index);
@@ -86,7 +87,7 @@ public class MyArrayList extends MyAbstractList {
     }
 
     public void set(int index, Object element) {
-        classValidation(element);
+//        classValidation(element);
         indexValidation(index);
 
         list[index] = element;
@@ -114,9 +115,6 @@ public class MyArrayList extends MyAbstractList {
 
     }
 
-    public int size() {
-        return size;
-    }
 
     public boolean isEmpty() {
         boolean flag = true;
