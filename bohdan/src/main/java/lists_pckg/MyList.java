@@ -1,11 +1,11 @@
 package lists_pckg;
 
-public interface MyList {
-    void add(Object element);
+public interface MyList<E> {
+    void add(E element);
 
-    void add(int index, Object element);
+    void add(int index, E element);
 
-    void set(int index, Object element);
+    void set(int index, E element);
 
     Object get(int index);
 
@@ -15,11 +15,11 @@ public interface MyList {
 
     boolean isEmpty();
 
-    int indexOf(Object o);
+    int indexOf(E element);
 
-    boolean contains(Object o);
+    boolean contains(E element);
 
-    int lastIndexOf(Object o);
+    int lastIndexOf(E element);
 
     MyList subList(int from, int to);
 

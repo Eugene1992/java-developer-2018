@@ -2,14 +2,14 @@ package lists_pckg;
 
 public class MyArLiTest {
     public static void main(String[] args) {
-        MyArrayList arrayList = new MyArrayList();
+        MyArrayList<String> arrayList = new MyArrayList<>();
         for (int i = 0; i < 5; i++) {
             arrayList.add("0");
         }
         arrayList.printList();
         System.out.println();
 
-        arrayList.add(3, 1);
+        arrayList.add(3, "1");
         arrayList.printList();
         System.out.println();
 
