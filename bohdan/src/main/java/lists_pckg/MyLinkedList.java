@@ -32,10 +32,10 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
         indexValidation(index);
 
         MyNode<E> link = first;
-        if (index == 0) {
-            return link;
-        }
-        for (int i = 1; i < index; i++) {
+//        if (index == 0) {
+//            return link;
+//        }
+        for (int i = 1; i <= index && i < size; i++) {
             link = link.next;
         }
         return link;
@@ -43,7 +43,8 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
 
     public void add(E element) {
         if (first == null) {
-            first = last = new MyNode<E>(last, element, first);
+            first = new MyNode<E>(last, element, first);
+            last = first;
             first.prev = last;
         } else {
             last = new MyNode<E>(getNodeByIndex(size), element, first);
@@ -151,8 +152,8 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
 
     public void printList() {
         System.out.print("[ ");
-        for (int i = 0; i <= size; i++) {
-            if (i == size) {
+        for (int i = 0; i < size; i++) {
+            if (i == size - 1) {
                 System.out.print(getNodeByIndex(i));
                 continue;
             }
@@ -162,9 +163,9 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
     }
 
     public static class MyNode<E> implements Cloneable {
-        E item;
-        MyNode prev;
-        MyNode next;
+        private E item;
+        private MyNode prev;
+        private MyNode next;
 
 
         MyNode(MyNode prev, E item, MyNode next) {

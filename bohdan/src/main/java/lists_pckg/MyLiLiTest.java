@@ -12,10 +12,10 @@ public class MyLiLiTest {
         linkedList.add(2, "test");
         linkedList.printList();
 
-        linkedList.set(1, "zero");
+        linkedList.set(0, "zero");
         linkedList.printList();
 
-        System.out.println(linkedList.get(0));
+        System.out.println("~~ " + linkedList.get(0) + " ==> " + linkedList.get(2) + " ==> " + linkedList.get(6) + " ~~");
 
         linkedList.remove(3);
         linkedList.printList();
