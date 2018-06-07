@@ -4,21 +4,29 @@ import java.util.Arrays;
 
 public class MyGenericStack<T> {
 
-    Object[] list = new Object[10];
+    private Object[] list;
     private int size;
 
-    public void push(T element) {
-        list[size] = element;
-        size++;
+    public MyGenericStack() {
+        this.list = new Object[10];
+    }
 
-        if (size >= list.length) {
-            list = Arrays.copyOf(list, (list.length - 1) * (3 / 2) + 1);
+    public Object[] extendCapacity() {
+        return Arrays.copyOf(list, (list.length - 1) * (3 / 2) + 1);
+    }
+
+    // TODO: 6/7/2018  ArrayIndexOutOfBoundsException
+    public void push(T element) {
+        if (size >= list.length - 1) {
+            this.list = extendCapacity();
         }
+        list[size++] = element;
+
     }
 
     public T pop() {
-        size--;
-        T element = (T) list[size];
+
+        T element = (T) list[--size];
         list[size] = null;
 
         return element;
@@ -28,4 +36,10 @@ public class MyGenericStack<T> {
         return size;
     }
 
+    @Override
+    public String toString() {
+        return "MyGenericStack{" +
+                "list=" + Arrays.toString(list) +
+                '}';
+    }
 }
