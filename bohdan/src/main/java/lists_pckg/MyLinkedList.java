@@ -1,7 +1,9 @@
 package lists_pckg;
 
 
-public class MyLinkedList<E> extends MyAbstractList<E> {
+import java.util.Iterator;
+
+public class MyLinkedList<E> extends MyAbstractList<E> implements Iterable<E> {
 
     transient MyNode first;
     transient MyNode last;
@@ -162,6 +164,12 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
         System.out.println(" ]");
     }
 
+
+    @Override
+    public Iterator iterator() {
+        return new Itr();
+    }
+
     public static class MyNode<E> implements Cloneable {
         private E item;
         private MyNode prev;
@@ -190,6 +198,27 @@ public class MyLinkedList<E> extends MyAbstractList<E> {
         @Override
         public String toString() {
             return item + "";
+        }
+
+    }
+
+    private class Itr implements Iterator {
+        private MyNode node;
+
+        Itr() {
+            node = first;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return node.next != null;
+        }
+
+        @Override
+        public Object next() {
+            MyNode cur = node;
+            node = node.next;
+            return cur;
         }
     }
 

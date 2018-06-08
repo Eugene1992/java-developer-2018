@@ -24,8 +24,5 @@ public class MyArLiTest {
         MyList subList = arrayList.subList(1, 4);
         subList.printList();
 
-        for (Object o : arrayList) {
-
-        }
     }
 }

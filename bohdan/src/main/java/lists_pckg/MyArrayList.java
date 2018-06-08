@@ -1,8 +1,9 @@
 package lists_pckg;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
-public class MyArrayList<E> extends MyAbstractList<E> {
+public class MyArrayList<E> extends MyAbstractList<E> implements Iterable<E> {
 
     private static final int DEFAULT_CAPACITY = 10;
     private Object[] list;
@@ -167,4 +168,24 @@ public class MyArrayList<E> extends MyAbstractList<E> {
         System.out.print(" ]");
     }
 
+
+    @Override
+    public Iterator iterator() {
+        return new Itr();
+    }
+
+
+    private class Itr implements Iterator {
+        private int position;
+
+        @Override
+        public boolean hasNext() {
+            return list[position + 1] != null;
+        }
+
+        @Override
+        public Object next() {
+            return list[position++];
+        }
+    }
 }

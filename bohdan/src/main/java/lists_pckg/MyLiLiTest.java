@@ -19,6 +19,7 @@ public class MyLiLiTest {
 
         linkedList.remove(3);
         linkedList.printList();
+
     }
 
 }
