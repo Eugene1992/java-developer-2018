@@ -2,10 +2,11 @@ package ArrayListImpl;
 
 public class ArrayLTest {
     public static void main(String[] args) {
-        ArrayL arrayList = new ArrayL(3);
-        ArrayL arrayList1 = new ArrayL(3);
+        ArrayL arrayList = new ArrayL(4);
+        ArrayL arrayList1 = new ArrayL(2);
+        // ArrayL arrayListTwo = new ArrayL(-54);
 
-        for (int i = 0; i < arrayList.capacity; i++) {
+        for (int i = 0; i < 3; i++) {
             arrayList.add(i + 1);
         }
         arrayList.arrayListOut();
@@ -17,7 +18,7 @@ public class ArrayLTest {
         System.out.println();
 
         System.out.println("removing element");
-        arrayList.remove(3);
+        arrayList.remove(2);
         arrayList.arrayListOut();
         System.out.println();
 
@@ -35,9 +36,17 @@ public class ArrayLTest {
 
         System.out.println("subList");
         arrayList.arrayListOut();
-        System.out.println(arrayList.subList(0, 3)[0]);
+        arrayList1 = arrayList.subList(0, 1);
+        arrayList1.arrayListOut();
+
+        System.out.println("indexOf");
+        arrayList.arrayListOut();
+        System.out.println(arrayList.indexOf(5));
 
 
     }
 
+
 }
+
+
