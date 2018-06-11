@@ -1,26 +1,31 @@
 package homeWork05;
 
-public interface NewList {
 
-    void add(Object object);
+import iterator_comporator.MyIterator;
 
-    void add(Object object, int position);
+public interface NewList<E> {
+
+    void add(E object);
+
+    void add(E object, int position);
 
     int size();
 
     Object get(int position);
 
-    void set(Object object, int position);
+    void set(E object, int position);
 
     void remove(int position);
 
-    boolean contains(Object object);
+    boolean contains(E object);
 
-    int indexOf(Object object);
+    int indexOf(E object);
 
     boolean isEmpty();
 
     NewArrayList subList(int from, int to);
 
-    int lastIndexOf(Object object, int fromPosition);
+    int lastIndexOf(E object, int fromPosition);
+
+    MyIterator<E> iterator();
 }
