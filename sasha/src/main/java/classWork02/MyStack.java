@@ -11,10 +11,10 @@ public class MyStack<T> {
     }
 
     public T pop() {
-        T cur = elements[size - 1];
-        elements[size - 1] = null;
         size--;
         if (size < 0) throw new ArrayIndexOutOfBoundsException();
+        T cur = elements[size];
+        elements[size] = null;
         return cur;
     }
 

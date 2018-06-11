@@ -7,7 +7,9 @@ public class StackTest {
         myStack.push("test2");
         myStack.push("test3");
         myStack.printStack();
+        System.out.println(myStack.size());
         System.out.println(myStack.pop());
         myStack.printStack();
+        System.out.println(myStack.size());
     }
 }

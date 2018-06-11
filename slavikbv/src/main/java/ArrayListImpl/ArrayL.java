@@ -1,29 +1,44 @@
 package ArrayListImpl;
 
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class ArrayL {
-    int capacity;
-    String type;
+
+public class ArrayL implements Iterable {
+    // String type;
     Object[] list;
+    private int size;
+
 
     /* конструктор без параметров */
     public ArrayL() {
         this.list = new Object[10];
-        this.capacity = 10;
+        this.size = 10;
     }
 
     /* конструктор с параметром */
     public ArrayL(int initCapacity) {
+        if (initCapacity <= 0) {
+            throw new ArrayIndexOutOfBoundsException("Initial Capacity should be positive");
+        }
         this.list = new Object[initCapacity];
-        this.capacity = initCapacity;
+        this.size = initCapacity;
+    }
+
+    public Object[] getList() {
+        return list;
+    }
+
+    public void setList(Object[] list) {
+        this.list = list;
     }
 
     /* метод add */
     public void add(Object element) {
-        if (list[capacity - 1] != null) {
-            list = Arrays.copyOf(list, (capacity * 3 / 2 + 1));
-            capacity = (capacity * 3 / 2 + 1);
+        if (list[size - 1] != null) {
+            list = Arrays.copyOf(list, (size * 3 / 2 + 1));
+            size = (size * 3 / 2 + 1);
         }
         for (int i = 0; i < list.length; i++) {
             if (list[i] == null) {
@@ -44,18 +59,18 @@ public class ArrayL {
 
     /* метод remove */
     public void remove(int ind) {
-        if (ind >= capacity) System.out.println("error");
-        for (int i = ind; i < capacity - 1; i++) {
+        if (ind >= size) System.out.println("error");
+        for (int i = ind; i < size - 1; i++) {
             list[i] = list[i + 1];
         }
-        list = Arrays.copyOf(list, capacity - 1);
-        capacity = capacity - 1;
+        list = Arrays.copyOf(list, size - 1);
+        size = size - 1;
     }
 
     /* метод isEmpty*/
     public boolean isEmpty() {
         int num = 0;
-        for (int i = 0; i < capacity; i++) {
+        for (int i = 0; i < size; i++) {
             if (list[i] != null) {
                 num = num + 1;
             }
@@ -69,13 +84,13 @@ public class ArrayL {
 
     /* метод size*/
     public int size() {
-        return capacity;
+        return size;
     }
 
     /* метод contains*/
     public boolean contains(Object element) {
         int num = 0;
-        for (int i = 0; i < capacity; i++) {
+        for (int i = 0; i < size; i++) {
             if (list[i] == element) {
                 num = num + 1;
             }
@@ -88,15 +103,53 @@ public class ArrayL {
     }
 
     /* метод subList*/
-    public Object[] subList(int fromincl, int toexcl) {
-        Object[] l = new Object[toexcl - fromincl];
+    public ArrayL subList(int fromincl, int toexcl) {
+        ArrayL listnew = new ArrayL(toexcl - fromincl);
 
         for (int i = 0; i <= toexcl - fromincl; i++) {
-            l[i] = list[fromincl + i];
+            listnew.add(list[fromincl + i]);
         }
-        return l;
+        return listnew;
     }
+
+    /* метод IndexOf*/
+    public int indexOf(Object element) {
+        int index = -1;
+        for (int i = 0; i < size; i++) {
+            if (list[i] == element) index = i;
+            break;
+        }
+        return index;
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new Itr();
+    }
+
+    private class Itr implements Iterator {
+        private int coursor = 0;
+
+        @Override
+        public boolean hasNext() {
+            coursor = coursor + 1;
+            return coursor - 1 != size;
+
+        }
+
+        @Override
+        public Object next() {
+            if (coursor >= size) {
+                throw new NoSuchElementException();
+            }
+            coursor = coursor + 1;
+            return list[coursor - 1];
+        }
+    }
+
+
 }
+
 
 
 

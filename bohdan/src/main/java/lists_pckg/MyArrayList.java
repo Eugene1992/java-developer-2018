@@ -1,12 +1,12 @@
 package lists_pckg;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
-public class MyArrayList extends MyAbstractList {
+public class MyArrayList<E> extends MyAbstractList<E> implements Iterable<E> {
 
     private static final int DEFAULT_CAPACITY = 10;
-    Object[] list;
-    private String listClass;
+    private Object[] list;
 
     public MyArrayList() {
         this.list = new Object[DEFAULT_CAPACITY];
@@ -24,7 +24,7 @@ public class MyArrayList extends MyAbstractList {
     public MyArrayList(Object[] objects) {
         list = new Object[objects.length];
         for (int i = 0; i < objects.length; i++) {
-            list[i] = objects[i];
+            list[i] = (E) objects[i];
         }
         size = objects.length - 1;
     }
@@ -33,13 +33,6 @@ public class MyArrayList extends MyAbstractList {
         return Arrays.copyOf(list, (list.length - 1) * (3 / 2) + 1);
     }
 
-    public void classValidation(Object element) {
-        if (this.list[0] != null) {
-            if (this.listClass != element.getClass().toString()) {
-                throw new IllegalArgumentException("Illegal element type: " + element.getClass() + ", needed " + listClass);
-            }
-        }
-    }
 
     public void indexValidation(int index) {
         if (index < 0 || index > size + 1) {
@@ -48,55 +41,46 @@ public class MyArrayList extends MyAbstractList {
     }
 
     public void add(Object element) {
-//        classValidation(element);
-
         if (size == (list.length - 1)) {
             list = extendCapacity();
         }
-        list[size] = element;
+        list[size] = (E) element;
         size++;
     }
 
     public void add(int index, Object element) {
-//        classValidation(element);
 
-        if (index < 0 || index > size + 1) {
-            throw new ArrayIndexOutOfBoundsException("Illegal index: " + index);
-        }
+        indexValidation(index);
 
         if (index == size) {
-            if (size == (list.length - 1)) {
-                list = extendCapacity();
-            }
-            list[++size] = element;
+            add(element);
         } else if (index == 0) {
             if (size == (list.length - 1)) {
                 list = extendCapacity();
             }
             System.arraycopy(list, 0, list, 1, list.length - 1);
-            list[0] = element;
+            list[0] = (E) element;
             ++size;
         } else {
             if (size == (list.length - 1)) {
                 list = extendCapacity();
             }
             System.arraycopy(list, index, list, index + 1, list.length - (index + 1));
-            list[index] = element;
+            list[index] = (E) element;
             ++size;
         }
     }
 
     public void set(int index, Object element) {
-//        classValidation(element);
         indexValidation(index);
 
-        list[index] = element;
+        list[index] = (E) element;
     }
 
-    public Object get(int index) {
+    public E get(int index) {
         indexValidation(index);
 
-        return list[index];
+        return (E) list[index];
     }
 
     public void remove(int index) {
@@ -129,27 +113,27 @@ public class MyArrayList extends MyAbstractList {
 //        return size == 0;
 //    }
 
-    public int indexOf(Object o) {
-        if (o == null) {
+    public int indexOf(E element) {
+        if (element == null) {
             throw new IllegalArgumentException("You object is null");
         } else {
             for (int i = 0; i < size; i++)
-                if (o.equals(list[i]))
+                if (element.equals((E) list[i]))
                     return i;
         }
         return -1;
     }
 
-    public boolean contains(Object o) {
-        return indexOf(o) >= 0;
+    public boolean contains(E element) {
+        return indexOf(element) >= 0;
     }
 
-    public int lastIndexOf(Object o) {
-        if (o == null) {
+    public int lastIndexOf(E element) {
+        if (element == null) {
             throw new IllegalArgumentException("You object is null");
         } else {
             for (int i = size; i >= 0; i--)
-                if (o.equals(list[i]))
+                if (element.equals((E) list[i]))
                     return i;
         }
         return -1;
@@ -162,6 +146,7 @@ public class MyArrayList extends MyAbstractList {
         if (from > to) {
             throw new ArrayIndexOutOfBoundsException("Illegal indexes ");
         }
+
         int range = to - from;
         Object[] subArray = new Object[range];
         System.arraycopy(list, from, subArray, 0, range);
@@ -172,11 +157,35 @@ public class MyArrayList extends MyAbstractList {
 
 
     public void printList() {
-        System.out.print("[ ");
+        System.out.print(this.getClass().getSimpleName() + ": [ ");
         for (int i = 0; i < size; i++) {
-            System.out.print(list[i] + ", ");
+            if (i == size - 1) {
+                System.out.print((E) list[i]);
+                continue;
+            }
+            System.out.print((E) list[i] + ", ");
         }
         System.out.print(" ]");
     }
 
+
+    @Override
+    public Iterator iterator() {
+        return new Itr();
+    }
+
+
+    private class Itr implements Iterator {
+        private int position;
+
+        @Override
+        public boolean hasNext() {
+            return list[position + 1] != null;
+        }
+
+        @Override
+        public Object next() {
+            return list[position++];
+        }
+    }
 }

@@ -13,9 +13,18 @@ public class Test {
         System.out.println(stack.pop());
         System.out.println(stack.pop());
 
-        stack.push(item1);
+        stack.push(new MyItem<String>("test"));
 
         System.out.println(stack.pop());
+        System.out.println(stack.pop());
+
+        for (int i = 0; i < 15; i++) {
+            stack.push(new MyItem<String>("SOS#" + i));
+        }
+
+        for (int i = 0; i < 5; i++) {
+            System.out.println(stack.pop());
+        }
     }
 
     public static void fillStack(MyGenericStack stack, MyItem... items) {
