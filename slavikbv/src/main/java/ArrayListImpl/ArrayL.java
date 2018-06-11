@@ -132,10 +132,10 @@ public class ArrayL implements Iterable {
 
         @Override
         public boolean hasNext() {
-            coursor = coursor + 1;
-            return coursor - 1 != size;
+            return coursor != size;
 
         }
+
 
         @Override
         public Object next() {
@@ -146,8 +146,6 @@ public class ArrayL implements Iterable {
             return list[coursor - 1];
         }
     }
-
-
 }
 
 
