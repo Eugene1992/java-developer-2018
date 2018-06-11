@@ -2,6 +2,7 @@ package homeWork05;
 
 
 import iterator_comporator.MyIterator;
+import linked_list.NewLinkedList;
 
 public interface NewList<E> {
 
@@ -23,7 +24,7 @@ public interface NewList<E> {
 
     boolean isEmpty();
 
-    NewArrayList subList(int from, int to);
+    NewList subList(int from, int to);
 
     int lastIndexOf(E object, int fromPosition);
 
