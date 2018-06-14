@@ -20,7 +20,7 @@ public class MyHashMapTest {
         map.remove(0);
         map.printMap();
 
-        System.out.println(map.contains(10));
+        System.out.println(map.contains(3));
         System.out.println(map.contains(5));
 
         System.out.println(map.getValue(3));

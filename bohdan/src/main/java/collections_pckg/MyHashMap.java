@@ -64,6 +64,9 @@ public class MyHashMap<K, V> implements Iterable<K> {
         }
 
         MyEntry entry = buckets[hash];
+        if (entry.getKey() == key) {
+            return entry;
+        }
         while (entry.getNext() != null) {
             if (entry.getKey() == key) {
                 return entry;
@@ -104,6 +107,7 @@ public class MyHashMap<K, V> implements Iterable<K> {
         } else {
             entry = getLastEntryInBucket(key);
             entry.next = new MyEntry(key, value);
+            size++;
             return true;
         }
 
@@ -136,10 +140,10 @@ public class MyHashMap<K, V> implements Iterable<K> {
     }
 
     public boolean contains(K key) {
-        if (buckets[key.hashCode()] == null) {
+        if (buckets[key.hashCode() % capacity] == null) {
             return false;
         } else {
-            MyEntry buf = buckets[key.hashCode()];
+            MyEntry buf = buckets[key.hashCode() % capacity];
             while (buf != null) {
                 if (buf.getKey() == key) {
                     return true;
@@ -153,18 +157,18 @@ public class MyHashMap<K, V> implements Iterable<K> {
 
     public void printMap() {
         MyEntry entry;
-//        int flag = 0;
+        int flag = 0;
         System.out.print("[ ");
         for (int i = 0; i < capacity; i++) {
             entry = buckets[i];
             while (entry != null) {
-                /*if (flag == size - 1) {
-                    System.out.print(bucket);
+                if (flag == size - 1) {
+                    System.out.print(entry);
                     continue;
-                }*/
+                }
                 System.out.print(entry + ", ");
                 entry = entry.getNext();
-//                flag++;
+                flag++;
             }
         }
         System.out.println(" ]");
@@ -190,9 +194,6 @@ public class MyHashMap<K, V> implements Iterable<K> {
             this.next = null;
         }
 
-        public MyEntry getEntry() {
-            return this;
-        }
 
         public int getHash() {
             return hash;
