@@ -215,10 +215,9 @@ public class MyLinkedList<E> extends MyAbstractList<E> implements Iterable<E> {
         }
 
         @Override
-        public Object next() {
-            MyNode cur = node;
+        public MyNode next() {
             node = node.next;
-            return cur;
+            return node;
         }
     }
 
