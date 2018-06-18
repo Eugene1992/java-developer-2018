@@ -1,6 +1,6 @@
 package linked_list;
 
-import homeWork05.NewList;
+import array_list.NewList;
 import iterator_comporator.MyIterator;
 
 /**
@@ -83,8 +83,8 @@ public class NewLinkedList<E> implements NewList<E> {
     }
 
     @Override
-    public void set(Object object, int position) {
-
+    public void set(E object, int position) {
+        node(position).element = object;
     }
 
     @Override
