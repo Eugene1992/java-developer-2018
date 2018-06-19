@@ -140,7 +140,6 @@ public class NewArrayList<E> implements NewList<E> {
         else return false;
     }
 
-    @Override
     public NewArrayList subList(int from, int to) {
         NewArrayList sublist = new NewArrayList();
 
