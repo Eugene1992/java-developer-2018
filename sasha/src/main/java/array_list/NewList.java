@@ -23,8 +23,6 @@ public interface NewList<E> {
 
     boolean isEmpty();
 
-    NewList subList(int from, int to);
-
     int lastIndexOf(E object, int fromPosition);
 
     MyIterator<E> iterator();
