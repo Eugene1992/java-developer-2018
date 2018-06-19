@@ -132,7 +132,6 @@ public class NewLinkedList<E> implements NewList<E> {
         else return false;
     }
 
-    @Override
     public NewLinkedList subList(int from, int to) {
         return null;
     }
