@@ -93,6 +93,25 @@ public class MyHashMap<K, V> {
         return null;
     }
 
+    public MyEntry getEntryForRemoving(K key) {
+        MyEntry entry = buckets[key.hashCode() % capacity];
+
+        if (entry == null) {
+            return null;
+        } else if (entry.getKey() == key) {
+            return entry;
+        } else {
+            while (entry.getNext() != null) {
+                if (entry.getNext().getKey() == key) {
+                    return entry;
+                }
+                entry = entry.getNext();
+            }
+        }
+
+        return null;
+    }
+
     public MyEntry getLastEntryInBucket(K key) {
         MyEntry entry = buckets[key.hashCode() % capacity];
 
@@ -153,32 +172,30 @@ public class MyHashMap<K, V> {
         }
     }
 
-    // TODO: 6/15/2018 Cannot remove object through link to the buckets array
     public void remove(K key) {
-        if (contains(key)) {
-            MyEntry entry = getEntryByKey(key);
-            /*
-            entry = entry.next;
-            */
-            if (entry.getNext() != null) {
-                entry.becomeNext();
-            } else {
-                //entry = null;
-            }
+        int hash = key.hashCode() % capacity;
+        MyEntry entry = getEntryForRemoving(key);
 
+        if (entry == null) {
+            entry = null;
+        } else if (entry.getKey() == key) {
+            if (entry.getNext() != null) {
+                buckets[hash] = buckets[hash].getNext();
+            } else {
+                buckets[hash] = null;
+            }
+            size--;
+        } else {
+            if (entry.getNext().getNext() != null) {
+                entry.setNext(entry.getNext().getNext());
+            } else {
+                entry.setNext(null);
+            }
             size--;
         }
-        /*MyEntry entry = getEntryByKey(key);
-        if (entry != null) {
-            if (entry.getNext() != null) {
-                entry = entry.getNext();
-            } else {
-                entry = null;
-            }
-        }
 
-        size--;*/
     }
+
 
     public boolean isEmpty() {
         return size == 0;
@@ -231,26 +248,6 @@ public class MyHashMap<K, V> {
             this.next = null;
         }
 
-        public void becomeNext() {
-            this.hash = next.hash;
-            this.key = (K) next.key;
-            this.value = (V) next.value;
-            this.next = next.next;
-        }
-
-        public void setKey(K key) {
-            this.key = key;
-            this.hash = key.hashCode();
-        }
-
-        public void setValue(V value) {
-            this.value = value;
-        }
-
-        public void setNext(MyEntry<K, V> next) {
-            this.next = next;
-        }
-
         public int getHash() {
             return hash;
         }
@@ -259,12 +256,25 @@ public class MyHashMap<K, V> {
             return key;
         }
 
+        public void setKey(K key) {
+            this.key = key;
+            this.hash = key.hashCode();
+        }
+
         public V getValue() {
             return value;
         }
 
+        public void setValue(V value) {
+            this.value = value;
+        }
+
         public MyEntry getNext() {
             return next;
+        }
+
+        public void setNext(MyEntry<K, V> next) {
+            this.next = next;
         }
 
         @Override
