@@ -1,6 +1,6 @@
 package iterator_comporator;
 
-import homeWork05.NewArrayList;
+import array_list.NewArrayList;
 
 public class TestNewIterator {
     public static void main(String[] args) {
