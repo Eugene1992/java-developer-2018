@@ -11,27 +11,6 @@ public class MyHashMap<K, V> {
         buckets = new MyEntry[16];
     }
 
-    /*
-    public MyLinkedList(Object[] objects) {
-        list = new Object[objects.length];
-        for (int i = 0; i < objects.length; i++) {
-            list[i] = objects[i];
-        }
-        size = objects.length - 1;
-    }
-    */
-
-
-    /*public void keyValidation(K key) {
-        int hash = key.hashCode() % capacity;
-        MyEntry bucket = buckets[hash];
-        while (bucket.next != null) {
-            bucket = bucket.getNext();
-        }
-        if (bucket.getKey() != key) {
-            throw new NoSuchElementException("There is no element with that key: " + key);
-        }
-    }*/
 
     private void reHash() {
         MyEntry entry;
@@ -87,9 +66,7 @@ public class MyHashMap<K, V> {
                 }
             }
         }
-        /*if (bucket.getKey() != key) {
-            throw new NoSuchElementException("There is no element with that key: " + key);
-        }*/
+
         return null;
     }
 
@@ -142,25 +119,7 @@ public class MyHashMap<K, V> {
             entry = getEntryByKey(key);
             entry.setValue(value);
         }
-        /*MyEntry entry = getEntryByKey(key);
-        if (entry == null) {
-            buckets[key.hashCode() % capacity] = new MyEntry(key, value);
-            size++;
-            return true;
-        } else if (entry.getKey() == key) {
-            entry.setValue(value);
-            return true;
-        } else {
-            entry = getLastEntryInBucket(key);
-            if (entry == null) {
-                buckets[key.hashCode() % capacity] = new MyEntry(key, value);
-                size++;
-                return true;
-            }
-            entry.setNext(new MyEntry(key, value));
-            size++;
-            return true;
-        }*/
+
     }
 
     public V getValue(K key) {
@@ -196,10 +155,10 @@ public class MyHashMap<K, V> {
 
     }
 
-
     public boolean isEmpty() {
         return size == 0;
     }
+
 
     public boolean contains(K key) {
         if (isEmpty()) {
