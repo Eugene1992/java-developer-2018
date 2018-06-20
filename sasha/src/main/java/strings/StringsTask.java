@@ -1,42 +1,24 @@
 package strings;
 
-import java.util.ArrayList;
-
 public class StringsTask {
     public static void main(String[] args) {
         String str1 = "hello world";
         String str2 = "worse hell";
+
+        System.out.println(returnTheBigestStringsMatch(str1, str2));
+    }
+
+    public static String returnTheBigestStringsMatch(String str1, String str2) {
         String result = "";
-        ArrayList<String> resultsList = new ArrayList<>();
-        int k = 0;
 
-        char[] chars1 = str1.toCharArray();
-
-
-        while (k < str1.length()) {
-            result += chars1[k];
-            if (str2.contains(result)) {
-
-                k++;
-            } else {
-                char[] strWithOutLast = result.toCharArray();
-                result = "";
-                for (int i = 0; i < strWithOutLast.length - 1; i++) {
-                    result += strWithOutLast[i];
+        for (int i = 0; i < str1.length() - 1; i++) {
+            for (int j = i; j < str1.length(); j++) {
+                if (str2.contains(str1.substring(i, j + 1)) && str1.substring(i, j + 1).length() >= result.length()) {
+                    result = str1.substring(i, j + 1);
                 }
-                resultsList.add(result);
-                result = "";
-                k++;
             }
         }
 
-        System.out.println(resultsList.toString());
-        String maxResult = "";
-        for (int i = 0; i < resultsList.size(); i++) {
-            if (resultsList.get(i).length() > maxResult.length()) {
-                maxResult = resultsList.get(i);
-            }
-        }
-        System.out.println(maxResult);
+        return result;
     }
 }
