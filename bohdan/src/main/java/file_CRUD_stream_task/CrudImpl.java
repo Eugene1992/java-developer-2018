@@ -46,6 +46,19 @@ public class CrudImpl {
         writer.close();
     }
 
+    private String fillBuffer(String buffer) {
+        System.out.print("\nInsert the name: ");
+        buffer += scan.nextLine() + ":";
+        System.out.print("Insert the age: ");
+        buffer += scan.nextInt() + ":";
+        System.out.print("Insert the salary: ");
+        buffer += scan.nextInt() + ":";
+        System.out.print("Insert the position: ");
+        buffer += scan.next();
+
+        return buffer;
+    }
+
     public void create() {
         this.scan = new Scanner(System.in);
         String buffer;
@@ -55,14 +68,7 @@ public class CrudImpl {
             buffer = 1 + ":";
         }
 
-        System.out.print("\nInsert the name: ");
-        buffer += scan.nextLine() + ":";
-        System.out.print("Insert the age: ");
-        buffer += scan.nextInt() + ":";
-        System.out.print("Insert the salary: ");
-        buffer += scan.nextInt() + ":";
-        System.out.print("Insert the position: ");
-        buffer += scan.next();
+        buffer = fillBuffer(buffer);
 
         data.add(buffer);
 
@@ -77,14 +83,7 @@ public class CrudImpl {
         this.scan = new Scanner(System.in);
         String buffer = id + ":";
 
-        System.out.print("\nInsert the name: ");
-        buffer += scan.nextLine() + ":";
-        System.out.print("Insert the age: ");
-        buffer += scan.nextInt() + ":";
-        System.out.print("Insert the salary: ");
-        buffer += scan.nextInt() + ":";
-        System.out.print("Insert the position: ");
-        buffer += scan.next();
+        buffer = fillBuffer(buffer);
 
         data.set(id - 1, buffer);
         scan.close();
@@ -130,7 +129,7 @@ public class CrudImpl {
         scan.close();
     }
 
-    public int getSummarySalary() {
+    private List<String> getSalarylist() {
         List<String[]> buffer = new ArrayList<>();
         for (String datum : data) {
             buffer.add(datum.split("[:]"));
@@ -140,6 +139,13 @@ public class CrudImpl {
         for (String[] data : buffer) {
             salaryList.add(data[3]);
         }
+
+        return salaryList;
+    }
+
+    public int getSummarySalary() {
+
+        List<String> salaryList = getSalarylist();
 
         int sum = salaryList
                 .stream()
@@ -150,15 +156,8 @@ public class CrudImpl {
     }
 
     public int getMaxSalary() {
-        List<String[]> buffer = new ArrayList<>();
-        for (String datum : data) {
-            buffer.add(datum.split("[:]"));
-        }
 
-        List<String> salaryList = new ArrayList<>();
-        for (String[] data : buffer) {
-            salaryList.add(data[3]);
-        }
+        List<String> salaryList = getSalarylist();
 
         OptionalInt sum = salaryList
                 .stream()
@@ -169,15 +168,8 @@ public class CrudImpl {
     }
 
     public int getMinSalary() {
-        List<String[]> buffer = new ArrayList<>();
-        for (String datum : data) {
-            buffer.add(datum.split("[:]"));
-        }
 
-        List<String> salaryList = new ArrayList<>();
-        for (String[] data : buffer) {
-            salaryList.add(data[3]);
-        }
+        List<String> salaryList = getSalarylist();
 
         OptionalInt sum = salaryList
                 .stream()
