@@ -17,19 +17,19 @@ public class Test {
             e.printStackTrace();
         }
 
-        System.out.println("Data:");
+        System.out.println("Data before processing:");
         crud.printData();
 
         System.out.println("\nSummary salary:");
         System.out.println(crud.getSummarySalary());
 
-        System.out.println("\nMaximal salary:");
+        System.out.println("Maximal salary:");
         System.out.println(crud.getMaxSalary());
 
-        System.out.println("\nMinimal salary:");
+        System.out.println("Minimal salary:");
         System.out.println(crud.getMinSalary());
 
-        System.out.println("\nInsert one of the Create/Read/Update/Delete actions to do with employee list:");
+        System.out.println("Insert one of the Create/*Read*/Update/Delete actions to do with employee list:");
         String action = scan.nextLine();
 
         switch (action.toLowerCase()) {
@@ -38,7 +38,16 @@ public class Test {
                 break;
             case "update":
                 System.out.print("Input the ID: ");
-                crud.update(scan.nextInt());
+                int id = scan.nextInt();
+                System.out.println("Do you want change whole entry? (y/n)");
+                String choise = scan.next();
+                if (choise.equalsIgnoreCase("n")) {
+                    crud.change(id);
+                } else if (choise.equalsIgnoreCase("y")) {
+                    crud.update(id);
+                } else {
+                    throw new IllegalArgumentException("You've entered wrong letter, only y/n is acceptable.");
+                }
                 break;
             case "delete":
                 System.out.print("Input the ID: ");
@@ -47,6 +56,9 @@ public class Test {
             default:
                 throw new IllegalArgumentException("You've entered wrong action, only CRUD functions is acceptable.");
         }
+
+        System.out.println("\nData after processing:");
+        crud.printData();
 
         try {
             crud.setData();

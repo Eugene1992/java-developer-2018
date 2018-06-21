@@ -50,7 +50,7 @@ public class CrudImpl {
         this.scan = new Scanner(System.in);
         String buffer;
         if (!data.isEmpty()) {
-            buffer = ((int) data.get(data.size() - 1).charAt(0) + 1) + ":";
+            buffer = (Integer.parseInt(data.get(data.size() - 1).substring(0, 1)) + 1) + ":";
         } else {
             buffer = 1 + ":";
         }
@@ -66,7 +66,6 @@ public class CrudImpl {
 
         data.add(buffer);
 
-        System.out.println(data);
         scan.close();
     }
 
@@ -88,6 +87,46 @@ public class CrudImpl {
         buffer += scan.next();
 
         data.set(id - 1, buffer);
+        scan.close();
+    }
+
+    public void change(int id) {
+        String[] buffer = data.get(id - 1).split("[:]");
+
+        scan = new Scanner(System.in);
+        System.out.print("Input what do you want to change Name/Age/Salary/Position: ");
+        switch (scan.next().toLowerCase()) {
+            case "name":
+                System.out.println("Input new name: ");
+                buffer[1] = scan.next();
+                break;
+            case "age":
+                System.out.println("Input new age: ");
+                buffer[2] = scan.next();
+                break;
+            case "salary":
+                System.out.println("Input new salary: ");
+                buffer[3] = scan.next();
+                break;
+            case "position":
+                System.out.println("Input new position: ");
+                buffer[4] = scan.next();
+                break;
+            default:
+                throw new IllegalArgumentException("You've entered wrong field, only Name/Age/Salary/Position is acceptable.");
+        }
+
+        String buf = "";
+        for (int i = 0; i < buffer.length; i++) {
+            if (i == buffer.length - 1) {
+                buf += buffer[i];
+                continue;
+            }
+            buf += buffer[i] + ":";
+        }
+
+        data.set(id - 1, buf);
+
         scan.close();
     }
 
