@@ -159,23 +159,23 @@ public class CrudImpl {
 
         List<String> salaryList = getSalarylist();
 
-        OptionalInt sum = salaryList
+        OptionalInt max = salaryList
                 .stream()
                 .mapToInt(salary -> Integer.parseInt(salary))
                 .max();
 
-        return sum.getAsInt();
+        return max.getAsInt();
     }
 
     public int getMinSalary() {
 
         List<String> salaryList = getSalarylist();
 
-        OptionalInt sum = salaryList
+        OptionalInt min = salaryList
                 .stream()
                 .mapToInt(salary -> Integer.parseInt(salary))
                 .min();
 
-        return sum.getAsInt();
+        return min.getAsInt();
     }
 }
