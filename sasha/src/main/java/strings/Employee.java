@@ -27,4 +27,8 @@ public class Employee {
     public void setIndex(int index) {
         this.index = index;
     }
+
+    public int getSalary() {
+        return salary;
+    }
 }
