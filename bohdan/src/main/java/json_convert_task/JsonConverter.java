@@ -11,7 +11,7 @@ import java.util.List;
 
 public class JsonConverter {
     public static void main(String[] args) {
-        Player player = new Player("Akakiy", 20, "Bot", "silver");
+        Player player = new Player("Akakiy", 20, "Silver", "Biba", "Boba");
         File file = new File("C:\\Users\\admin\\java-developer-2018\\bohdan\\src\\main\\java\\json_convert_task\\test.json");
 
 
@@ -33,29 +33,40 @@ public class JsonConverter {
         }
         Field[] myFields = myClass.getDeclaredFields();
 
-        // TODO: 6/22/2018 convert arrays
         json += "{";
         for (int i = 0; i < myFields.length; i++) {
             json += "\n";
             myFields[i].setAccessible(true);
             if (myFields[i].isAnnotationPresent(JsonAcceptableField.class)) {
                 JsonAcceptableField myTypeAnnotation = myFields[i].getAnnotation(JsonAcceptableField.class);
-                json += "\"" + myTypeAnnotation.name() + "\"";
+                json += "\t\"" + myTypeAnnotation.name() + "\"";
             } else {
-                json += "\"" + myFields[i].getName() + "\"";
+                json += "\t\"" + myFields[i].getName() + "\"";
             }
 
             json += ": ";
 
-            if (i == myFields.length - 1) {
-                json += "\"" + myFields[i].get(object) + "\"";
+            Class<?> type = myFields[i].getType();
+            if (type.isArray()) {
+                json += getConvertedArrayField(myFields[i], object) + (i == myFields.length - 1 ? "" : ",");
                 continue;
             }
-            json += "\"" + myFields[i].get(object) + "\",";
+            json += "\"" + myFields[i].get(object) + (i == myFields.length - 1 ? "\"" : "\",");
         }
         json += "\n}";
 
         return json;
+    }
+
+    public static String getConvertedArrayField(Field myField, Object object) throws IllegalAccessException {
+        String array = "[\n";
+
+        String[] values = (String[]) myField.get(object);
+        for (String value : values) {
+            array += "\t\t\"" + value + "\",\n";
+        }
+
+        return array + "\t]";
     }
 
     public static void writeToFile(File file, String json) throws IOException {

@@ -5,14 +5,14 @@ public class Player {
 
     private String name;
     private int age;
-    @JsonAcceptableField(name = "character name")
-    private String character;
+    @JsonAcceptableField(name = "characters names")
+    private String[] chars;
     private String league;
 
-    public Player(String name, int age, String character, String league) {
+    public Player(String name, int age, String league, String... chars) {
         this.name = name;
         this.age = age;
-        this.character = character;
+        this.chars = chars;
         this.league = league;
     }
 

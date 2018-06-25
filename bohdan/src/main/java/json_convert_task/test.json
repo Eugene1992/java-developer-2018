@@ -1,6 +1,9 @@
 {
   "name": "Akakiy",
   "age": "20",
-  "character name": "Bot",
-  "league": "silver"
+  "characters names": [
+    "Biba",
+    "Boba"
+  ],
+  "league": "Silver"
 }
