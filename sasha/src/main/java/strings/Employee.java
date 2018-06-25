@@ -1,11 +1,11 @@
 package strings;
 
 public class Employee {
-    int index;
-    String name;
-    int age;
-    int salary;
-    String position;
+    private int index;
+    private String name;
+    private int age;
+    private int salary;
+    private String position;
 
     Employee() {
 
