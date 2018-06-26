@@ -62,8 +62,8 @@ public class JsonConverter {
         String array = "[\n";
 
         String[] values = (String[]) myField.get(object);
-        for (String value : values) {
-            array += "\t\t\"" + value + "\",\n";
+        for (int i = 0; i < values.length; i++) {
+            array += "\t\t\"" + values[i] + (i == values.length - 1 ? "\"\n" : "\",\n");
         }
 
         return array + "\t]";
