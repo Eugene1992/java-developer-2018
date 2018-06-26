@@ -6,7 +6,7 @@ import java.util.List;
 
 public class UpdateDataTest {
     public static void main(String[] args) {
-        File data = new File("C:\\Users\\ai\\Documents\\java-developer-2018\\sasha\\src\\main\\java\\data");
+        File data = new File("C:\\Users\\sasha\\IdeaProjects\\java-developer-2018\\sasha\\src\\main\\java\\strings\\data");
 
 //        List<Employee> testEmployees = getDataFromFile(data);
 //        for (int i = 0; i < testEmployees.size(); i++) {
