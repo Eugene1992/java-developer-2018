@@ -59,7 +59,7 @@ public class JsonConverter {
 
     public static <T> void toFileJson(String json, T elem) {
         String jsonFile = json;
-        File file = new File("C:\\Users\\sasha\\IdeaProjects\\java-developer-2018\\sasha\\src\\main\\java\\json_task\\" + elem.getClass().getSimpleName() + elem.hashCode() + ".json");
+        File file = new File("C:\\Users\\ai\\Documents\\java-developer-2018\\sasha\\src\\main\\java\\json_task\\" + elem.getClass().getSimpleName() + elem.hashCode() + ".json");
         try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) {
             jsonFile = jsonFile.replace("{", "{\n");
             jsonFile = jsonFile.replace(",", ",\n");
