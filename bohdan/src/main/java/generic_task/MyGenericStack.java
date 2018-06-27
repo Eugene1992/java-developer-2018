@@ -15,11 +15,13 @@ public class MyGenericStack<T> {
         return Arrays.copyOf(list, (list.length - 1) * (3 / 2) + 1);
     }
 
-    // TODO: 6/7/2018  ArrayIndexOutOfBoundsException
+
     public void push(T element) {
-        if (size >= list.length - 1) {
+        if (size == list.length - 1) {
             this.list = extendCapacity();
         }
+
+        //ArrayIndexOutOfBoundsException: 10
         list[size++] = element;
 
     }

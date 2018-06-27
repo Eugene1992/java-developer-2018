@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Ivan",
+    "age": 23,
+    "isMarried": false,
+    "nickname": null,
+    "pets": [
+      {
+        "name": "Cat",
+        "age": 2
+      }
+    ]
+  },
+  {
+    "name": "Ivan",
+    "age": 23,
+    "isMarried": false,
+    "nickname": null,
+    "pets": [
+      {
+        "name": "Cat",
+        "age": 2
+      }
+    ]
+  }
+]
