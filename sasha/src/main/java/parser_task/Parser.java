@@ -13,10 +13,10 @@ public class Parser {
     public static void main(String[] args) {
         String link = "http://flangex.herokuapp.com/io/load";
         downloadHtmlFromLink(link);
-        parseImageLinksFromFile(downloadHtmlFromLink(link));
+        downloadImageByLinksFromFile(downloadHtmlFromLink(link));
     }
 
-    public static void parseImageLinksFromFile(File file) {
+    public static void downloadImageByLinksFromFile(File file) {
         Document doc;
         try {
             doc = Jsoup.parse(file, "UTF-8", "");
