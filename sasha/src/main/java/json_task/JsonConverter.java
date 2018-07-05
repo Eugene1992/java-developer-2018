@@ -1,5 +1,7 @@
 package json_task;
 
+import com.sun.xml.internal.txw2.IllegalAnnotationException;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -22,28 +24,19 @@ public class JsonConverter {
             Field[] fields = elem.getClass().getDeclaredFields();
 
             while (k < fields.length) {
+                Field currentField = fields[k];
                 try {
-                    if (k == fields.length - 1) {
-                        fields[k].setAccessible(true);
-                        if (fields[k].isAnnotationPresent(JsonSuperName.class)) {
-                            JsonSuperName declaredAnnotation = fields[k].getDeclaredAnnotation(JsonSuperName.class);
-                            json = json + " \"" + declaredAnnotation.name() + "\": \"" + fields[k].get(elem) + "\"";
-                            k++;
-                        } else {
-                            json = json + " \"" + fields[k].getName() + "\": \"" + fields[k].get(elem) + "\"";
-                            k++;
-                        }
-                    } else {
-                        fields[k].setAccessible(true);
-                        if (fields[k].isAnnotationPresent(JsonSuperName.class)) {
-                            JsonSuperName declaredAnnotation = fields[k].getDeclaredAnnotation(JsonSuperName.class);
-                            json = json + " \"" + declaredAnnotation.name() + "\": \"" + fields[k].get(elem) + "\",";
-                            k++;
-                        } else {
-                            json = json + " \"" + fields[k].getName() + "\": \"" + fields[k].get(elem) + "\",";
-                            k++;
-                        }
-                    }
+                    currentField.setAccessible(true);
+
+                    json = String.format("%s \"%s\": %s",
+                            json,
+                            currentField.isAnnotationPresent(JsonSuperName.class) ? currentField.getDeclaredAnnotation(JsonSuperName.class).name() : currentField.getName(),
+                            currentField.getType().isPrimitive() ? currentField.get(elem) : "\"" + currentField.get(elem) + "\""
+                    );
+
+                    json = k == fields.length - 1 ? json : json + ",";
+
+                    k++;
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
                 }
@@ -52,19 +45,18 @@ public class JsonConverter {
             json = "{" + json + "}";
 
         } else {
-            System.out.println("Convert to JSON not supported!!!!");
+            throw new IllegalAnnotationException("Convert to JSON not supported! " + JsonEntity.class.getSimpleName() + " annotation expected");
         }
         return json;
     }
 
     public static <T> void toFileJson(String json, T elem) {
-        String jsonFile = json;
         File file = new File("C:\\Users\\ai\\Documents\\java-developer-2018\\sasha\\src\\main\\java\\json_task\\" + elem.getClass().getSimpleName() + elem.hashCode() + ".json");
         try (BufferedWriter out = new BufferedWriter(new FileWriter(file))) {
-            jsonFile = jsonFile.replace("{", "{\n");
-            jsonFile = jsonFile.replace(",", ",\n");
-            jsonFile = jsonFile.replace("}", "\n}");
-            out.write(jsonFile);
+            json = json.replace("{", "{\n");
+            json = json.replace(",", ",\n");
+            json = json.replace("}", "\n}");
+            out.write(json);
         } catch (IOException e) {
             e.printStackTrace();
         }
