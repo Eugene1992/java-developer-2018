@@ -9,8 +9,7 @@ CREATE TABLE employee
     salary INT,
     is_married BOOLEAN,
     position VARCHAR(64),
-    birthday TIMESTAMP,
-    new_column int
+    birthday TIMESTAMP
 );
 
 INSERT INTO employee VALUES (1,'firstname_1','lastname_1',20,10000,FALSE,'QA','1998-03-12');
