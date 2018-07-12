@@ -16,7 +16,6 @@ public class ArrayIteratorTest {
                 System.out.println("element " + iterator.next());
             }
         }
-
     }
 }
 
