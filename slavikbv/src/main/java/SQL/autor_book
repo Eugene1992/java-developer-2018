@@ -1,0 +1,92 @@
+create table author (
+id serial primary key,
+last_name varchar(20),
+age int
+);
+
+create table passport (
+id int unique references author (id),
+seria varchar(2),
+number varchar(7)
+);
+
+create table pet (
+id serial unique,
+pet_id int references author (id),
+name varchar(20)
+);
+
+create table book (
+book_id serial primary key,
+ganre varchar(20),
+name varchar(20)
+);
+
+insert into author (last_name, age) values ('Shevchenko', 28);
+insert into author (last_name, age) values ('Franko', 55);
+insert into author (last_name, age) values ('Kotsubinsky', 40);
+insert into author (last_name, age) values ('Glibov', 60);
+
+insert into passport (id, seria, number) VALUES (1,'ME',123456);
+insert into passport (id, seria, number) VALUES (2,'ME',321456);
+insert into passport (id, seria, number) VALUES (3,'CO',256987);
+insert into passport (id, seria, number) VALUES (4,'CA',456123);
+
+insert into pet (pet_id, name) VALUES (1,'cat');
+insert into pet (pet_id, name) VALUES (2,'dog');
+insert into pet (pet_id, name) VALUES (1,'bird');
+insert into pet (pet_id, name) VALUES (3,'cat');
+insert into pet (pet_id, name) VALUES (4,'bird');
+insert into pet (pet_id, name) VALUES (4,'dog');
+
+insert into book (ganre, name) values ('roman', 'vij');
+insert into book (ganre, name) values ('fantasy', 'stalker');
+insert into book (ganre, name) values ('stih', 'zapovit');
+insert into book (ganre, name) values ('novel', 'voevoda');
+insert into book (ganre, name) values ('povest', 'les');
+insert into book (ganre, name) values ('roman', 'kurochka riaba');
+insert into book (ganre, name) values ('stih', 'naimichka');
+
+select a.last_name,
+       p.seria,
+       p.number
+from author a inner join passport p on a.id = p.id;
+
+
+select author.last_name,
+       pet.name as pet_type
+from author inner join pet on author.id = pet.pet_id;
+
+create table author_book (
+       auhtor_id int,
+       book_id int
+);
+
+insert into author_book values (1,1);
+insert into author_book values (2,2);
+insert into author_book values (3,3);
+insert into author_book values (4,4);
+insert into author_book values (2,5);
+insert into author_book values (2,6);
+insert into author_book values (3,6);
+insert into author_book values (1,7);
+
+
+select a.last_name,
+       a.age,
+       p.seria,
+       p2.name,
+       b.ganre,
+       b.name
+from author_book ab
+       inner join author a on a.id = ab.auhtor_id
+       inner join book b on ab.book_id = b.book_id
+       inner join passport p on a.id = p.id
+       inner join pet p2 on a.id = p2.pet_id
+where a.age>50 and p2.name in ('cat','dog')
+      and b.ganre in ('fantasy','roman')
+      and p.seria = 'ME'
+
+
+
+
