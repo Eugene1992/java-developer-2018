@@ -1,0 +1,144 @@
+create table employee (
+  employee_id   int primary key,
+  name          varchar(20),
+  job           varchar(20),
+  manager_id    int/* references employee (employee_id)*/,
+  hiredate      date,
+  salary        int,
+  cpmmissions   int,
+  department_id varchar(20)
+);
+
+ALTER TABLE employee
+  ADD CONSTRAINT employee FOREIGN KEY (manager_id) REFERENCES employee (employee_id);
+
+create table department (
+  department_id int primary key,
+  name          varchar(20),
+  location      varchar(20)
+);
+INSERT INTO department VALUES (10, 'ACCOUNTING', 'NEW YORK');
+INSERT INTO department VALUES (20, 'RESEARCH', 'DALLAS');
+INSERT INTO department VALUES (30, 'SALES', 'CHICAGO');
+INSERT INTO department VALUES (40, 'OPERATIONS', 'BOSTON');
+
+INSERT INTO employee VALUES (7369, 'SMITH', 'CLERK', 7902, TO_DATE('17-12-1980', 'DD-MM-YYYY'), 800, NULL, 20);
+INSERT INTO employee VALUES (7499, 'ALLEN', 'SALESMAN', 7698, TO_DATE('20-02-1981', 'DD-MM-YYYY'), 1600, 300, 30);
+INSERT INTO employee VALUES (7521, 'WARD', 'SALESMAN', 7698, TO_DATE('22-02-1981', 'DD-MM-YYYY'), 1250, 500, 30);
+INSERT INTO employee VALUES (7566, 'JONES', 'MANAGER', 7839, TO_DATE('2-04-1981', 'DD-MM-YYYY'), 2975, NULL, 20);
+INSERT INTO employee VALUES (7654, 'MARTIN', 'SALESMAN', 7698, TO_DATE('28-09-1981', 'DD-MM-YYYY'), 1250, 1400, 30);
+INSERT INTO employee VALUES (7698, 'BLAKE', 'MANAGER', 7839, TO_DATE('1-05-1981', 'DD-MM-YYYY'), 2850, NULL, 30);
+INSERT INTO employee VALUES (7782, 'CLARK', 'MANAGER', 7839, TO_DATE('9-06-1981', 'DD-MM-YYYY'), 2450, NULL, 10);
+INSERT INTO employee VALUES (7788, 'SCOTT', 'ANALYST', 7566, TO_DATE('09-12-1982', 'DD-MM-YYYY'), 3000, NULL, 20);
+INSERT INTO employee VALUES (7839, 'KING', 'PRESIDENT', NULL, TO_DATE('17-11-1981', 'DD-MM-YYYY'), 5000, NULL, 10);
+INSERT INTO employee VALUES (7844, 'TURNER', 'SALESMAN', 7698, TO_DATE('8-09-1981', 'DD-MM-YYYY'), 1500, 0, 30);
+INSERT INTO employee VALUES (7876, 'ADAMS', 'CLERK', 7788, TO_DATE('12-01-1983', 'DD-MM-YYYY'), 1100, NULL, 20);
+INSERT INTO employee VALUES (7900, 'JAMES', 'CLERK', 7698, TO_DATE('3-12-1981', 'DD-MM-YYYY'), 950, NULL, 30);
+INSERT INTO employee VALUES (7902, 'FORD', 'ANALYST', 7566, TO_DATE('3-12-1981', 'DD-MM-YYYY'), 3000, NULL, 20);
+INSERT INTO employee VALUES (7934, 'MILLER', 'CLERK', 7782, TO_DATE('23-01-1982', 'DD-MM-YYYY'), 1300, NULL, 10);
+
+/*1. Create a query to display the name and salary of employees earning more than $2850.*/
+select
+  e.name,
+  e.salary
+from employee e
+where e.salary > 2850
+
+/*2. Create a query to display the employee name and department number for employee number 7566.*/
+select
+  e.name,
+  e.department_id
+from employee e
+where e.employee_id = 7566
+
+/*3. Create a query to display the name and salary for all employees whose salary is not in the
+range of $1500 and $2850.*/
+select
+  e.name,
+  e.salary
+from employee e
+where e.salary < 1500 or e.salary > 2850
+
+/*4. Display the employee name, job and start date of employees
+hired between February 20, 1981, and May 1, 1981.
+Order the query in ascending order of start date.*/
+select
+  e.name,
+  e.job,
+  e.hiredate
+from employee e
+where e.hiredate >= TO_DATE('20-02-1981', 'DD-MM-YYYY') and
+      e.hiredate <= TO_DATE('01-05-1981', 'DD-MM-YYYY')
+
+/*5. Display the employee name and department number of all employees in
+departments 10 and 30 in alphabetical order by name.*/
+select
+  e.name,
+  e.department_id
+from employee e
+where e.department_id in ('10', '30')
+order by e.name
+
+/*6. Display list the name and salary of employees who earn more than $1500
+and are in department 10 or 30. Label the columns Employee and Monthly Salary, respectively.*/
+select
+  e.name   as Employee,
+  e.salary as "Monthly salary"
+from employee e
+where e.salary > 1500 and e.department_id in ('10', '30')
+
+/*7. Display the name and hire date of every employee who was hired in 1982.*/
+select
+  e.name,
+  e.hiredate
+from employee e
+where e.hiredate between TO_DATE('01-01-1982', 'DD-MM-YYYY')
+and TO_DATE('31-12-1982', 'DD-MM-YYYY')
+
+/*8. Display the name and job title of employees who do not have a manager.*/
+select
+  e.name,
+  e.job
+from employee e
+where e.manager_id is null
+
+/*9. Display the name, salary, and commission for all employees
+who earn commissions.  Sort the data in descending order of salary
+and commissions (commission within salary).*/
+select
+  e.name,
+  e.salary,
+  e.cpmmissions
+from employee e
+where e.cpmmissions is not null
+order by e.salary desc, e.cpmmissions desc
+
+/*10. Display the names of all employees where the third letter of their name is an A.*/
+select e.name
+from employee e
+where e.name like '__A%'
+
+/*11. Display the name of all employees that have two Ls in their name and
+are in department 30 or their manager is 7782.*/
+select e.name
+from employee e
+where e.name like '%LL%' and (e.department_id = '30' or e.manager_id = 7782)
+
+/*12. Display the name, job, and salary for all employees whose job is Clerk
+ or Analyst and their salary is not equal to $1000, $3000, or $5000.*/
+select
+  e.name,
+  e.job,
+  e.salary
+from employee e
+where e.salary not in (1000, 3000, 5000)
+      and e.job in ('CLERK', 'ANALYST');
+
+/*13 13. Display the name, salary, and commission for all employees whose
+commission amount is greater than their salary  increased by 10%.*/
+select
+  e.name,
+  e.salary,
+  e.cpmmissions
+from employee e
+where e.cpmmissions > e.salary * 1.1
