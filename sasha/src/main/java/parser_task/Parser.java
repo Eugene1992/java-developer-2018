@@ -12,7 +12,7 @@ import java.net.URL;
 public class Parser {
     public static void main(String[] args) {
         String link = "http://flangex.herokuapp.com/io/load";
-        downloadHtmlFromLink(link);
+
         downloadImageByLinksFromFile(downloadHtmlFromLink(link));
     }
 
@@ -30,6 +30,8 @@ public class Parser {
                 while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
                     fileOutputStream.write(dataBuffer, 0, bytesRead);
                 }
+                fileOutputStream.close();
+                in.close();
             }
         } catch (IOException e) {
             e.printStackTrace();

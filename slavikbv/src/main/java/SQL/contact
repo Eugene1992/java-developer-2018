@@ -1,0 +1,46 @@
+DROP table contact;
+
+create table contact (
+  id int primary key,
+  first_name varchar(20) not null ,
+  last_name text,
+  birthday date,
+  phone int,
+  city varchar(20),
+  country varchar(20)
+);
+alter table contact
+    alter column last_name type varchar(20),
+    alter column last_name set not null;
+
+INSERT INTO contact VALUES (1,'Makar', 'Pasenuk',cast('1994-03-21' as date), 5324810,'Kyiv','Ukraine');
+INSERT INTO contact VALUES (2,'Vera', 'Naym',cast('1990-05-11' as date),4120226 ,'Lviv','Ukraine');
+INSERT INTO contact VALUES (3,'Natasha', 'Vepr',cast('1991-05-15' as date), 4120226,'Rivne','Ukraine');
+INSERT INTO contact VALUES (4,'Sara', 'Naga',cast('1992-05-20' as date), 4444444,'Kyiv','Ukraine');
+INSERT INTO contact VALUES (5,'Nadegda', 'Kvach',cast('1993-05-20' as date), 3333333,'Lviv','Ukraine');
+INSERT INTO contact VALUES (6,'Katya', 'Tsoi',cast('1994-04-20' as date), 2222222,'Rivne','Ukraine');
+INSERT INTO contact VALUES (7,'Alla', 'Vovk',cast('1995-03-20' as date), 1111111,'Rivne','Ukraine');
+INSERT INTO contact VALUES (8,'Tamara', 'Petranko',cast('1984-04-20' as date), 7777777,'Kyiv','Ukraine');
+INSERT INTO contact VALUES (9,'Viktorya', 'Oliynik',cast('1984-03-20' as date), 6666666,'Rivne','Ukraine');
+INSERT INTO contact VALUES (10,'Elena', 'Ris',cast('1986-03-20' as date), 5555555,'Kyiv','Ukraine');
+INSERT INTO contact VALUES (11,'Anna', 'Mishok',cast('1987-03-20' as date), 4444444,'Lviv','Ukraine');
+INSERT INTO contact VALUES (12,'Timur', 'Solom',cast('1988-03-20' as date), 9999999,'Rivne','Ukraine');
+INSERT INTO contact VALUES (13,'Petr', 'Dzen',cast('1989-03-20' as date), 1235465,'Kyiv','Ukraine');
+INSERT INTO contact VALUES (14,'Stepan', 'Pasenuk',cast('1990-03-20' as date), 9875263,'Lviv','Ukraine');
+INSERT INTO contact VALUES (15,'Oleksandr', 'Pasenuk',cast('1977-03-20' as date), 4125698,'Kyiv','Ukraine');
+INSERT INTO contact VALUES (16,'Bogdan', 'Pasenuk',cast('1978-03-20' as date), 1478523,'Rivne','Ukraine');
+INSERT INTO contact VALUES (17,'Sergiy', 'Pasenuk',cast('1989-03-20' as date), 3214569,'Lviv','Ukraine');
+INSERT INTO contact VALUES (18,'Naum', 'Pasenuk',cast('1976-03-20' as date), 4569871,'Rivne','Ukraine');
+INSERT INTO contact VALUES (19,'Opanas', 'Pasenuk',cast('1992-03-20' as date), 5632589,'Lviv','Ukraine');
+INSERT INTO contact VALUES (20,'Zahar', 'Pasenuk',cast('1990-03-20' as date), 4785416,'Kyiv','Ukraine');
+
+alter table contact
+    add column gender varchar(20);
+
+update contact set gender = 'female' where first_name like '%a';
+
+update contact set gender = 'male' where first_name not like '%a';
+
+alter table contact
+    add column rating int check (rating>0);
+

@@ -9,8 +9,7 @@ CREATE TABLE employee
     salary INT,
     is_married BOOLEAN,
     position VARCHAR(64),
-    birthday TIMESTAMP,
-    new_column int
+    birthday TIMESTAMP
 );
 
 INSERT INTO employee VALUES (1,'firstname_1','lastname_1',20,10000,FALSE,'QA','1998-03-12');
@@ -43,4 +42,5 @@ INSERT INTO employee VALUES (27,'firstname_27','lastname_27',32,15000,TRUE,'Supp
 INSERT INTO employee VALUES (28,'firstname_28','lastname_28',36,30000,TRUE,'Head of Support','1982-08-29');
 INSERT INTO employee VALUES (29,'firstname_29','lastname_29',26,15000,TRUE,'Support','1992-12-04');
 INSERT INTO employee VALUES (30,'firstname_30','lastname_30',19,15000,FALSE,'Support','1999-11-11');
+
 SELECT * FROM employee;
