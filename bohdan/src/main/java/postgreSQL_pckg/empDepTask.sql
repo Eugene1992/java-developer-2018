@@ -4,7 +4,7 @@ CREATE TABLE department (
   location      VARCHAR(50)
 );
 
-CREATE TABLE "employe" (
+CREATE TABLE "employee" (
   employee_id   INT PRIMARY KEY,
   name          VARCHAR(30),
   job           VARCHAR(30),
@@ -20,7 +20,7 @@ INSERT INTO department VALUES (20, 'RESEARCH', 'DALLAS');
 INSERT INTO department VALUES (30, 'SALES', 'CHICAGO');
 INSERT INTO department VALUES (40, 'OPERATIONS', 'BOSTON');
 
-INSERT INTO employe VALUES
+INSERT INTO employee VALUES
   (7369, 'SMITH', 'CLERK', 7902,
    TO_DATE('17-12-1980', 'DD-MM-YYYY'), 800, NULL, 20);
 INSERT INTO employe VALUES
