@@ -1,0 +1,97 @@
+create table employee (
+  employee_id   int primary key,
+  name          varchar(20),
+  job           varchar(20),
+  manager_id    int /*references employee (employee_id)*/,
+  hiredate      date,
+  salary        int,
+  cpmmissions   int,
+  department_id varchar(20)
+);
+
+INSERT INTO employee VALUES (7369, 'SMITH', 'CLERK', 7902, TO_DATE('17-12-1980', 'DD-MM-YYYY'), 800, NULL, 20);
+INSERT INTO employee VALUES (7499, 'ALLEN', 'SALESMAN', 7698, TO_DATE('20-02-1981', 'DD-MM-YYYY'), 1600, 300, 30);
+INSERT INTO employee VALUES (7521, 'WARD', 'SALESMAN', 7698, TO_DATE('22-02-1981', 'DD-MM-YYYY'), 1250, 500, 30);
+INSERT INTO employee VALUES (7566, 'JONES', 'MANAGER', 7839, TO_DATE('2-04-1981', 'DD-MM-YYYY'), 2975, NULL, 20);
+INSERT INTO employee VALUES (7654, 'MARTIN', 'SALESMAN', 7698, TO_DATE('28-09-1981', 'DD-MM-YYYY'), 1250, 1400, 30);
+INSERT INTO employee VALUES (7698, 'BLAKE', 'MANAGER', 7839, TO_DATE('1-05-1981', 'DD-MM-YYYY'), 2850, NULL, 30);
+INSERT INTO employee VALUES (7782, 'CLARK', 'MANAGER', 7839, TO_DATE('9-06-1981', 'DD-MM-YYYY'), 2450, NULL, 10);
+INSERT INTO employee VALUES (7788, 'SCOTT', 'ANALYST', 7566, TO_DATE('09-12-1982', 'DD-MM-YYYY'), 3000, NULL, 20);
+INSERT INTO employee VALUES (7839, 'KING', 'PRESIDENT', NULL, TO_DATE('17-11-1981', 'DD-MM-YYYY'), 5000, NULL, 10);
+INSERT INTO employee VALUES (7844, 'TURNER', 'SALESMAN', 7698, TO_DATE('8-09-1981', 'DD-MM-YYYY'), 1500, 0, 30);
+INSERT INTO employee VALUES (7876, 'ADAMS', 'CLERK', 7788, TO_DATE('12-01-1983', 'DD-MM-YYYY'), 1100, NULL, 20);
+INSERT INTO employee VALUES (7900, 'JAMES', 'CLERK', 7698, TO_DATE('3-12-1981', 'DD-MM-YYYY'), 950, NULL, 30);
+INSERT INTO employee VALUES (7902, 'FORD', 'ANALYST', 7566, TO_DATE('3-12-1981', 'DD-MM-YYYY'), 3000, NULL, 20);
+INSERT INTO employee VALUES (7934, 'MILLER', 'CLERK', 7782, TO_DATE('23-01-1982', 'DD-MM-YYYY'), 1300, NULL, 10);
+
+
+
+ALTER TABLE employee
+  ADD CONSTRAINT employee FOREIGN KEY (manager_id) REFERENCES employee (employee_id);
+
+create table department (
+  department_id int primary key,
+  name          varchar(20),
+  location      varchar(20)
+);
+INSERT INTO department VALUES (10, 'ACCOUNTING', 'NEW YORK');
+INSERT INTO department VALUES (20, 'RESEARCH', 'DALLAS');
+INSERT INTO department VALUES (30, 'SALES', 'CHICAGO');
+INSERT INTO department VALUES (40, 'OPERATIONS', 'BOSTON');
+
+/*1. Display average employees salary.*/
+select avg(salary) from employee
+
+/*2. Display average employees salary whose job is 'Clerk'.*/
+select avg(salary) from employee where job = 'CLERK'
+
+/*3. Display max employees salary.*/
+select max(salary) from employee
+
+/*3. Display max salary of employees who receive commissions.*/
+select max(salary) from  employee where cpmmissions is not null
+
+/*4. Display min employees salary.*/
+select min(salary) from employee
+
+/*5. Display min  salary of  employees whose job is  'Manager'  or  'Clerk'.*/
+select min(salary) from employee where  job in ('CLERK','MANAGER')
+
+/*6. Display summary employees salary*/
+select sum(salary) from employee
+
+/*7.  Display summary employees salary whose department number is 30.*/
+select sum(salary) from employee where department_id = '30'
+
+/*8. Convert to uppercase and display employees name column.*/
+select upper(name) from employee
+
+/*10. Convert to uppercase and display employees names that contains 'S' or 'R' symbols*/
+select upper(name) from employee where name like '%S%' or name like '%R%'
+
+/*11. Convert to lowercase and display employees name column*/
+select lower(name) from employee
+
+/*12. Convert to lowercase and display employees names that ends with 'ES' or 'ER'*/
+select lower(name) from employee where name like '%ES' or name like '%ER'
+
+/*13. Display names and five first symbols of employees JOB column*/
+select name, substr(job,1,5) from employee
+
+/*14. Display employees names and names length*/
+select name, length(name) from employee
+
+/*15. Display employees names whose length is more then 5 characters*/
+select name from employee where length(name)>5
+
+/*16. Display employees names, salaries and salaries rounded to integers*/
+select name, salary, round(salary,0) from employee
+
+/*17. Display employees names, salaries and salaries rounded to the hundredths*/
+select name, salary, trunc(salary,2) from employee
+
+/*19. Display current date.*/
+select current_date
+
+/*20. Display employees names and hiredates in following format*/
+select name, concat(extract(day from hiredate),'-',extract(month from hiredate),'-',extract(year from hiredate)) from employee
