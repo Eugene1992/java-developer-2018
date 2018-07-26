@@ -68,47 +68,66 @@ INSERT INTO employee VALUES
 ALTER TABLE employee
   ADD CONSTRAINT emp_fk_manag FOREIGN KEY (employee_id) REFERENCES employee;
 
-
 -- QUERIES
 -- 1
-SELECT name AS ename, salary as salary
+SELECT
+  name   AS ename,
+  salary AS salary
 FROM employee
 WHERE salary > 2850
 ORDER BY salary DESC;
 --2
-SELECT name ename, departmant_id deptnum
+SELECT
+  name          ename,
+  departmant_id deptnum
 FROM employee
 WHERE employee_id = 7566;
 --3
-SELECT name AS ename, salary as salary
+SELECT
+  name   AS ename,
+  salary AS salary
 FROM employee
 WHERE salary NOT BETWEEN 1500 AND 2850
 ORDER BY salary DESC;
 --4
-SELECT name ename, job, hiredate
+SELECT
+  name ename,
+  job,
+  hiredate
 FROM employee
 WHERE hiredate BETWEEN '1981-02-20' AND '1981-05-01'
 ORDER BY hiredate ASC;
 --5
-SELECT name ename, departmant_id deptnum
+SELECT
+  name          ename,
+  departmant_id deptnum
 FROM employee
 WHERE departmant_id IN (10, 30)
 ORDER BY name;
 --6
-SELECT name "employee", salary "monthly salary"
+SELECT
+  name   "employee",
+  salary "monthly salary"
 FROM employee
 WHERE departmant_id IN (10, 30) AND salary > 1500
 ORDER BY name;
 --7
-SELECT name ename, hiredate
+SELECT
+  name ename,
+  hiredate
 FROM employee
 WHERE hiredate BETWEEN '1982-01-01' AND '1982-12-31';
 --8
-SELECT name ename, job
+SELECT
+  name ename,
+  job
 FROM employee
 WHERE manager_id IS NULL;
 --9
-SELECT name ename, salary, commissions
+SELECT
+  name ename,
+  salary,
+  commissions
 FROM employee
 WHERE commissions IS NOT NULL
 ORDER BY salary DESC, commissions DESC;
@@ -121,10 +140,16 @@ SELECT name ename
 FROM employee
 WHERE name LIKE '%LL%' AND (departmant_id = 30 OR manager_id = 7782);
 --12
-SELECT name ename, job, salary
+SELECT
+  name ename,
+  job,
+  salary
 FROM employee
 WHERE (job IN ('CLERK', 'ANALYST')) AND salary NOT IN (1000, 3000, 5000);
 --13
-SELECT name ename, salary, commissions
+SELECT
+  name ename,
+  salary,
+  commissions
 FROM employee
-WHERE commissions > salary*1.1;
+WHERE commissions > salary * 1.1;
