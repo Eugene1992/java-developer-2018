@@ -22,6 +22,7 @@
         <module>sasha</module>
         <module>java-essential</module>
         <module>java-professional</module>
+        <module>jdbc</module>
     </modules>
 
     <build>
