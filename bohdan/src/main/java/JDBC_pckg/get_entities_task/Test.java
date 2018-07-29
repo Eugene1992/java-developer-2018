@@ -17,8 +17,12 @@ public class Test {
 
     public static void main(String[] args) {
 
-        getEntities("SELECT * FROM employee_filled",
-                JDBC_pckg.get_entities_task.Employee.class);
+        List<Employee> entities = getEntities("SELECT * FROM employee_filled",
+                Employee.class);
+
+        for (Employee entity : entities) {
+            System.out.println(entity);
+        }
 
     }
 
@@ -32,7 +36,7 @@ public class Test {
         try {
 
             if (!entity.isAnnotationPresent(Entity.class)) {
-                throw new IllegalArgumentException("Entity of " + entity.getSimpleName() + " is not acceptable.");
+                throw new IllegalEntityException("Entity \'" + entity.getSimpleName() + "\' is not acceptable. Caused by missing the annotation @Entity.");
             }
 
             entities = new ArrayList<>();
@@ -43,22 +47,22 @@ public class Test {
             statement = connection.createStatement();
             resultSet = statement.executeQuery(sql);
 
-            Field[] fields = entity.getFields();
+            Field[] fields = entity.getDeclaredFields();
 
             while (resultSet.next()) {
                 T object = entity.getConstructor().newInstance();
                 for (Field field : fields) {
-                    field.setAccessible(true);
-                    /*field.set(object, Class.forName(field.getType().toString())
-                            .cast(resultSet.getObject((field.isAnnotationPresent(Column.class)) ?
-                                    field.getAnnotation(Column.class).name() : field.getName())));*/
-                    field.set(object, resultSet.getObject((field.isAnnotationPresent(Column.class) ?
-                            field.getAnnotation(Column.class).name() : field.getName()), field.getType()));
+                    if (field.isAnnotationPresent(Column.class)) {
+                        field.setAccessible(true);
+
+                        String toGet = !field.getDeclaredAnnotation(Column.class).name().equals("") ?
+                                field.getAnnotation(Column.class).name() : field.getName();
+
+                        field.set(object, resultSet.getObject(toGet));
+                    }
                 }
                 entities.add(object);
             }
-
-            System.out.println(entities);
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

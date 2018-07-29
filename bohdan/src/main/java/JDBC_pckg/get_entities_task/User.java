@@ -3,9 +3,13 @@ package JDBC_pckg.get_entities_task;
 @Entity
 public class User {
 
+    @Column
     private int id;
+    @Column
     private String name;
+    @Column
     private int age;
+    @Column
     private int salary;
 
     public User() {

@@ -3,15 +3,21 @@ package JDBC_pckg.get_entities_task;
 @Entity
 public class Employee {
 
+    @Column
     private int id;
     @Column(name = "first_name")
     private String f_name;
     @Column(name = "last_name")
     private String l_name;
+    @Column
     private int age;
+    @Column
     private int salary;
+    @Column
     private boolean is_married;
+    //@Column
     //private Date birthdate;
+    @Column
     private String position;
 
     public Employee() {
