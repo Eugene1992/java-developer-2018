@@ -23,6 +23,8 @@
         <module>java-essential</module>
         <module>java-professional</module>
         <module>jdbc</module>
+        <module>jdbc2</module>
+        <module>a</module>
     </modules>
 
     <build>
