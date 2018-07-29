@@ -1,4 +1,4 @@
-package JDBC_pckg;
+package JDBC_pckg.first_test;
 
 import java.sql.*;
 import java.util.ArrayList;

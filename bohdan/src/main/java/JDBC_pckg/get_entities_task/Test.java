@@ -1,5 +1,7 @@
 package JDBC_pckg.get_entities_task;
 
+import JDBC_pckg.Employee;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
