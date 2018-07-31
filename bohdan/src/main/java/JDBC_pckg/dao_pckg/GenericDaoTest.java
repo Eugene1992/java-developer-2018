@@ -2,11 +2,11 @@ package JDBC_pckg.dao_pckg;
 
 import JDBC_pckg.Employee;
 
-public class EmployeeDaoTest {
+public class GenericDaoTest {
 
     public static void main(String[] args) {
 
-        EmployeeDaoImpl crud = new EmployeeDaoImpl();
+        GenericDaoImpl<Integer, Employee> crud = new GenericDaoImpl("employee_filled", Employee.class);
 
         System.out.println("DB List:");
         for (Employee employee : crud.getAll()) {
@@ -34,20 +34,7 @@ public class EmployeeDaoTest {
 
         System.out.println();
 
-//        ~Deleting~ (works)
-//        crud.delete(13);
-
-        System.out.println("John's in DB:");
-        for (Employee john : crud.getByName("John")) {
-            System.out.println(john);
-        }
-
-        System.out.println();
-
-        System.out.println("Juniors in DB:");
-        for (Employee junior : crud.getByPosition("Junior Java Developer")) {
-            System.out.println(junior);
-        }
+//        System.out.println(crud.delete(20));
 
         crud.close();
     }
