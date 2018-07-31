@@ -1,10 +1,9 @@
 package JDBC_pckg.dao_pckg;
 
-import JDBC_pckg.AbstractEntity;
-
 import java.util.List;
 
-public interface GenericDao<ID, E extends AbstractEntity> {
+// TODO: 7/31/2018 E extends AbstractEntity
+public interface GenericDao<ID, E> {
 
     E create(E employee);
 
