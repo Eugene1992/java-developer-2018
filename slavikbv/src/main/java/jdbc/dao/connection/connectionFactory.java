@@ -1,0 +1,44 @@
+package jdbc.dao.connection;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
+public class connectionFactory {
+
+    private static Properties credsProperties;
+
+    private static Connection connection;
+
+    static {
+        try {
+            credsProperties = new Properties();
+            credsProperties.load(new FileInputStream("C:\\Users\\Evgeniy\\Desktop\\java-developer-2018\\jdbc\\src\\main\\resources\\sql_creds.properties"));
+            Class.forName(credsProperties.getProperty("driver"));
+            connection = DriverManager.getConnection(
+                    credsProperties.getProperty("url"),
+                    credsProperties.getProperty("username"),
+                    credsProperties.getProperty("password")
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private connectionFactory() {
+    }
+
+    public static Connection getConnection() {
+        return connection;
+    }
+}
