@@ -105,6 +105,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
         return employee;
     }
 
+    // TODO: 7/31/2018 query " = ?"
     @Override
     public boolean delete(Integer id) {
 
@@ -134,6 +135,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
         return result;
     }
 
+    // TODO: 7/31/2018 query " = ?"
     @Override
     public Employee get(Integer id) {
 
@@ -221,6 +223,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
         return result;
     }
 
+    // TODO: 7/31/2018 query " = ?"
     @Override
     public List<Employee> getByName(String name) {
 
@@ -266,6 +269,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
         return result;
     }
 
+    // TODO: 7/31/2018 query " = ?"
     @Override
     public List<Employee> getByPosition(String position) {
 
@@ -318,5 +322,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             e.printStackTrace();
         }
     }
+
+    // TODO: 7/31/2018 Constants and method with return new Employee 
 }
 

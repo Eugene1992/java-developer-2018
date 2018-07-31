@@ -4,7 +4,7 @@ import JDBC_pckg.get_entities_task.Column;
 import JDBC_pckg.get_entities_task.Entity;
 
 @Entity
-public class Employee extends AbstractEntity {
+public class Employee {
 
     @Column
     private int id;
