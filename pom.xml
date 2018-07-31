@@ -24,7 +24,7 @@
         <module>java-professional</module>
         <module>jdbc</module>
         <module>java-fx</module>
-        <module>bohdan-fx</module>
+        <module>test-fx</module>
     </modules>
 
     <build>
