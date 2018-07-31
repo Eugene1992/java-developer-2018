@@ -28,7 +28,7 @@ public class GenericDaoTest {
 
         System.out.println("Updating Fuzzy Wuzzy:");
         System.out.println(crud.update(new Employee
-                (43, "Fuzzy", "Wuzzy", 25, 31000, true, "Middle Java Developer")));
+                (48, "Fuzzy", "Wuzzy", 25, 31000, true, "Middle Java Developer")));
 
         System.out.println();
 

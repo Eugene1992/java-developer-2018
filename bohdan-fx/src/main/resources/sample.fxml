@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="516.0" prefWidth="775.0" xmlns="http://javafx.com/javafx/8"
+      fx:controller="javaFX_employee_DB.Controller">
+    <children>
+        <Button fx:id="gameBtn" layoutX="303.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#clicked"
+                onMouseMoved="#reached" text="Press me if you're not a looser."/>
+    </children>
+</Pane>

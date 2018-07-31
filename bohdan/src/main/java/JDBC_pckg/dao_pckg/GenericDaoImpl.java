@@ -14,6 +14,8 @@ public class GenericDaoImpl<ID, E> implements GenericDao<ID, E> {
     private String tableName;
     private Class eClass;
 
+    public static final String ID = "id";
+
     public GenericDaoImpl(String tableName, Class<E> object) {
         this.connection = ConnectionFactory.getConnection();
         this.tableName = tableName;
@@ -35,9 +37,6 @@ public class GenericDaoImpl<ID, E> implements GenericDao<ID, E> {
 
             Field[] fields = eClass.getDeclaredFields();
 
-
-            // TODO: 7/31/2018  PSQLException: The column index is out of range: 1, number of columns: 0.
-            // TODO: 7/31/2018  Depends on order! Fix
             for (int i = 1; i < fields.length; i++) {
                 fields[i].setAccessible(true);
                 preparedStatement.setObject(i, fields[i].get(entity));
@@ -82,7 +81,7 @@ public class GenericDaoImpl<ID, E> implements GenericDao<ID, E> {
 
         try {
 
-            Field idField = entity.getClass().getDeclaredField("id");
+            Field idField = entity.getClass().getDeclaredField(ID);
             idField.setAccessible(true);
             id = (ID) idField.get(entity);
             preparedStatement = connection.prepareStatement(getUpdateQuery(id));
@@ -90,8 +89,6 @@ public class GenericDaoImpl<ID, E> implements GenericDao<ID, E> {
             Field[] fields = eClass.getDeclaredFields();
 
 
-            // TODO: 7/31/2018  PSQLException: The column index is out of range: 1, number of columns: 0.
-            // TODO: 7/31/2018  Depends on order! Fix
             for (int i = 1; i < fields.length; i++) {
                 fields[i].setAccessible(true);
                 preparedStatement.setObject(i, fields[i].get(entity));
@@ -123,23 +120,25 @@ public class GenericDaoImpl<ID, E> implements GenericDao<ID, E> {
     @Override
     public boolean delete(ID id) {
 
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
 
         boolean result = false;
 
         try {
 
-            statement = connection.createStatement();
-            result = statement.executeUpdate("DELETE FROM " + tableName +
-                    " WHERE id = " + id) > 0;
+            preparedStatement = connection.prepareStatement("DELETE FROM " + tableName +
+                    " WHERE id = ?");
+            preparedStatement.setObject(1, id);
+
+            result = preparedStatement.executeUpdate() > 0;
 
 
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                if (statement != null) {
-                    statement.close();
+                if (preparedStatement != null) {
+                    preparedStatement.close();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -152,16 +151,18 @@ public class GenericDaoImpl<ID, E> implements GenericDao<ID, E> {
     @Override
     public E get(ID id) {
 
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
         E result = null;
 
         try {
 
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM " + tableName +
-                    " WHERE id = " + id);
+            preparedStatement = connection.prepareStatement("SELECT * FROM " + tableName +
+                    " WHERE id = ?");
+            preparedStatement.setObject(1, id);
+
+            resultSet = preparedStatement.executeQuery();
 
             result = (E) eClass.getConstructor().newInstance();
 
@@ -190,8 +191,8 @@ public class GenericDaoImpl<ID, E> implements GenericDao<ID, E> {
                 if (resultSet != null) {
                     resultSet.close();
                 }
-                if (statement != null) {
-                    statement.close();
+                if (preparedStatement != null) {
+                    preparedStatement.close();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -259,11 +260,11 @@ public class GenericDaoImpl<ID, E> implements GenericDao<ID, E> {
         Field[] fields = eClass.getDeclaredFields();
         String query = "INSERT INTO " + tableName + " (";
         for (int i = 1; i < fields.length; i++) {
-            query.concat(i == fields.length - 1 ? fields[i].getName() + ") " : fields[i].getName() + ", ");
+            query += (i == fields.length - 1 ? fields[i].getName() + ") " : fields[i].getName() + ", ");
         }
-        query.concat("VALUES ( ");
+        query += ("VALUES ( ");
         for (int i = 1; i < fields.length; i++) {
-            query.concat(i == fields.length - 1 ? "?)" : fields[i].getName() + "?, ");
+            query += (i == fields.length - 1 ? "?)" : "?, ");
         }
         return query;
     }
@@ -272,9 +273,9 @@ public class GenericDaoImpl<ID, E> implements GenericDao<ID, E> {
         Field[] fields = eClass.getDeclaredFields();
         String query = "UPDATE " + tableName + " SET ";
         for (int i = 1; i < fields.length; i++) {
-            query.concat(i == fields.length - 1 ? fields[i].getName() + " = ? " : fields[i].getName() + " = ?, ");
+            query += (i == fields.length - 1 ? fields[i].getName() + " = ? " : fields[i].getName() + " = ?, ");
         }
-        query.concat("WHERE id = " + id);
+        query += ("WHERE id = " + id);
         return query;
     }
 

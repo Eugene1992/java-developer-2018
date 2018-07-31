@@ -9,6 +9,13 @@ import java.util.List;
 
 public class EmployeeDaoImpl implements EmployeeDao {
 
+    public static final String ID = "id";
+    public static final String FIRST_NAME = "first_name";
+    public static final String LAST_NAME = "last_name";
+    public static final String AGE = "age";
+    public static final String SALARY = "salary";
+    public static final String IS_MARRIED = "is_married";
+    public static final String POSITION = "position";
     private Connection connection;
 
     public EmployeeDaoImpl() {
@@ -105,27 +112,27 @@ public class EmployeeDaoImpl implements EmployeeDao {
         return employee;
     }
 
-    // TODO: 7/31/2018 query " = ?"
     @Override
     public boolean delete(Integer id) {
 
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
 
         boolean result = false;
 
         try {
 
-            statement = connection.createStatement();
-            result = statement.executeUpdate("DELETE FROM employee_filled " +
-                    "WHERE id = " + id) > 0;
+            preparedStatement = connection.prepareStatement("DELETE FROM employee_filled " +
+                    "WHERE id = ?");
+            preparedStatement.setInt(1, id);
 
+            result = preparedStatement.executeUpdate() > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                if (statement != null) {
-                    statement.close();
+                if (preparedStatement != null) {
+                    preparedStatement.close();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -135,31 +142,24 @@ public class EmployeeDaoImpl implements EmployeeDao {
         return result;
     }
 
-    // TODO: 7/31/2018 query " = ?"
     @Override
     public Employee get(Integer id) {
 
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
         Employee result = null;
 
         try {
 
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM employee_filled " +
-                    "WHERE id = " + id);
+            preparedStatement = connection.prepareStatement("SELECT * FROM employee_filled " +
+                    "WHERE id = ?");
+            preparedStatement.setInt(1, id);
+
+            resultSet = preparedStatement.executeQuery();
 
             resultSet.next();
-            result = new Employee(
-                    resultSet.getInt("id"),
-                    resultSet.getString("first_name"),
-                    resultSet.getString("last_name"),
-                    resultSet.getInt("age"),
-                    resultSet.getInt("salary"),
-                    resultSet.getBoolean("is_married"),
-                    resultSet.getString("position")
-            );
+            result = getEmployeeFromResultSet(resultSet);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -168,8 +168,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 if (resultSet != null) {
                     resultSet.close();
                 }
-                if (statement != null) {
-                    statement.close();
+                if (preparedStatement != null) {
+                    preparedStatement.close();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -193,16 +193,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             resultSet = statement.executeQuery("SELECT * FROM employee_filled");
 
             while (resultSet.next()) {
-                result.add(new Employee(
-                                resultSet.getInt("id"),
-                                resultSet.getString("first_name"),
-                                resultSet.getString("last_name"),
-                                resultSet.getInt("age"),
-                                resultSet.getInt("salary"),
-                                resultSet.getBoolean("is_married"),
-                                resultSet.getString("position")
-                        )
-                );
+                result.add(getEmployeeFromResultSet(resultSet));
             }
 
         } catch (SQLException e) {
@@ -223,32 +214,24 @@ public class EmployeeDaoImpl implements EmployeeDao {
         return result;
     }
 
-    // TODO: 7/31/2018 query " = ?"
     @Override
     public List<Employee> getByName(String name) {
 
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
         List<Employee> result = new ArrayList<>();
 
         try {
 
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM employee_filled " +
-                    "WHERE first_name = \'" + name + "\'");
+            preparedStatement = connection.prepareStatement("SELECT * FROM employee_filled " +
+                    "WHERE first_name = ?");
+            preparedStatement.setString(1, name);
+
+            resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                result.add(new Employee(
-                                resultSet.getInt("id"),
-                                resultSet.getString("first_name"),
-                                resultSet.getString("last_name"),
-                                resultSet.getInt("age"),
-                                resultSet.getInt("salary"),
-                                resultSet.getBoolean("is_married"),
-                                resultSet.getString("position")
-                        )
-                );
+                result.add(getEmployeeFromResultSet(resultSet));
             }
 
         } catch (SQLException e) {
@@ -258,8 +241,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 if (resultSet != null) {
                     resultSet.close();
                 }
-                if (statement != null) {
-                    statement.close();
+                if (preparedStatement != null) {
+                    preparedStatement.close();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -269,32 +252,25 @@ public class EmployeeDaoImpl implements EmployeeDao {
         return result;
     }
 
-    // TODO: 7/31/2018 query " = ?"
     @Override
     public List<Employee> getByPosition(String position) {
 
-        Statement statement = null;
+        PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
 
         List<Employee> result = new ArrayList<>();
 
         try {
 
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM employee_filled " +
-                    "WHERE position = \'" + position + "\'");
+            preparedStatement = connection.prepareStatement("SELECT * FROM employee_filled " +
+                    "WHERE position = ?");
+            preparedStatement.setString(1, position);
+
+
+            resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                result.add(new Employee(
-                                resultSet.getInt("id"),
-                                resultSet.getString("first_name"),
-                                resultSet.getString("last_name"),
-                                resultSet.getInt("age"),
-                                resultSet.getInt("salary"),
-                                resultSet.getBoolean("is_married"),
-                                resultSet.getString("position")
-                        )
-                );
+                result.add(getEmployeeFromResultSet(resultSet));
             }
 
         } catch (SQLException e) {
@@ -304,8 +280,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 if (resultSet != null) {
                     resultSet.close();
                 }
-                if (statement != null) {
-                    statement.close();
+                if (preparedStatement != null) {
+                    preparedStatement.close();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -313,6 +289,18 @@ public class EmployeeDaoImpl implements EmployeeDao {
         }
 
         return result;
+    }
+
+    private Employee getEmployeeFromResultSet(ResultSet resultSet) throws SQLException {
+        return new Employee(
+                resultSet.getInt(ID),
+                resultSet.getString(FIRST_NAME),
+                resultSet.getString(LAST_NAME),
+                resultSet.getInt(AGE),
+                resultSet.getInt(SALARY),
+                resultSet.getBoolean(IS_MARRIED),
+                resultSet.getString(POSITION)
+        );
     }
 
     public void close() {
@@ -323,6 +311,5 @@ public class EmployeeDaoImpl implements EmployeeDao {
         }
     }
 
-    // TODO: 7/31/2018 Constants and method with return new Employee 
 }
 
