@@ -13,6 +13,14 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.zenjava</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>8.7.0</version>
+                <configuration>
+                    <mainClass>javaFX_employee_DB.EmployeeDBApp</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <parent>
