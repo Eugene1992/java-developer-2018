@@ -1,5 +1,6 @@
 package JDBC_pckg.dao_pckg;
 
+import JDBC_pckg.AbstractEntity;
 import JDBC_pckg.ConnectionFactory;
 
 import java.lang.reflect.Field;
@@ -8,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GenericDaoImpl<ID, E> implements GenericDao<ID, E> {
+public class GenericDaoImpl<ID, E extends AbstractEntity> implements GenericDao<ID, E> {
 
     private Connection connection;
     private String tableName;

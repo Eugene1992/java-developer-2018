@@ -75,7 +75,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             preparedStatement = connection.prepareStatement
                     ("UPDATE employee_filled " +
                             "SET first_name = ?, last_name = ?, age = ?, salary = ?, is_married = ?,/* birthdate = ?,*/ position = ? " +
-                            "WHERE id = " + employee.getId());
+                            "WHERE id = ?");
 
             preparedStatement.setString(1, employee.getFirst_name());
             preparedStatement.setString(2, employee.getLast_name());
@@ -83,7 +83,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
             preparedStatement.setInt(4, employee.getSalary());
             preparedStatement.setBoolean(5, employee.is_married());
 //            preparedStatement.setString(6, employee.getBirthdate());
+//            preparedStatement.setString(6, employee.getBirthdate());
             preparedStatement.setString(6, employee.getPosition());
+            preparedStatement.setInt(7, employee.getId());
 
             preparedStatement.executeUpdate();
 
@@ -100,7 +102,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
             }
         }
 
-        return get(employee.getId());
+        return employee;
     }
 
     @Override

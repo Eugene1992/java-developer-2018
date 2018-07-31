@@ -4,7 +4,7 @@ import JDBC_pckg.get_entities_task.Column;
 import JDBC_pckg.get_entities_task.Entity;
 
 @Entity
-public class Employee {
+public class Employee extends AbstractEntity {
 
     @Column
     private int id;
@@ -47,36 +47,24 @@ public class Employee {
         this.position = position;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirst_name() {
         return first_name;
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
     }
 
     public void setIs_married(boolean is_married) {
         this.is_married = is_married;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
-
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
     }
 
     public String getLast_name() {
@@ -91,8 +79,16 @@ public class Employee {
         return age;
     }
 
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public int getSalary() {
         return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 
     public boolean is_married() {
@@ -101,6 +97,10 @@ public class Employee {
 
     public String getPosition() {
         return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     @Override
