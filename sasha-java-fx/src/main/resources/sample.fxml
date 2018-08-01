@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SashaController">
+   <children>
+      <Text layoutX="451.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sasha FX Example" textAlignment="CENTER" wrappingWidth="387.236328125">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <TextField fx:id="firstNameInput" layoutX="670.0" layoutY="33.0" />
+      <TextField fx:id="lastNameInput" layoutX="670.0" layoutY="66.0" />
+      <TextField fx:id="userNameInput" layoutX="670.0" layoutY="102.0" />
+      <TextField fx:id="passwordInput" layoutX="670.0" layoutY="140.0" />
+      <TextField fx:id="roleInput" layoutX="670.0" layoutY="180.0" />
+      <TextField fx:id="userIdForDelete" layoutX="670.0" layoutY="295.0" />
+      <Text layoutX="608.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="firts_name" />
+      <Text layoutX="608.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="last_name" />
+      <Text layoutX="607.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="username" />
+      <Text layoutX="610.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="password" />
+      <Text layoutX="624.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="role" />
+      <Button fx:id="createButton" layoutX="718.0" layoutY="223.0" mnemonicParsing="false" onAction="#clickCreate" text="Create" />
+      <Button fx:id="deleteButton" layoutX="718.0" layoutY="335.0" mnemonicParsing="false" onAction="#clickDelete" text="Delete" />
+      <Button fx:id="showAllButton" layoutX="718.0" layoutY="538.0" mnemonicParsing="false" onAction="#clickShowAll" text="Show All" />
+      <Text layoutX="611.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user_id" wrappingWidth="42.384765625" />
+      <TableView fx:id="tableView" editable="true" prefHeight="640.0" prefWidth="452.0">
+        <columns>
+          <TableColumn fx:id="columnUserId" prefWidth="75.0" text="user_id" />
+          <TableColumn fx:id="columnFirstName" prefWidth="75.0" text="first_name" />
+            <TableColumn fx:id="columnLastName" prefWidth="75.0" text="last_name" />
+            <TableColumn fx:id="columnUserName" prefWidth="75.0" text="username" />
+            <TableColumn fx:id="columnPassword" prefWidth="75.0" text="password" />
+            <TableColumn fx:id="columnRole" prefWidth="75.0" text="role" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>

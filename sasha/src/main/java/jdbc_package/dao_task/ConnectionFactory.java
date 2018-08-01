@@ -12,15 +12,23 @@ public class ConnectionFactory {
     private static Properties sqlProperties;
     private static Connection connection;
 
+    private static final String
+            DRIVER = "driver",
+            URL = "url",
+            USERNAME = "username",
+            PASSWORD = "password";
+
+    public static final String SQL_PROPERTIES = "sql_base.properties";
+
     static {
         try {
             sqlProperties = new Properties();
-            sqlProperties.load(new FileInputStream("sql_base.properties"));
-            Class.forName(sqlProperties.getProperty("driver"));
+            sqlProperties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(SQL_PROPERTIES));
+            Class.forName(sqlProperties.getProperty(DRIVER));
             connection = DriverManager.getConnection(
-                    sqlProperties.getProperty("url"),
-                    sqlProperties.getProperty("username"),
-                    sqlProperties.getProperty("password"));
+                    sqlProperties.getProperty(URL),
+                    sqlProperties.getProperty(USERNAME),
+                    sqlProperties.getProperty(PASSWORD));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
