@@ -25,6 +25,7 @@
         <module>jdbc</module>
         <module>java-fx</module>
         <module>test-fx</module>
+        <module>sasha-java-fx</module>
     </modules>
 
     <build>
