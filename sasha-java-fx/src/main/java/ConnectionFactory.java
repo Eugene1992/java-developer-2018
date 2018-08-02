@@ -1,6 +1,3 @@
-package jdbc_package.dao_task;
-
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,16 +6,14 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConnectionFactory {
-    private static Properties sqlProperties;
-    private static Connection connection;
-
+    public static final String SQL_PROPERTIES = "sql_base.properties";
     private static final String
             DRIVER = "driver",
             URL = "url",
             USERNAME = "username",
             PASSWORD = "password";
-
-    public static final String SQL_PROPERTIES = "sql_base.properties";
+    private static Properties sqlProperties;
+    private static Connection connection;
 
     static {
         try {

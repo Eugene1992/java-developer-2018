@@ -1,5 +1,3 @@
-package jdbc_package.dao_task;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +32,6 @@ public class UserDaoImpl implements UserDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(resultID);
         return get(resultID);
     }
 
@@ -44,7 +41,7 @@ public class UserDaoImpl implements UserDao {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement
                     ("UPDATE \"user\" SET first_name = ?, last_name = ?, username = ?, password = ?, role = ?" +
-                    "WHERE user_id = ?");
+                            "WHERE user_id = ?");
             preparedStatement.setString(1, entity.getFirst_name());
             preparedStatement.setString(2, entity.getLast_name());
             preparedStatement.setString(3, entity.getUsername());
@@ -125,7 +122,6 @@ public class UserDaoImpl implements UserDao {
                         resultSet.getString("role")
                 ));
             }
-
 
 
         } catch (SQLException e) {
