@@ -68,8 +68,7 @@ public class SashaController {
             userData.add(user);
         }
         tableView.setItems(userData);
-// TODO: 2018-08-02 problem with integer type 
-//        columnUserId.setCellValueFactory(cellData -> cellData.getValue().user_idProperty());
+        columnUserId.setCellValueFactory(cellData -> cellData.getValue().user_idProperty().asObject());
         columnFirstName.setCellValueFactory(cellData -> cellData.getValue().first_nameProperty());
         columnLastName.setCellValueFactory(cellData -> cellData.getValue().last_nameProperty());
         columnUserName.setCellValueFactory(cellData -> cellData.getValue().usernameProperty());
