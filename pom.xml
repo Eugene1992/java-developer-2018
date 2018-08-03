@@ -27,6 +27,8 @@
         <module>test-fx</module>
         <module>sasha-java-fx</module>
         <module>hibernate-test</module>
+        <module>boHibernate</module>
+        <module>bohdan-fx</module>
     </modules>
 
     <build>
