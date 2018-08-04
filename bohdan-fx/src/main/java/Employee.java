@@ -63,6 +63,34 @@ public class Employee {
         return position;
     }
 
+    public void setId(int id) {
+        this.id.set(id);
+    }
+
+    public void setFirst_name(String first_name) {
+        this.first_name.set(first_name);
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name.set(last_name);
+    }
+
+    public void setAge(int age) {
+        this.age.set(age);
+    }
+
+    public void setSalary(int salary) {
+        this.salary.set(salary);
+    }
+
+    public void setIs_married(boolean is_married) {
+        this.is_married.set(is_married);
+    }
+
+    public void setPosition(String position) {
+        this.position.set(position);
+    }
+
     @Override
     public String toString() {
         return "Employee #" + id +

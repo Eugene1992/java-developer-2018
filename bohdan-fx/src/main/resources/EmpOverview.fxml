@@ -4,7 +4,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8">
+            minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="EmployeeOverviewController">
     <children>
         <SplitPane dividerPositions="0.479933110367893" layoutX="200.0" layoutY="104.0" prefHeight="400.0"
                    prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
@@ -12,13 +13,13 @@
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                     <children>
-                        <TableView layoutX="-25.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0"
-                                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                        <TableView fx:id="employeeTable" layoutX="-25.0" layoutY="48.0" prefHeight="200.0"
+                                   prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columns>
-                                <TableColumn prefWidth="59.0" text="ID"/>
-                                <TableColumn prefWidth="129.0" text="First Name"/>
-                                <TableColumn prefWidth="75.0" text="Last Name"/>
+                                <TableColumn fx:id="idColumn" prefWidth="59.0" text="ID"/>
+                                <TableColumn fx:id="firstNameColumn" prefWidth="129.0" text="First Name"/>
+                                <TableColumn fx:id="lastNameColumn" prefWidth="75.0" text="Last Name"/>
                             </columns>
                             <columnResizePolicy>
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
@@ -48,24 +49,36 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
-                                <Label prefHeight="17.0" prefWidth="23.0" text="Age"/>
-                                <Label text="Label" GridPane.columnIndex="1"/>
-                                <Label text="Salary" GridPane.rowIndex="1"/>
-                                <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-                                <Label text="Is married" GridPane.rowIndex="2"/>
-                                <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                                <Label text="Position" GridPane.rowIndex="3"/>
-                                <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                                <Label prefHeight="17.0" prefWidth="23.0" text="Age" GridPane.rowIndex="2"/>
+                                <Label fx:id="ageLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                <Label text="Salary" GridPane.rowIndex="3"/>
+                                <Label fx:id="salaryLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                                <Label text="Is married" GridPane.rowIndex="4"/>
+                                <Label text="Position" GridPane.rowIndex="5"/>
+                                <Label fx:id="positionLabel" text="Label" GridPane.columnIndex="1"
+                                       GridPane.rowIndex="5"/>
+                                <Label text="First name"/>
+                                <Label fx:id="firstNameLabel" text="Label" GridPane.columnIndex="1"/>
+                                <Label text="Last name" GridPane.rowIndex="1"/>
+                                <Label fx:id="lastNameLabel" text="Label" GridPane.columnIndex="1"
+                                       GridPane.rowIndex="1"/>
+                                <CheckBox fx:id="isMarriedCheckBox" mnemonicParsing="false" GridPane.columnIndex="1"
+                                          GridPane.rowIndex="4"/>
                             </children>
                         </GridPane>
                         <HBox alignment="BOTTOM_RIGHT" layoutX="141.0" layoutY="259.0" spacing="5.0"
                               AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                             <children>
-                                <Button layoutX="197.0" layoutY="372.0" mnemonicParsing="false" text="New..."/>
-                                <Button layoutX="255.0" layoutY="372.0" mnemonicParsing="false" text="Edit..."/>
-                                <Button layoutX="313.0" layoutY="372.0" mnemonicParsing="false" text="Delete"/>
+                                <Button layoutX="197.0" layoutY="372.0" mnemonicParsing="false"
+                                        onAction="#handleNewEmployee" text="New..."/>
+                                <Button layoutX="255.0" layoutY="372.0" mnemonicParsing="false"
+                                        onAction="#handleEditEmployee" text="Edit..."/>
+                                <Button layoutX="313.0" layoutY="372.0" mnemonicParsing="false"
+                                        onAction="#handleDeleteEmployee" text="Delete"/>
                             </children>
                         </HBox>
                     </children>

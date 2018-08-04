@@ -294,5 +294,35 @@ public class EmployeeDaoImpl implements EmployeeDao {
         }
     }
 
+    public int getNewId() {
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        int newId = 0;
+
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("SELECT nextval(id) FROM employee_filled ORDER BY id LIMIT 1;");
+
+            resultSet.next();
+            newId = resultSet.getInt(0);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return newId;
+    }
+
 }
 

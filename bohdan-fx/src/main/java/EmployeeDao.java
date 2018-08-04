@@ -6,4 +6,6 @@ public interface EmployeeDao extends GenericDao<Integer, Employee> {
 
     List<Employee> getByPosition(String position);
 
+    public int getNewId();
+
 }
