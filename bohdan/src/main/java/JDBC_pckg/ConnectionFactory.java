@@ -1,6 +1,5 @@
 package JDBC_pckg;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,20 +9,25 @@ import java.util.Properties;
 
 public class ConnectionFactory {
 
+    public static final String CREDS_PROPERTIES = "postgresql_creds.properties";
+    private static final String
+            DRIVER = "driver",
+            URL = "url",
+            USERNAME = "username",
+            PASSWORD = "password";
     private static Properties credsProperties;
-
     private static Connection connection;
 
     static {
         try {
             credsProperties = new Properties();
-            credsProperties.load(new FileInputStream("C:\\Users\\admin\\java-developer-2018\\bohdan\\src\\main\\resources\\postgresql_creds.properties"));
+            credsProperties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream(CREDS_PROPERTIES));
 
-            Class.forName(credsProperties.getProperty("driver"));
+            Class.forName(credsProperties.getProperty(DRIVER));
             connection = DriverManager.getConnection(
-                    credsProperties.getProperty("url"),
-                    credsProperties.getProperty("username"),
-                    credsProperties.getProperty("password")
+                    credsProperties.getProperty(URL),
+                    credsProperties.getProperty(USERNAME),
+                    credsProperties.getProperty(PASSWORD)
             );
 
         } catch (SQLException e) {
@@ -43,5 +47,4 @@ public class ConnectionFactory {
     public static Connection getConnection() {
         return connection;
     }
-
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
+      fx:controller="MyController">
+    <children>
+        <TableView fx:id="table" prefHeight="400.0" prefWidth="227.0">
+            <columns>
+                <TableColumn fx:id="firstNameColumn" prefWidth="115.0" text="First name" />
+                <TableColumn fx:id="lastNameColumn" prefWidth="111.0" text="Last name" />
+            </columns>
+        </TableView>
+        <Button fx:id="loadDataBtn" layoutX="266.0" layoutY="349.0" mnemonicParsing="false" onAction="#loadData" text="Load data" />
+      <TextField fx:id="firstNameInput" layoutX="384.0" layoutY="71.0" />
+      <Label layoutX="286.0" layoutY="75.0" text="First name:" />
+      <Label layoutX="286.0" layoutY="108.0" text="Last name:" />
+      <TextField fx:id="lastNameInput" layoutX="384.0" layoutY="104.0" />
+      <Button fx:id="addEmployeeBtn" layoutX="364.0" layoutY="152.0" mnemonicParsing="false" onAction="#addEmployee" text="Add employee" />
+    </children>
+</Pane>

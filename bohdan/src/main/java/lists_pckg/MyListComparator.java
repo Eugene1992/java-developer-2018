@@ -10,6 +10,7 @@ public class MyListComparator<E> implements Comparator<E> {
             return ((String) first).compareTo((String) second);
         }
 
-        return (int) first - (int) second;
+//        return (int) first - (int) second;
+        return 0;
     }
 }

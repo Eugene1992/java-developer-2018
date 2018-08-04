@@ -1,4 +1,4 @@
-package jdbc;
+package jdbc.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class jdbcsample {
             while (resultSet.next())
                 employees.add(
                         new Employee(
-                                resultSet.getInt("id"),
+                                resultSet.getInt("employee_id"),
                                 resultSet.getString("name")
                         )
                 );
