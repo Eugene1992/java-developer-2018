@@ -30,6 +30,7 @@
         <module>boHibernate</module>
         <module>bohdan-fx</module>
         <module>persistence-test</module>
+        <module>bohdanJPA</module>
     </modules>
 
     <build>

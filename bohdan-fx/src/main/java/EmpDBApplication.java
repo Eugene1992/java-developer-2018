@@ -17,9 +17,10 @@ public class EmpDBApplication extends Application {
 
 
     //    Данные, в виде наблюдаемого списка адресатов.
-    private ObservableList<Employee> personData = FXCollections.observableArrayList();
+    private ObservableList<Employee> personData;
 
     public EmpDBApplication() {
+        personData = FXCollections.observableArrayList();
         // В качестве образца добавляем некоторые данные
         personData.addAll(crud.getAll());
     }
@@ -40,7 +41,7 @@ public class EmpDBApplication extends Application {
 
         initRootLayout();
 
-        showPersonOverview();
+        showEmployeeOverview();
     }
 
     /**
@@ -65,7 +66,7 @@ public class EmpDBApplication extends Application {
     /**
      * Показывает в корневом макете сведения об адресатах.
      */
-    public void showPersonOverview() {
+    public void showEmployeeOverview() {
         try {
             // Загружаем сведения об адресатах.
             FXMLLoader loader = new FXMLLoader();
@@ -74,6 +75,11 @@ public class EmpDBApplication extends Application {
 
             // Помещаем сведения об адресатах в центр корневого макета.
             rootLayout.setCenter(personOverview);
+
+            // Даём контроллеру доступ к главному приложению.
+            EmployeeOverviewController controller = loader.getController();
+            controller.setApp(this);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

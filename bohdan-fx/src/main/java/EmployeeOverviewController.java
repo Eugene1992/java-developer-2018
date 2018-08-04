@@ -1,3 +1,4 @@
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -19,13 +20,13 @@ public class EmployeeOverviewController {
     @FXML
     private Label lastNameLabel;
     @FXML
-    private Label Age;
+    private Label age;
     @FXML
-    private Label Salary;
+    private Label salary;
     @FXML
     private Label isMarried;
     @FXML
-    private Label Position;
+    private Label position;
 
     private EmpDBApplication application;
 
@@ -39,12 +40,22 @@ public class EmployeeOverviewController {
         crud = new EmployeeDaoImpl();
     }
 
-    // TODO: 8/3/2018
     @FXML
     private void initialize() {
         // Инициализация таблицы адресатов с тремя столбцами.
-//        idColumn.setCellValueFactory(cellData -> new crud.get(1).idProperty());
+//        idColumn.setCellValueFactory(cellData ->
+//                cellData.getValue().idProperty().asObject());
+        idColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(crud.get(1).idProperty().get()));
         firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().first_nameProperty());
         lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().last_nameProperty());
     }
+
+    public void setApp(EmpDBApplication application) {
+        this.application = application;
+
+        // Добавление в таблицу данных из наблюдаемого списка
+        employeeTable.setItems(application.getPersonData());
+    }
+
+
 }
