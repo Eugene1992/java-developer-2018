@@ -26,10 +26,10 @@ public class EmployeeEditDialogController {
     private TextField positionField;
 
     private EmployeeDao crud = new EmployeeDaoImpl();
-    private int selectedId;
+    private Integer selectedId;
 
     private Stage dialogStage;
-    private Employee employee;
+    private Employee employee = new Employee();
     private boolean okClicked = false;
 
     /**
@@ -83,9 +83,6 @@ public class EmployeeEditDialogController {
     @FXML
     private void handleOk() {
         if (isInputValid()) {
-            if (selectedId != 0) {
-                employee.setId(selectedId);
-            }
             employee.setFirst_name(firstNameField.getText());
             employee.setLast_name(lastNameField.getText());
             employee.setAge(Integer.parseInt(ageField.getText()));
@@ -93,7 +90,9 @@ public class EmployeeEditDialogController {
             employee.setIs_married(isMarriedCheckBox.isSelected());
             employee.setPosition(positionField.getText());
 
-            crud.update(employee);
+            if (employee.idProperty() != null) {
+                crud.update(employee);
+            }
 
             okClicked = true;
             dialogStage.close();

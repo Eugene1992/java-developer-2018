@@ -1,6 +1,4 @@
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 public class Employee {
 
@@ -64,31 +62,35 @@ public class Employee {
     }
 
     public void setId(int id) {
-        this.id.set(id);
+        this.id = new SimpleIntegerProperty(id);
     }
 
     public void setFirst_name(String first_name) {
-        this.first_name.set(first_name);
+        this.first_name = new SimpleStringProperty(first_name);
     }
 
     public void setLast_name(String last_name) {
-        this.last_name.set(last_name);
+        this.last_name = new SimpleStringProperty(last_name);
     }
 
     public void setAge(int age) {
-        this.age.set(age);
+        this.age = new SimpleIntegerProperty(age);
     }
 
     public void setSalary(int salary) {
-        this.salary.set(salary);
+        this.salary = new SimpleIntegerProperty(salary);
     }
 
     public void setIs_married(boolean is_married) {
-        this.is_married.set(is_married);
+        this.is_married = new SimpleBooleanProperty(is_married);
     }
 
     public void setPosition(String position) {
-        this.position.set(position);
+        this.position = new SimpleStringProperty(position);
+    }
+
+    public boolean isNull() {
+        return id == null;
     }
 
     @Override

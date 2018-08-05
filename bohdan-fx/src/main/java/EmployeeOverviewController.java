@@ -125,8 +125,8 @@ public class EmployeeOverviewController {
         Employee tempEmployee = new Employee();
         boolean okClicked = application.showEmployeeEditDialog(tempEmployee);
         if (okClicked) {
-            crud.create(tempEmployee);
-            application.getEmployeeData().add(tempEmployee);
+//            crud.create(tempEmployee);
+            application.getEmployeeData().add(crud.create(tempEmployee));
         }
     }
 
