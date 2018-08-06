@@ -1,3 +1,6 @@
+import dao.Employee;
+import dao.EmployeeDao;
+import dao.EmployeeDaoJdbcImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -12,6 +15,11 @@ import javafx.stage.Stage;
  */
 public class EmployeeEditDialogController {
 
+    public static final String NO_VALID_FIRST_NAME = "No valid first name!";
+    public static final String NO_VALID_LAST_NAME = "No valid last name!";
+    public static final String NO_VALID_AGE = "No valid age!";
+    public static final String NO_VALID_SALARY = "No valid salary!";
+    public static final String NO_VALID_POSITION = "No valid position!";
     @FXML
     private TextField firstNameField;
     @FXML
@@ -25,17 +33,23 @@ public class EmployeeEditDialogController {
     @FXML
     private TextField positionField;
 
-    private EmployeeDao crud = new EmployeeDaoImpl();
+    private EmployeeDao crud;
     private Integer selectedId;
 
     private Stage dialogStage;
-    private Employee employee = new Employee();
+    private Employee employee;
     private boolean okClicked = false;
+
+    public EmployeeEditDialogController() {
+        crud = new EmployeeDaoJdbcImpl();
+        employee = new Employee();
+    }
 
     /**
      * Инициализирует класс-контроллер. Этот метод вызывается автоматически
      * после того, как fxml-файл будет загружен.
      */
+
     @FXML
     private void initialize() {
     }
@@ -59,11 +73,11 @@ public class EmployeeEditDialogController {
 
         if (employee.idProperty() != null) {
             selectedId = employee.idProperty().getValue();
-            firstNameField.setText(employee.first_nameProperty().getValue());
-            lastNameField.setText(employee.last_nameProperty().getValue());
+            firstNameField.setText(employee.firstNameProperty().getValue());
+            lastNameField.setText(employee.lastNameProperty().getValue());
             ageField.setText(Integer.toString(employee.ageProperty().getValue()));
             salaryField.setText(Integer.toString(employee.salaryProperty().getValue()));
-            isMarriedCheckBox.setSelected(employee.is_marriedProperty().getValue());
+            isMarriedCheckBox.setSelected(employee.isMarriedProperty().getValue());
             positionField.setText(employee.positionProperty().getValue());
         }
     }
@@ -83,11 +97,11 @@ public class EmployeeEditDialogController {
     @FXML
     private void handleOk() {
         if (isInputValid()) {
-            employee.setFirst_name(firstNameField.getText());
-            employee.setLast_name(lastNameField.getText());
+            employee.setFirstName(firstNameField.getText());
+            employee.setLastName(lastNameField.getText());
             employee.setAge(Integer.parseInt(ageField.getText()));
             employee.setSalary(Integer.parseInt(salaryField.getText()));
-            employee.setIs_married(isMarriedCheckBox.isSelected());
+            employee.setIsMarried(isMarriedCheckBox.isSelected());
             employee.setPosition(positionField.getText());
 
             if (employee.idProperty() != null) {
@@ -122,39 +136,39 @@ public class EmployeeEditDialogController {
         String errorMessage = "";
 
         if (firstNameField.getText() == null || firstNameField.getText().length() == 0) {
-            errorMessage += "No valid first name!\n";
+            errorMessage += NO_VALID_FIRST_NAME + "\n";
         }
 
         if (lastNameField.getText() == null || lastNameField.getText().length() == 0) {
-            errorMessage += "No valid last name!\n";
+            errorMessage += NO_VALID_LAST_NAME + "\n";
         }
 
         if (ageField.getText() == null || ageField.getText().length() == 0) {
-            errorMessage += "No valid age!\n";
+            errorMessage += NO_VALID_AGE + "\n";
         } else {
             try {
                 if (Integer.parseInt(ageField.getText()) <= 0) {
-                    errorMessage += "No valid age!\n";
+                    errorMessage += NO_VALID_AGE + "\n";
                 }
             } catch (NumberFormatException e) {
-                errorMessage += "No valid age (must be an integer)!\n";
+                errorMessage += NO_VALID_AGE + "\n";
             }
         }
 
         if (salaryField.getText() == null || salaryField.getText().length() == 0) {
-            errorMessage += "No valid salary!\n";
+            errorMessage += NO_VALID_SALARY + "\n";
         } else {
             try {
                 if (Integer.parseInt(salaryField.getText()) <= 0) {
-                    errorMessage += "No valid salary!\n";
+                    errorMessage += NO_VALID_SALARY + "\n";
                 }
             } catch (NumberFormatException e) {
-                errorMessage += "No valid salary (must be an integer)!\n";
+                errorMessage += NO_VALID_SALARY + "\n";
             }
         }
 
         if (positionField.getText() == null || positionField.getText().length() == 0) {
-            errorMessage += "No valid position!\n";
+            errorMessage += NO_VALID_POSITION + "\n";
         }
 
         if (errorMessage.length() == 0) {
@@ -172,4 +186,6 @@ public class EmployeeEditDialogController {
             return false;
         }
     }
+
+
 }

@@ -1,3 +1,5 @@
+package dao;
+
 import java.util.List;
 
 public interface EmployeeDao extends GenericDao<Integer, Employee> {
@@ -6,6 +8,6 @@ public interface EmployeeDao extends GenericDao<Integer, Employee> {
 
     List<Employee> getByPosition(String position);
 
-    public int getNewId();
+//    public int getNewId();
 
 }

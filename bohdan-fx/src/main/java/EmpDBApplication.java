@@ -1,3 +1,6 @@
+import dao.Employee;
+import dao.EmployeeDao;
+import dao.EmployeeDaoJdbcImpl;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,13 +17,14 @@ public class EmpDBApplication extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-    private EmployeeDao crud = new EmployeeDaoImpl();
+    private EmployeeDao crud;
 
 
     //    Данные, в виде наблюдаемого списка адресатов.
     private ObservableList<Employee> employeeData;
 
     public EmpDBApplication() {
+        crud = new EmployeeDaoJdbcImpl();
         employeeData = FXCollections.observableArrayList();
         // В качестве образца добавляем некоторые данные
         employeeData.addAll(crud.getAll());
@@ -38,7 +42,7 @@ public class EmpDBApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("AddressApp");
+        this.primaryStage.setTitle("EmployeeApp");
 
         initRootLayout();
 
@@ -113,7 +117,7 @@ public class EmpDBApplication extends Application {
 
             // Создаём диалоговое окно Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Edit Employee");
+            dialogStage.setTitle("Edit dao.Employee");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
@@ -134,6 +138,11 @@ public class EmpDBApplication extends Application {
         }
     }
 
+    @Override
+    public void stop() throws Exception {
+        crud.close();
+        super.stop();
+    }
 
     public static void main(String[] args) {
         launch(args);

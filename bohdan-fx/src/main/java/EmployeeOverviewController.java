@@ -1,3 +1,6 @@
+import dao.Employee;
+import dao.EmployeeDao;
+import dao.EmployeeDaoJdbcImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -34,7 +37,7 @@ public class EmployeeOverviewController {
      * Конструктор вызывается раньше метода initialize().
      */
     public EmployeeOverviewController() {
-        crud = new EmployeeDaoImpl();
+        crud = new EmployeeDaoJdbcImpl();
     }
 
     @FXML
@@ -43,8 +46,8 @@ public class EmployeeOverviewController {
         idColumn.setCellValueFactory(cellData ->
                 cellData.getValue().idProperty().asObject());
 //        idColumn.setCellValueFactory(cellData -> new ReadOnlyObjectWrapper<>(crud.get(1).idProperty().get()));
-        firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().first_nameProperty());
-        lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().last_nameProperty());
+        firstNameColumn.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
+        lastNameColumn.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
 
         // Очистка дополнительной информации об адресате.
         showEmployeeDetails(null);
@@ -73,15 +76,15 @@ public class EmployeeOverviewController {
     private void showEmployeeDetails(Employee employee) {
         if (employee != null) {
             // Заполняем метки информацией из объекта person.
-            firstNameLabel.setText(employee.first_nameProperty().getValue());
-            lastNameLabel.setText(employee.last_nameProperty().getValue());
+            firstNameLabel.setText(employee.firstNameProperty().getValue());
+            lastNameLabel.setText(employee.lastNameProperty().getValue());
             ageLabel.setText(Integer.toString(employee.ageProperty().getValue()));
             salaryLabel.setText(Integer.toString(employee.salaryProperty().getValue()));
-            isMarriedCheckBox.setSelected(employee.is_marriedProperty().getValue());
+            isMarriedCheckBox.setSelected(employee.isMarriedProperty().getValue());
             positionLabel.setText(employee.positionProperty().getValue());
 
-            //DateUtil usage if needed
-            //birthdayLabel.setText(DateUtil.format(person.getBirthday()));
+            //dao.DateUtil usage if needed
+            //birthdayLabel.setText(dao.DateUtil.format(person.getBirthday()));
 
         } else {
             // Если Person = null, то убираем весь текст.
@@ -105,14 +108,7 @@ public class EmployeeOverviewController {
             crud.delete(selectedId);
             employeeTable.getItems().remove(selectedIndex);
         } else {
-            // Ничего не выбрано.
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(application.getPrimaryStage());
-            alert.setTitle("No Selection");
-            alert.setHeaderText("No Employee Selected");
-            alert.setContentText("Please select an employee in the table.");
-
-            alert.showAndWait();
+            getAlert().showAndWait();
         }
     }
 
@@ -144,16 +140,18 @@ public class EmployeeOverviewController {
             }
 
         } else {
-            // Ничего не выбрано.
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.initOwner(application.getPrimaryStage());
-            alert.setTitle("No Selection");
-            alert.setHeaderText("No Person Selected");
-            alert.setContentText("Please select a person in the table.");
-
-            alert.showAndWait();
+            getAlert().showAndWait();
         }
     }
 
+    private Alert getAlert() {
+        // Ничего не выбрано.
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.initOwner(application.getPrimaryStage());
+        alert.setTitle("No Selection");
+        alert.setHeaderText("No employee Selected");
+        alert.setContentText("Please select an employee in the table.");
 
+        return alert;
+    }
 }
