@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(name = "employee_one_to_one")
+@Entity
 public class Employee {
 
     @Id
@@ -16,9 +16,6 @@ public class Employee {
     @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Country> countries = new ArrayList<>();
 
     public Employee() {
     }
@@ -47,21 +44,12 @@ public class Employee {
         this.address = address;
     }
 
-    public List<Country> getCountries() {
-        return countries;
-    }
-
-    public void setCountries(List<Country> countries) {
-        this.countries = countries;
-    }
-
     @Override
     public String toString() {
         return "Employee{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address=" + address +
-                ", countries=" + countries +
                 '}';
     }
 }
