@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeDaoImpl implements EmployeeDao {
+public class EmployeeDaoJDBCImpl implements EmployeeDao {
 
     public static final String ID = "id";
     public static final String FIRST_NAME = "first_name";
@@ -18,7 +18,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public static final String POSITION = "position";
     private Connection connection;
 
-    public EmployeeDaoImpl() {
+    public EmployeeDaoJDBCImpl() {
         this.connection = ConnectionFactory.getConnection();
     }
 
@@ -37,8 +37,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
                     ("INSERT INTO employee_filled(first_name, last_name, age, salary, is_married,/* birthdate,*/ position) " +
                             "VALUES(?, ?, ?, ?, ?,/* ?,*/ ?)"/*, Statement.RETURN_GENERATED_KEYS*/);
 
-            preparedStatement.setString(1, employee.getFirst_name());
-            preparedStatement.setString(2, employee.getLast_name());
+            preparedStatement.setString(1, employee.getFirstName());
+            preparedStatement.setString(2, employee.getLastName());
             preparedStatement.setInt(3, employee.getAge());
             preparedStatement.setInt(4, employee.getSalary());
             preparedStatement.setBoolean(5, employee.is_married());
@@ -69,7 +69,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 //        return id == 0 ? null : get(id);
 
-        return getAll().get(getAll().size() - 1);
+        return get(getLastId());
     }
 
     @Override
@@ -84,8 +84,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
                             "SET first_name = ?, last_name = ?, age = ?, salary = ?, is_married = ?,/* birthdate = ?,*/ position = ? " +
                             "WHERE id = ?");
 
-            preparedStatement.setString(1, employee.getFirst_name());
-            preparedStatement.setString(2, employee.getLast_name());
+            preparedStatement.setString(1, employee.getFirstName());
+            preparedStatement.setString(2, employee.getLastName());
             preparedStatement.setInt(3, employee.getAge());
             preparedStatement.setInt(4, employee.getSalary());
             preparedStatement.setBoolean(5, employee.is_married());
@@ -309,6 +309,25 @@ public class EmployeeDaoImpl implements EmployeeDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private Integer getLastId() {
+        Integer id = null;
+
+        PreparedStatement preparedStatement = null;
+        ResultSet rs = null;
+
+        try {
+            preparedStatement = connection.prepareStatement("SELECT id FROM employee_filled ORDER BY id DESC");
+            rs = preparedStatement.executeQuery();
+
+            rs.next();
+            id = rs.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return id;
     }
 
 }

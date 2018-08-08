@@ -1,23 +1,26 @@
 package JDBC_pckg;
 
 import JDBC_pckg.get_entities_task.Column;
-import JDBC_pckg.get_entities_task.Entity;
 
-@Entity
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@javax.persistence.Entity
+@Table(name = "employee_filled")
 public class Employee {
 
-    @Column
+    @Id
     private int id;
     @Column(name = "first_name")
-    private String first_name;
+    private String firstName;
     @Column(name = "last_name")
-    private String last_name;
+    private String lastName;
     @Column
     private int age;
     @Column
     private int salary;
-    @Column
-    private boolean is_married;
+    @Column(name = "is_married")
+    private boolean isMarried;
     //@Column
     //private Date birthdate;
     @Column
@@ -27,22 +30,22 @@ public class Employee {
 
     }
 
-    public Employee(String first_name, String last_name, int age, int salary, boolean is_married, String position) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public Employee(String firstName, String lastName, int age, int salary, boolean isMarried, String position) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age = age;
         this.salary = salary;
-        this.is_married = is_married;
+        this.isMarried = isMarried;
         this.position = position;
     }
 
-    public Employee(int id, String first_name, String last_name, int age, int salary, boolean is_married, /*Date birthdate,*/ String position) {
+    public Employee(int id, String firstName, String lastName, int age, int salary, boolean isMarried, /*Date birthdate,*/ String position) {
         this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age = age;
         this.salary = salary;
-        this.is_married = is_married;
+        this.isMarried = isMarried;
 //        this.birthdate = birthdate;
         this.position = position;
     }
@@ -55,24 +58,24 @@ public class Employee {
         this.id = id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setIs_married(boolean is_married) {
-        this.is_married = is_married;
+    public void setMarried(boolean married) {
+        this.isMarried = married;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getAge() {
@@ -92,7 +95,7 @@ public class Employee {
     }
 
     public boolean is_married() {
-        return is_married;
+        return isMarried;
     }
 
     public String getPosition() {
@@ -106,11 +109,11 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee #" + id +
-                ": first_name = " + first_name +
-                ", last_name = " + last_name +
+                ": first_name = " + firstName +
+                ", last_name = " + lastName +
                 ", age = " + age +
                 ", salary = " + salary +
-                (is_married ? ", married" : ", not married") +
+                (isMarried ? ", married" : ", not married") +
 //                ", birthdate =" + birthdate +
                 ", position = " + position;
     }

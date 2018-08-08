@@ -56,7 +56,7 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao {
             }
         }
 
-        return getAll().get(getAll().size() - 1);
+        return get(getLastId());
     }
 
     @Override
@@ -296,35 +296,24 @@ public class EmployeeDaoJdbcImpl implements EmployeeDao {
         }
     }
 
-    /*public int getNewId() {
-        Statement statement = null;
-        ResultSet resultSet = null;
+    private Integer getLastId() {
+        Integer id = null;
 
-        int newId = 0;
+        PreparedStatement preparedStatement = null;
+        ResultSet rs = null;
 
         try {
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT nextval(id) FROM employee_filled ORDER BY id LIMIT 1;");
+            preparedStatement = connection.prepareStatement("SELECT id FROM employee_filled ORDER BY id DESC");
+            rs = preparedStatement.executeQuery();
 
-            resultSet.next();
-            newId = resultSet.getInt(0);
+            rs.next();
+            id = rs.getInt(1);
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (resultSet != null) {
-                    resultSet.close();
-                }
-                if (statement != null) {
-                    statement.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
 
-        return newId;
-    }*/
+        return id;
+    }
 
 }
 

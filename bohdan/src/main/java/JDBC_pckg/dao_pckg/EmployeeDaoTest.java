@@ -6,7 +6,7 @@ public class EmployeeDaoTest {
 
     public static void main(String[] args) {
 
-        EmployeeDaoImpl crud = new EmployeeDaoImpl();
+        EmployeeDao crud = new EmployeeDaoJDBCImpl();
 
         System.out.println("DB List:");
         for (Employee employee : crud.getAll()) {
@@ -26,9 +26,9 @@ public class EmployeeDaoTest {
 
         System.out.println();
 
-        System.out.println("Updating Fuzzy Wuzzy:");
-        System.out.println(crud.update(new Employee
-                (48, "Fuzzy", "Wuzzy", 25, 31000, true, "Middle Java Developer")));
+//        System.out.println("Updating Fuzzy Wuzzy:");
+//        System.out.println(crud.update(new Employee
+//                (62, "Fuzzy", "Wuzzy", 25, 31000, true, "Middle Java Developer")));
 
         System.out.println();
 
