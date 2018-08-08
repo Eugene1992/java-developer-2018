@@ -7,7 +7,15 @@ public class Animal {
     @Id
     private int id;
     private String name;
-    private int age;
+    private String type;
+
+    public Animal() {
+    }
+
+    public Animal(String name, String type) {
+        this.name = name;
+        this.type = type;
+    }
 
     public int getId() {
         return id;
@@ -25,11 +33,11 @@ public class Animal {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public String getType() {
+        return type;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setType(String type) {
+        this.type = type;
     }
 }
