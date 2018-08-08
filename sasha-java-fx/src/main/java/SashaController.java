@@ -1,28 +1,26 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class SashaController {
 
-    public TextField userIdInput;
+    public Button editButton;
+    public TableView<User> tableView;
+
     public TextField firstNameInput;
     public TextField lastNameInput;
     public TextField userNameInput;
     public TextField passwordInput;
     public TextField roleInput;
-    public TextField userIdForDelete;
 
     public Button createButton;
     public Button deleteButton;
-    public Button showAllButton;
-
-    public TableView tableView;
+    private UserDaoImpl userDaoImpl = new UserDaoImpl();
+    private MainSasha mainSasha = new MainSasha();
 
     public TableColumn<User, Integer> columnUserId;
     public TableColumn<User, String> columnFirstName;
@@ -34,9 +32,7 @@ public class SashaController {
     private ObservableList<User> userData = FXCollections.observableArrayList();
 
     public void clickCreate(ActionEvent actionEvent) {
-        UserDaoImpl userDaoImpl = new UserDaoImpl();
         userDaoImpl.create(new User(
-                Integer.parseInt(userIdInput.getText()),
                 firstNameInput.getText(),
                 lastNameInput.getText(),
                 userNameInput.getText(),
@@ -44,29 +40,33 @@ public class SashaController {
                 roleInput.getText()
         ));
 
-        userIdInput.clear();
-        firstNameInput.clear();
-        lastNameInput.clear();
-        userNameInput.clear();
-        passwordInput.clear();
-        roleInput.clear();
+        cleanFields(
+                firstNameInput,
+                lastNameInput,
+                userNameInput,
+                passwordInput,
+                roleInput
+        );
+
+        init();
     }
 
     public void clickDelete(ActionEvent actionEvent) {
-        UserDaoImpl userDaoImpl = new UserDaoImpl();
-        userDaoImpl.delete(Integer.parseInt(userIdForDelete.getText()));
-        userIdForDelete.clear();
+        int selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+        userDaoImpl.delete(tableView.getItems().get(selectedIndex).getUser_id());
+        init();
     }
 
-    public void clickShowAll(ActionEvent actionEvent) {
+    private void cleanFields(TextInputControl... fields) {
+        Arrays.asList(fields).forEach(TextInputControl::clear);
+    }
+
+    public void init() {
         for (int i = 0; i < tableView.getItems().size(); i++) {
             tableView.getItems().clear();
         }
-        UserDaoImpl userDaoImpl = new UserDaoImpl();
         List<User> userList = userDaoImpl.getAll();
-        for (User user : userList) {
-            userData.add(user);
-        }
+        userData.addAll(userList);
         tableView.setItems(userData);
         columnUserId.setCellValueFactory(cellData -> cellData.getValue().user_idProperty().asObject());
         columnFirstName.setCellValueFactory(cellData -> cellData.getValue().first_nameProperty());
@@ -74,5 +74,24 @@ public class SashaController {
         columnUserName.setCellValueFactory(cellData -> cellData.getValue().usernameProperty());
         columnPassword.setCellValueFactory(cellData -> cellData.getValue().passwordProperty());
         columnRole.setCellValueFactory(cellData -> cellData.getValue().roleProperty());
+    }
+
+    public void editUser(ActionEvent actionEvent) {
+        User selectedPerson = tableView.getSelectionModel().getSelectedItem();
+        if (selectedPerson != null) {
+            boolean okClicked = mainSasha.showUserEditWindow(selectedPerson);
+            if (okClicked) {
+                init();
+            }
+
+        } else {
+            // Ничего не выбрано.
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Person Selected");
+            alert.setContentText("Please select a person in the table.");
+
+            alert.showAndWait();
+        }
     }
 }

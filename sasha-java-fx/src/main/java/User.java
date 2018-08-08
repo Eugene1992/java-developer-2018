@@ -14,8 +14,16 @@ public class User {
     public User() {
     }
 
-    public User(int user_id, String first_name, String last_name, String username, String password, String role) {
+    public User(Integer user_id, String first_name, String last_name, String username, String password, String role) {
         this.user_id = new SimpleIntegerProperty(user_id);
+        this.first_name = new SimpleStringProperty(first_name);
+        this.last_name = new SimpleStringProperty(last_name);
+        this.username = new SimpleStringProperty(username);
+        this.password = new SimpleStringProperty(password);
+        this.role = new SimpleStringProperty(role);
+    }
+
+    public User(String first_name, String last_name, String username, String password, String role) {
         this.first_name = new SimpleStringProperty(first_name);
         this.last_name = new SimpleStringProperty(last_name);
         this.username = new SimpleStringProperty(username);

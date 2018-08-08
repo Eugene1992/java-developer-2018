@@ -1,13 +1,23 @@
+package com.persistence.test;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Animal {
+public class Employee {
 
     @Id
     private int id;
+
     private String name;
-    private int age;
+
+    public Employee() {
+    }
+
+    public Employee(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public int getId() {
         return id;
@@ -25,11 +35,10 @@ public class Animal {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    @Override
+    public String toString() {
+        return "Employee #" + id +
+                ": name = '" + name + '\'';
     }
 
-    public void setAge(int age) {
-        this.age = age;
-    }
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
+    <persistence-unit name="com.persistence.test">
+        <class>com.persistence.test.Employee</class>
+        <properties>
+            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>-->
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="javax.persistence.jdbc.url"
+                      value="jdbc:postgresql://ec2-54-247-79-32.eu-west-1.compute.amazonaws.com:5432/ddbqh5qho6v4gc?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
+            <property name="javax.persistence.jdbc.user" value="ndbekguuylikcy"/>
+            <property name="javax.persistence.jdbc.password"
+                      value="60bb7ec5c671d2fea3692926039cb38c54d7ab2ff7c872d6f9dd7b65ff77e110"/>
+        </properties>
+    </persistence-unit>
+</persistence>

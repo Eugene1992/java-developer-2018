@@ -9,20 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>bohdan-fx</artifactId>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.zenjava</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>8.7.0</version>
-                <configuration>
-                    <mainClass>EmpDBApplication</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <artifactId>bohdanJPA</artifactId>
 
     <dependencies>
         <dependency>
