@@ -22,4 +22,8 @@ public class Order {
         this.products = products;
         this.date = date;
     }
+
+    public int setNumber() {
+        return number;
+    }
 }
