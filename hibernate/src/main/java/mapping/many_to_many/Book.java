@@ -1,9 +1,6 @@
 package mapping.many_to_many;
 
-import mapping.one_to_one.Employee;
-
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "book_many_to_many")
@@ -42,7 +39,7 @@ public class Book {
         return "Book{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", authors=" + authors +
+                ", author=" + authors +
                 '}';
     }
 }
