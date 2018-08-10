@@ -1,3 +1,4 @@
+/*
 package com.persistence.test;
 
 import javax.persistence.EntityManager;
@@ -26,3 +27,4 @@ public class FindTest {
     }
 
 }
+*/

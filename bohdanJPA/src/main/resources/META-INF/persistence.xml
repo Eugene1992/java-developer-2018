@@ -4,7 +4,7 @@
         <class>com.persistence.test.Employee</class>
         <properties>
             <!--<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>-->
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
             <property name="javax.persistence.jdbc.url"
                       value="jdbc:postgresql://ec2-54-247-79-32.eu-west-1.compute.amazonaws.com:5432/ddbqh5qho6v4gc?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>

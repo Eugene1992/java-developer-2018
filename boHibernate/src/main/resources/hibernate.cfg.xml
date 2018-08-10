@@ -12,8 +12,8 @@
         <property name="connection.password">60bb7ec5c671d2fea3692926039cb38c54d7ab2ff7c872d6f9dd7b65ff77e110</property>
 
         <!-- DB schema will be updated if needed -->
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
-        <mapping class="Employee"/>
+        <mapping class="test.Employee"/>
     </session-factory>
 </hibernate-configuration>

@@ -1,4 +1,4 @@
-package com.persistence.test;
+package test;
 
 import javax.persistence.*;
 

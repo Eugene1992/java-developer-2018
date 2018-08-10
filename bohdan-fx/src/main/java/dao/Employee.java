@@ -2,28 +2,15 @@ package dao;
 
 import javafx.beans.property.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "employee_filled")
+// TODO: 8/10/2018 to implement JPA ref: bohdanJPA...com.persistence.test.Employee
 public class Employee {
 
-    @Id
     private IntegerProperty id;
-    @Column(name = "first_name")
     private StringProperty firstName;
-    @Column(name = "last_name")
     private StringProperty lastName;
-    @Column
     private IntegerProperty age;
-    @Column
     private IntegerProperty salary;
-    @Column(name = "is_married")
     private BooleanProperty isMarried;
-    @Column
     private StringProperty position;
 
     public Employee() {

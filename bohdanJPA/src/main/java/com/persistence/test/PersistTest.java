@@ -1,3 +1,4 @@
+/*
 package com.persistence.test;
 
 import javax.persistence.EntityManager;
@@ -16,11 +17,11 @@ public class PersistTest {
         Employee yevhenii = new Employee(1, "Yevhenii");
         entityManager.persist(yevhenii);
 
-        /*Employee bohdan = new Employee(2, "Bohdan");
+        Employee bohdan = new Employee(2, "Bohdan");
         entityManager.persist(bohdan);
 
         Employee slava = new Employee(3, "Slava");
-        entityManager.persist(slava);*/
+        entityManager.persist(slava);
 
         entityManager.getTransaction().commit();
 
@@ -30,3 +31,4 @@ public class PersistTest {
     }
 
 }
+*/

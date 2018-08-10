@@ -5,6 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
+// TODO: 8/10/2018 ref:  bohdanJPA...com.persistence.test.dao.EmployeeDaoJpaImpl
 public class EmployeeDaoJpaImpl implements EmployeeDao {
 
     //    public static final String ID = "id";
