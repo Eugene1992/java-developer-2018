@@ -3,9 +3,11 @@ package Lesson5Arrays;
 
 public class Task1EvenNumber {
     public static void main(String[] args) {
-        System.out.println("even numbers are :");
-        int numEven = even(new int[]{6, 7, 6, 444, 13, 14});
 
+        System.out.println("even numbers are :");
+
+        int numEven = even(new int[]{6, 7, 6, 444, 13, 14});
+        System.out.println(numEven);
     }
 
     static int even(int arr[]) {
@@ -14,7 +16,6 @@ public class Task1EvenNumber {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] % 2 == 0) {
                 num1 = arr[i];
-                System.out.println(num1);
             }
         }
         return num1;

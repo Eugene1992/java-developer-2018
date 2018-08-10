@@ -1,11 +1,10 @@
-package mapping.one_to_one;
+package mapping.many_to_many;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
-@Entity
-public class Employee {
+@Entity(name = "book_many_to_many")
+public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,11 +12,10 @@ public class Employee {
 
     private String name;
 
-    @OneToOne
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Address address;
+    @ManyToMany(mappedBy = "books")
+    private Set<Author> authors;
 
-    public Employee() {
+    public Book() {
     }
 
     public int getId() {
@@ -36,21 +34,12 @@ public class Employee {
         this.name = name;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
     @Override
     public String toString() {
-        return "Employee{" +
+        return "Book{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", address=" + address +
+                ", author=" + authors +
                 '}';
     }
 }
-

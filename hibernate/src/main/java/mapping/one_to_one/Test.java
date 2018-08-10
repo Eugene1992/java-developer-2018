@@ -28,17 +28,11 @@ public class Test {
         employee.setName("Yevhenii");
         employee.setAddress(address);
 
-        final Country country = new Country();
-        country.setName("Ukraine");
-        country.setEmployee(employee);
-
-        session.save(country);
-
         session.save(employee);
 
         session.getTransaction().commit();
 
-        final Employee employee1 = session.find(Employee.class, 3);
+        final Employee employee1 = session.find(Employee.class, 2);
         System.out.println(employee1);
 
         session.close();

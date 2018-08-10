@@ -1,11 +1,11 @@
-package mapping.one_to_one;
+package mapping.one_to_many;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-public class Employee {
+@Entity(name = "user_one_to_many")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,11 +13,10 @@ public class Employee {
 
     private String name;
 
-    @OneToOne
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Address address;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Role> roles;
 
-    public Employee() {
+    public User() {
     }
 
     public int getId() {
@@ -36,21 +35,20 @@ public class Employee {
         this.name = name;
     }
 
-    public Address getAddress() {
-        return address;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
     public String toString() {
-        return "Employee{" +
+        return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", address=" + address +
+                ", roles=" + roles +
                 '}';
     }
 }
-

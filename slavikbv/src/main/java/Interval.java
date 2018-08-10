@@ -5,18 +5,20 @@
         Если пользователь указывает число не входящее ни в один из имеющихся числовых промежутков, то
         выводится соответствующее сообщение.*/
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
+
 public class Interval {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("a=");
         int a = scan.nextInt();
-        if (a>=0 && a<=14) System.out.println("[0 - 14]");
-        else if (a>=15 && a<=35) System.out.println("[15 - 35]");
-        else if (a>=36 && a<50) System.out.println("[36 - 50]");
-        else if (a == 50) {System.out.println("[36 - 50]");System.out.println("[50 - 100]");}
-        else if (a>50 && a<=100) System.out.println("[50 - 100]");
+        if (a >= 0 && a <= 14) System.out.println("[0 - 14]");
+        else if (a >= 15 && a <= 35) System.out.println("[15 - 35]");
+        else if (a >= 36 && a < 50) System.out.println("[36 - 50]");
+        else if (a == 50) {
+            System.out.println("[36 - 50]");
+            System.out.println("[50 - 100]");
+        } else if (a > 50 && a <= 100) System.out.println("[50 - 100]");
         else System.out.println("interval error");
     }
 }

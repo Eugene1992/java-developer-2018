@@ -2,7 +2,7 @@ package java_starter.lesson5.loops;
 
 public class Decimal2Binary {
     public static void main(String[] args) {
-        int inDecimal = 41;
+        int inDecimal = 25;
         int odd;
         String outBinary = "";
 
